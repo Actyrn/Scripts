@@ -218,6 +218,8 @@ function boxBase:Update()
 		else
 			self.Components.Distance.Visible = false
 		end
+	else
+		self.Components.Distance.Visible = false
 	end
 
 	if ESP.Tracers then
