@@ -3,7 +3,6 @@ local ESP = {
 	Color = Color3.fromRGB(255, 255, 255), 
 
 	Boxes = false, 
-	BoxShift = CFrame.new(0, 0, 0), 
 
 	Names = false, 
 	Distance = false, 
@@ -163,12 +162,12 @@ function boxBase:Update()
 	local size = self.Size
 
 	local locs = {
-		TopLeft = cf * ESP.BoxShift * CFrame.new(size.X / 2, size.Y / 2, 0), 
-		TopRight = cf * ESP.BoxShift * CFrame.new(-size.X / 2, size.Y / 2, 0), 
-		BottomLeft = cf * ESP.BoxShift * CFrame.new(size.X / 2, -size.Y / 2, 0), 
-		BottomRight = cf * ESP.BoxShift * CFrame.new(-size.X / 2, -size.Y / 2, 0), 
-		TagPos = cf * ESP.BoxShift * CFrame.new(0, size.Y / 2, 0), 
-		Torso = cf * ESP.BoxShift
+		TopLeft = cf * CFrame.new(size.X / 2, size.Y / 2, 0), 
+		TopRight = cf * CFrame.new(-size.X / 2, size.Y / 2, 0), 
+		BottomLeft = cf * CFrame.new(size.X / 2, -size.Y / 2, 0), 
+		BottomRight = cf * CFrame.new(-size.X / 2, -size.Y / 2, 0), 
+		TagPos = cf * CFrame.new(0, size.Y / 2, 0), 
+		Torso = cf
 	}
 
 	if ESP.Boxes then
