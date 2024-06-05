@@ -8,13 +8,13 @@ local ESP = {
 	Distance = false, 
 
 	Tracers = false, 
+	UnlockTracers = false, 
+
 	FaceCamera = false, 
 
 	Objects = setmetatable({}, {__mode = "kv"}), 
 	Overrides = {}
 }
-
-local plrs = game:GetService("Players")
 
 local function Draw(obj, props)
 	local new = Drawing.new(obj)
@@ -47,7 +47,7 @@ function ESP:GetPlrFromChar(char)
 		return ov(char)
 	end
 
-	return plrs:GetPlayerFromCharacter(char)
+	return game:GetService("Players"):GetPlayerFromCharacter(char)
 end
 
 function ESP:Toggle(bool)
@@ -228,7 +228,13 @@ function boxBase:Update()
 		if Vis6 then
 			self.Components.Tracer.Visible = true
 			self.Components.Tracer.To = Vector2.new(TorsoPos.X, TorsoPos.Y)
-			self.Components.Tracer.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
+
+			if ESP.UnlockTracers then
+				self.Components.Tracer.From = game:GetService("UserInputService"):GetMouseLocation()
+			else
+				self.Components.Tracer.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
+			end
+
 			self.Components.Tracer.Color = ESP.Color
 		else
 			self.Components.Tracer.Visible = false
@@ -249,7 +255,7 @@ function ESP:Add(obj, options)
 		Color = options.Color, 
 		Size = options.Size or Vector3.new(4, 6, 0), 
 		Object = obj, 
-		Player = options.Player or plrs:GetPlayerFromCharacter(obj), 
+		Player = options.Player or game:GetService("Players"):GetPlayerFromCharacter(obj), 
 		PrimaryPart = options.PrimaryPart or obj.ClassName == "Model" and (obj.PrimaryPart or obj:FindFirstChild("HumanoidRootPart") or obj:FindFirstChildWhichIsA("BasePart")) or obj:IsA("BasePart") and obj, 
 		Components = {}, 
 		IsEnabled = options.IsEnabled, 
@@ -322,7 +328,7 @@ function ESP:Add(obj, options)
 end
 
 local function CharAdded(char)
-	local p = plrs:GetPlayerFromCharacter(char)
+	local p = game:GetService("Players"):GetPlayerFromCharacter(char)
 
 	if not char:FindFirstChild("HumanoidRootPart") then
 		local ev
@@ -352,9 +358,9 @@ local function PlayerAdded(p)
 	end
 end
 
-plrs.PlayerAdded:Connect(PlayerAdded)
-for i, v in pairs(plrs:GetPlayers()) do
-	if v ~= plrs.LocalPlayer then
+game:GetService("Players").PlayerAdded:Connect(PlayerAdded)
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+	if v ~= game:GetService("Players").LocalPlayer then
 		PlayerAdded(v)
 	end
 end
