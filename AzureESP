@@ -224,17 +224,19 @@ function boxBase:Update()
 
 	if ESP.Tracers then
 		local TorsoPos, Vis6 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.Torso.p)
+		local TracerPos
 
 		if Vis6 then
 			self.Components.Tracer.Visible = true
 			self.Components.Tracer.To = Vector2.new(TorsoPos.X, TorsoPos.Y)
 
 			if ESP.UnlockTracers then
-				self.Components.Tracer.From = game:GetService("UserInputService"):GetMouseLocation()
+				TracerPos = game:GetService("UserInputService"):GetMouseLocation()
 			else
-				self.Components.Tracer.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
+				TracerPos = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
 			end
 
+			self.Components.Tracer.From = TracerPos
 			self.Components.Tracer.Color = ESP.Color
 		else
 			self.Components.Tracer.Visible = false
