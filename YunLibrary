@@ -15,7 +15,7 @@ function initLibrary()
 	local tweenService = game:GetService("TweenService")
 	local runService = game:GetService("RunService")
 	local coreGui = game:GetService("CoreGui")
-	
+
 	local keybind
 	local utility = {}
 
@@ -3239,3 +3239,5 @@ function initLibrary()
 
 	return library
 end
+
+return initLibrary()
