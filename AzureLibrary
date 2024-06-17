@@ -4,7 +4,7 @@ local library = {
 }
 
 local runservice = game:GetService("RunService")
-local uis = game:GetService("UserInputService")
+local userinputservice = game:GetService("UserInputService")
 local tweenservice = game:GetService("TweenService")
 local textservice = game:GetService("TextService")
 local coregui = game:GetService("CoreGui")
@@ -43,21 +43,21 @@ if library.theme.cursor then
 		library.cursor = Drawing.new("Image")
 		library.cursor.Data = game:HttpGet(library.theme.cursorimg)
 		library.cursor.Size = Vector2.new(64, 64)
-		library.cursor.Visible = uis.MouseEnabled
+		library.cursor.Visible = userinputservice.MouseEnabled
 		library.cursor.Rounding = 0
 		library.cursor.Position = Vector2.new(mouse.X - 32, mouse.Y + 6)
 	end)
 
 	if success and library.cursor then
-		uis.InputChanged:Connect(function(input)
-			if uis.MouseEnabled and input.UserInputType == Enum.UserInputType.MouseMovement then
+		userinputservice.InputChanged:Connect(function(input)
+			if userinputservice.MouseEnabled and input.UserInputType == Enum.UserInputType.MouseMovement then
 				library.cursor.Position = Vector2.new(input.Position.X - 32, input.Position.Y + 7)
 			end
 		end)
 
 		runservice.RenderStepped:Connect(function()
-			uis.OverrideMouseIconBehavior = Enum.OverrideMouseIconBehavior.ForceHide
-			library.cursor.Visible = uis.MouseEnabled and (uis.MouseIconEnabled or game:GetService("GuiService").MenuIsOpen)
+			userinputservice.OverrideMouseIconBehavior = Enum.OverrideMouseIconBehavior.ForceHide
+			library.cursor.Visible = userinputservice.MouseEnabled and (userinputservice.MouseIconEnabled or game:GetService("GuiService").MenuIsOpen)
 		end)
 
 	elseif not success and library.cursor then
@@ -83,7 +83,7 @@ function library:CreateWindow(name, size, hidebutton)
 	window.Main.DisplayOrder = 15
 
 	local dragging, draginput2, dragstart2, startpos
-	uis.InputChanged:Connect(function(input)
+	userinputservice.InputChanged:Connect(function(input)
 		if input == draginput2 and dragging then
 			local delta = input.Position - dragstart2
 			window.Frame.Position = UDim2.new(startpos.X.Scale, startpos.X.Offset + delta.X, startpos.Y.Scale, startpos.Y.Offset + delta.Y)
@@ -123,7 +123,7 @@ function library:CreateWindow(name, size, hidebutton)
 		window.Frame.BackgroundColor3 = theme.backgroundcolor
 	end)
 
-	uis.InputBegan:Connect(function(key)
+	userinputservice.InputBegan:Connect(function(key)
 		if key.KeyCode == window.hidebutton then
 			window.Frame.Visible = not window.Frame.Visible
 		end
@@ -137,7 +137,7 @@ function library:CreateWindow(name, size, hidebutton)
 			end
 		end
 
-		return (#objects ~= 0 and objects[1].AbsolutePosition ~= Pos)
+		return(#objects ~= 0 and objects[1].AbsolutePosition ~= Pos)
 	end
 
 	window.BlackOutline = Instance.new("Frame", window.Frame)
@@ -816,7 +816,7 @@ function library:CreateWindow(name, size, hidebutton)
 						return keybind.value
 					end
 
-					uis.InputBegan:Connect(function(input, gameProcessed)
+					userinputservice.InputBegan:Connect(function(input, gameProcessed)
 						if not gameProcessed then
 							if keybind.Main.Text == "[...]" then
 								keybind.Main.TextColor3 = Color3.fromRGB(136, 136, 136)
@@ -1525,7 +1525,7 @@ function library:CreateWindow(name, size, hidebutton)
 						end
 					end)
 
-					uis.InputChanged:Connect(function(input)
+					userinputservice.InputChanged:Connect(function(input)
 						if dragging_selector and input.UserInputType == Enum.UserInputType.MouseMovement then
 							colorpicker:RefreshSelector()
 						end
@@ -1712,7 +1712,7 @@ function library:CreateWindow(name, size, hidebutton)
 						end
 					end)
 
-					uis.InputChanged:Connect(function(input)
+					userinputservice.InputChanged:Connect(function(input)
 						if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
 							slider:Refresh()
 						end
@@ -2028,10 +2028,10 @@ function library:CreateWindow(name, size, hidebutton)
 
 				slider.InputLabel.FocusLost:Connect(function(Return)
 					if not Return then
-						return 
+						return
 					end
 
-					if (slider.InputLabel.Text:match("^%d + $")) then
+					if (slider.InputLabel.Text:match("^%d+$")) then
 						slider:Set(slider.InputLabel.Text)
 					else
 						slider.InputLabel.Text = slider.value
@@ -2072,7 +2072,7 @@ function library:CreateWindow(name, size, hidebutton)
 					end
 				end)
 
-				uis.InputChanged:Connect(function(input)
+				userinputservice.InputChanged:Connect(function(input)
 					if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
 						slider:Refresh()
 					end
@@ -2671,7 +2671,7 @@ function library:CreateWindow(name, size, hidebutton)
 					end
 				end)
 
-				uis.InputChanged:Connect(function(input)
+				userinputservice.InputChanged:Connect(function(input)
 					if dragging_selector and input.UserInputType == Enum.UserInputType.MouseMovement then
 						colorpicker:RefreshSelector()
 					end
@@ -2799,7 +2799,7 @@ function library:CreateWindow(name, size, hidebutton)
 					return keybind.value
 				end
 
-				uis.InputBegan:Connect(function(input, gameProcessed)
+				userinputservice.InputBegan:Connect(function(input, gameProcessed)
 					if not gameProcessed then
 						if keybind.Bind.Text == "[...]" then
 							keybind.Bind.TextColor3 = Color3.fromRGB(136, 136, 136)
