@@ -10,8 +10,6 @@ local ESP = {
 	Tracers = false, 
 	UnlockTracers = false, 
 
-	FaceCamera = false, 
-
 	Objects = setmetatable({}, {__mode = "kv"}), 
 	Overrides = {}
 }
@@ -153,28 +151,23 @@ function boxBase:Update()
 		return
 	end
 
-	local cf = self.PrimaryPart.CFrame
-
-	if ESP.FaceCamera then
-		cf = CFrame.new(cf.p, workspace.CurrentCamera.CFrame.p)
-	end
-
 	local size = self.Size
 
+
 	local locs = {
-		TopLeft = cf * CFrame.new(size.X / 2, size.Y / 2, 0), 
-		TopRight = cf * CFrame.new(-size.X / 2, size.Y / 2, 0), 
-		BottomLeft = cf * CFrame.new(size.X / 2, -size.Y / 2, 0), 
-		BottomRight = cf * CFrame.new(-size.X / 2, -size.Y / 2, 0), 
-		TagPos = cf * CFrame.new(0, size.Y / 2, 0), 
-		Torso = cf
+		TopLeft = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(size.X / 2, size.Y / 2, 0), 
+		TopRight = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(-size.X / 2, size.Y / 2, 0), 
+		BottomLeft = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(size.X / 2, -size.Y / 2, 0), 
+		BottomRight = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(-size.X / 2, -size.Y / 2, 0), 
+		TagPos = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(0, size.Y / 2, 0), 
+		Torso = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position)
 	}
 
 	if ESP.Boxes then
-		local TopLeft, Vis1 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.TopLeft.p)
-		local TopRight, Vis2 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.TopRight.p)
-		local BottomLeft, Vis3 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.BottomLeft.p)
-		local BottomRight, Vis4 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.BottomRight.p)
+		local TopLeft, Vis1 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.TopLeft.Position)
+		local TopRight, Vis2 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.TopRight.Position)
+		local BottomLeft, Vis3 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.BottomLeft.Position)
+		local BottomRight, Vis4 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.BottomRight.Position)
 
 		if self.Components.Quad then
 			if Vis1 or Vis2 or Vis3 or Vis4 then
@@ -193,7 +186,7 @@ function boxBase:Update()
 	end
 
 	if ESP.Names then
-		local TagPos, Vis5 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.TagPos.p)
+		local TagPos, Vis5 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.TagPos.Position)
 
 		if Vis5 then
 			self.Components.Name.Visible = true
@@ -208,12 +201,12 @@ function boxBase:Update()
 	end
 
 	if ESP.Distance then
-		local TagPos, Vis7 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.TagPos.p)
+		local TagPos, Vis7 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.TagPos.Position)
 
 		if Vis7 then
 			self.Components.Distance.Visible = true
 			self.Components.Distance.Position = Vector2.new(TagPos.X, TagPos.Y + 14)
-			self.Components.Distance.Text = math.round((workspace.CurrentCamera.CFrame.p - cf.p).Magnitude) .. "m away"
+			self.Components.Distance.Text = math.round((workspace.CurrentCamera.CFrame.Position - CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position).Position).Magnitude) .. "m away"
 			self.Components.Distance.Color = ESP.Color
 		else
 			self.Components.Distance.Visible = false
@@ -223,7 +216,7 @@ function boxBase:Update()
 	end
 
 	if ESP.Tracers then
-		local TorsoPos, Vis6 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.Torso.p)
+		local TorsoPos, Vis6 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.Torso.Position)
 		local TracerPos
 
 		if Vis6 then
