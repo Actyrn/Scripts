@@ -358,7 +358,7 @@ function library:CreateWindow(name, size, hidebutton)
 
 		local block = false
 		function tab:SelectTab()
-			repeat wait() until not block
+			repeat task.wait() until not block
 
 			block = true
 			for i, v in pairs(window.Tabs) do
@@ -375,7 +375,7 @@ function library:CreateWindow(name, size, hidebutton)
 			tab.Right.Visible = true
 			tab.Left.Visible = true
 			window.Line:TweenSizeAndPosition(UDim2.fromOffset(size.X + 15, 1), UDim2.new(0, (tab.TabButton.AbsolutePosition.X - window.Frame.AbsolutePosition.X), 0, 0) + (window.BlackLine.Position - UDim2.fromOffset(0, 1)), Enum.EasingDirection.In, Enum.EasingStyle.Sine, 0.15)
-			wait(0.2)
+			task.wait(0.2)
 			block = false
 		end
 
@@ -1696,7 +1696,7 @@ function library:CreateWindow(name, size, hidebutton)
 					slider:Set(slider.default)
 
 					function slider:Refresh()
-						local mousepos = game:GetService("Workspace").CurrentCamera:WorldToViewportPoint(mouse.Hit.p)
+						local mousepos = game:GetService("Workspace").CurrentCamera:WorldToViewportPoint(mouse.Hit.Position)
 						local percent = math.clamp(mousepos.X - slider.SlideBar.AbsolutePosition.X, 0, slider.Main.AbsoluteSize.X) / slider.Main.AbsoluteSize.X
 						local value = math.round((slider.min + (slider.max - slider.min) * percent) * slider.decimals) / slider.decimals
 						value = math.clamp(value, slider.min, slider.max)
@@ -2056,7 +2056,7 @@ function library:CreateWindow(name, size, hidebutton)
 				end)
 
 				function slider:Refresh()
-					local mousepos = game:GetService("Workspace").CurrentCamera:WorldToViewportPoint(mouse.Hit.p)
+					local mousepos = game:GetService("Workspace").CurrentCamera:WorldToViewportPoint(mouse.Hit.Position)
 					local percent = math.clamp(mousepos.X - slider.SlideBar.AbsolutePosition.X, 0, slider.Main.AbsoluteSize.X) / slider.Main.AbsoluteSize.X
 					local value = math.round((slider.min + (slider.max - slider.min) * percent) * slider.decimals) / slider.decimals
 					value = math.clamp(value, slider.min, slider.max)
@@ -3289,7 +3289,7 @@ function library:CreateWindow(name, size, hidebutton)
 		function tab:CreateConfigSystem(name, side)
 			local configsystem = {}
 
-			configsystem.configFolder = window.name .. " / " .. game.PlaceId
+			configsystem.configFolder = window.name .. "/" .. game.PlaceId
 			if (not isfolder(configsystem.configFolder)) then
 				makefolder(configsystem.configFolder)
 			end
@@ -3327,7 +3327,7 @@ function library:CreateWindow(name, size, hidebutton)
 						end
 					end
 
-					writefile(configsystem.configFolder .. " / " .. configname:Get() .. ".txt", httpservice:JSONEncode(config2))
+					writefile(configsystem.configFolder .. "/" .. configname:Get() .. ".txt", httpservice:JSONEncode(config2))
 
 					for i, v in pairs(listfiles(configsystem.configFolder)) do
 						if v:find(".txt") then
@@ -3354,15 +3354,15 @@ function library:CreateWindow(name, size, hidebutton)
 						end
 					end
 
-					writefile(configsystem.configFolder .. " / " .. config:Get() .. ".txt", httpservice:JSONEncode(config))
+					writefile(configsystem.configFolder .. "/" .. config:Get() .. ".txt", httpservice:JSONEncode(config))
 				end
 			end)
 
 			configsystem.Load = configsystem.sector:AddButton("Load", function()
-				local success = pcall(readfile, configsystem.configFolder .. " / " .. config:Get() .. ".txt")
+				local success = pcall(readfile, configsystem.configFolder .. "/" .. config:Get() .. ".txt")
 				if (success) then
 					pcall(function()
-						local readconfig = httpservice:JSONDecode(readfile(configsystem.configFolder .. " / " .. config:Get() .. ".txt"))
+						local readconfig = httpservice:JSONDecode(readfile(configsystem.configFolder .. "/" .. config:Get() .. ".txt"))
 						local newconfig = {}
 
 						for i, v in pairs(readconfig) do
@@ -3402,8 +3402,8 @@ function library:CreateWindow(name, size, hidebutton)
 				end
 
 				if (not config:Get() or config:Get() == "") then return end
-				if (not isfile(configsystem.configFolder .. " / " .. config:Get() .. ".txt")) then return end
-				delfile(configsystem.configFolder .. " / " .. config:Get() .. ".txt")
+				if (not isfile(configsystem.configFolder .. "/" .. config:Get() .. ".txt")) then return end
+				delfile(configsystem.configFolder .. "/" .. config:Get() .. ".txt")
 
 				for i, v in pairs(listfiles(configsystem.configFolder)) do
 					if v:find(".txt") then
