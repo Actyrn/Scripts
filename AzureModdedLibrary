@@ -1162,7 +1162,6 @@ function library:CreateWindow(name, size, hidebutton)
 							tweenservice:Create(dropdown.Nav, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {Rotation = - 90}):Play()
 							if dropdown.items and #dropdown.items ~= 0 then
 								dropdown.ItemsFrame.ScrollingEnabled = true
-								sector.Main.Parent.ScrollingEnabled = false
 								dropdown.ItemsFrame.Visible = true
 								dropdown.ItemsFrame.Active = true
 								dropdown.IgnoreBackButtons.Visible = true
@@ -1174,7 +1173,6 @@ function library:CreateWindow(name, size, hidebutton)
 						else
 							tweenservice:Create(dropdown.Nav, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {Rotation = 90}):Play()
 							dropdown.ItemsFrame.ScrollingEnabled = false
-							sector.Main.Parent.ScrollingEnabled = true
 							dropdown.ItemsFrame.Visible = false
 							dropdown.ItemsFrame.Active = false
 							dropdown.IgnoreBackButtons.Visible = false
@@ -2617,7 +2615,6 @@ function library:CreateWindow(name, size, hidebutton)
 							tweenservice:Create(dropdown.Nav, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {Rotation = - 90}):Play()
 							if dropdown.items and #dropdown.items ~= 0 then
 								dropdown.ItemsFrame.ScrollingEnabled = true
-								sector.Main.Parent.ScrollingEnabled = false
 								tweenservice:Create(dropdown.Nav, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {Rotation = - 90}):Play()
 								dropdown.ItemsFrame.Visible = true
 								dropdown.ItemsFrame.Active = true
@@ -2629,7 +2626,6 @@ function library:CreateWindow(name, size, hidebutton)
 							end
 						else
 							dropdown.ItemsFrame.ScrollingEnabled = false
-							sector.Main.Parent.ScrollingEnabled = true
 							tweenservice:Create(dropdown.Nav, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {Rotation = 90}):Play()
 							dropdown.ItemsFrame.Visible = false
 							dropdown.ItemsFrame.Active = false
@@ -3175,7 +3171,6 @@ function library:CreateWindow(name, size, hidebutton)
 						tweenservice:Create(dropdown.Nav, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {Rotation = - 90}):Play()
 						if dropdown.items and #dropdown.items ~= 0 then
 							dropdown.ItemsFrame.ScrollingEnabled = true
-							sector.Main.Parent.ScrollingEnabled = false
 							dropdown.ItemsFrame.Visible = true
 							dropdown.ItemsFrame.Active = true
 							dropdown.IgnoreBackButtons.Visible = true
@@ -3187,7 +3182,6 @@ function library:CreateWindow(name, size, hidebutton)
 					else
 						tweenservice:Create(dropdown.Nav, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {Rotation = 90}):Play()
 						dropdown.ItemsFrame.ScrollingEnabled = false
-						sector.Main.Parent.ScrollingEnabled = true
 						dropdown.ItemsFrame.Visible = false
 						dropdown.ItemsFrame.Active = false
 						dropdown.IgnoreBackButtons.Visible = false
