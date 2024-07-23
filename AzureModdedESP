@@ -154,15 +154,12 @@ function boxBase:Update()
 		return
 	end
 
-	local size = self.Size
-
-
 	local locs = {
-		TopLeft = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(size.X / 2, size.Y / 2, 0), 
-		TopRight = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(-size.X / 2, size.Y / 2, 0), 
-		BottomLeft = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(size.X / 2, -size.Y / 2, 0), 
-		BottomRight = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(-size.X / 2, -size.Y / 2, 0), 
-		TagPos = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(0, size.Y / 2, 0), 
+		TopLeft = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(self.Size.X / 2, self.Size.Y / 2, 0), 
+		TopRight = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(-self.Size.X / 2, self.Size.Y / 2, 0), 
+		BottomLeft = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(self.Size.X / 2, -self.Size.Y / 2, 0), 
+		BottomRight = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(-self.Size.X / 2, -self.Size.Y / 2, 0), 
+		TagPos = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(0, self.Size.Y / 2, 0), 
 		Torso = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position)
 	}
 
