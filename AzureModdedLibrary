@@ -2676,7 +2676,7 @@ function library:CreateWindow(name, size, hidebutton)
 					end
 				end)
 
-				uis.InputChanged:Connect(function(input)
+				userinputservice.InputChanged:Connect(function(input)
 					if dragging_selector and input.UserInputType == Enum.UserInputType.MouseMovement then
 						colorpicker:RefreshSelector()
 					end
