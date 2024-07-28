@@ -71,11 +71,11 @@ function library:GetGuiParent()
 		return coregui
 	end)
 
-	return safe and gui or players.LocalPlayer.PlayerGui
+	return safe and gui or game:GetService("StarterGui")
 end
 
 function library:GetGuiName()
-	if library:GetGuiParent() == players.LocalPlayer.PlayerGui then
+	if library:GetGuiParent() == game:GetService("StarterGui") then
 		return "Chat"
 	else
 		return "RobloxGui"
