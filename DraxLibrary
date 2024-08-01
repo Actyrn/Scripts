@@ -157,7 +157,25 @@ do -- src/Lua/Modules/Base/
 	end
 end
 
-local Azure = (function() -- src/Lua/Interface/Interface.Lua
+local Azure
+
+function Azure:GetGuiParent()
+	local safe, gui = pcall(function()
+		return coreguiService
+	end)
+
+	return safe and gui or starterguiService
+end
+
+function Azure:GetGuiName()
+	if Azure:GetGuiParent() == starterguiService then
+		return "Chat"
+	else
+		return "RobloxGui"
+	end
+end
+
+Azure = (function() -- src/Lua/Interface/Interface.Lua
 	local Azure = {
 		Instances = {}, 
 		Popup = nil, 
@@ -237,22 +255,6 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 		[Enum.KeyCode.Escape] = "ESC", 
 		[Enum.KeyCode.Space] = "SPC", 
 	}
-
-	function Azure:GetGuiParent()
-		local safe, gui = pcall(function()
-			return coreguiService
-		end)
-
-		return safe and gui or starterguiService
-	end
-
-	function Azure:GetGuiName()
-		if Azure:GetGuiParent() == starterguiService then
-			return "Chat"
-		else
-			return "RobloxGui"
-		end
-	end
 
 	local FlagCount = 0
 	function Azure:GetNextFlag()
@@ -3599,3 +3601,5 @@ local nigga = (function() -- src/Lua/loader.lua
 		loaderOptions.AutoLoadStop.Event:Connect(script)
 	end
 end)
+
+return Azure
