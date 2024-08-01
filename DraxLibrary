@@ -3109,7 +3109,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 					KeybindsList.BorderSizePixel = 0
 					KeybindsList.Position = UDim2New(0.00636042422, 0, 0.43246755, 0)
 					KeybindsList.Size = UDim2New(0, 102, 0, 19)
-					UI.KeybindListo = KeybindsList
+					UI.KeybindList = KeybindsList
 
 					KeybindsListCorner.CornerRadius = UDim.new(0, 4)
 					KeybindsListCorner.Name = "KeybindsListCorner"
