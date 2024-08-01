@@ -168,8 +168,8 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 	}
 
 	getgenv().theme = {
-		accent = Color3.fromRGB(207, 207, 207), 
-		scroll = Color3.fromRGB(207, 207, 207)
+		accent = Color3.fromRGB(255, 255, 255), 
+		scroll = Color3.fromRGB(200, 200, 200)
 	}
 
 	getgenv().theme_event = Instance.new('BindableEvent')
