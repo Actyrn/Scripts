@@ -16,19 +16,18 @@ if not isfolder("actyrn/configs") then
 	makefolder("actyrn/configs")
 end
 
--- make services global. self-explanatory.
-getgenv().playerService = game:GetService("Players")
-getgenv().coreguiService = game:GetService("CoreGui")
-getgenv().starterguiService = game:GetService("StarterGui")
-getgenv().tweenService = game:GetService("TweenService")
-getgenv().inputService = game:GetService("UserInputService")
-getgenv().rsService = game:GetService("RunService")
-getgenv().replicatedStorage = game:GetService("ReplicatedStorage")
-getgenv().textService = game:GetService("TextService")
-getgenv().httpService = game:GetService("HttpService")
-getgenv().userSettings = UserSettings()
-getgenv().userGameSettings = userSettings:GetService("UserGameSettings")
-getgenv().inputManager = game:GetService("VirtualInputManager")
+local playerService = game:GetService("Players")
+local coreguiService = game:GetService("CoreGui")
+local starterguiService = game:GetService("StarterGui")
+local tweenService = game:GetService("TweenService")
+local inputService = game:GetService("UserInputService")
+local rsService = game:GetService("RunService")
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local textService = game:GetService("TextService")
+local httpService = game:GetService("HttpService")
+local userSettings = UserSettings()
+local userGameSettings = userSettings:GetService("UserGameSettings")
+local inputManager = game:GetService("VirtualInputManager")
 
 local LocalPlayer = playerService.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
@@ -157,25 +156,7 @@ do -- src/Lua/Modules/Base/
 	end
 end
 
-local Azure
-
-function Azure:GetGuiParent()
-	local safe, gui = pcall(function()
-		return coreguiService
-	end)
-
-	return safe and gui or starterguiService
-end
-
-function Azure:GetGuiName()
-	if Azure:GetGuiParent() == starterguiService then
-		return "Chat"
-	else
-		return "RobloxGui"
-	end
-end
-
-Azure = (function() -- src/Lua/Interface/Interface.Lua
+local Azure = (function() -- src/Lua/Interface/Interface.Lua
 	local Azure = {
 		Instances = {}, 
 		Popup = nil, 
@@ -280,8 +261,8 @@ Azure = (function() -- src/Lua/Interface/Interface.Lua
 			tweenService:Create(Object, TweenInfo.new(0.2), {TextTransparency = 0}):Play()
 		end
 
-		UI["1"] = InstanceNew("ScreenGui", Azure:GetGuiParent())
-		UI["1"]["Name"] = Azure:GetGuiName()
+		UI["1"] = InstanceNew("ScreenGui", coreguiService)
+		UI["1"]["Name"] = "RobloxGui"
 		UI["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Global
 
 		UI["2"] = InstanceNew("Frame", UI["1"])
@@ -3326,8 +3307,8 @@ local nigga = (function() -- src/Lua/loader.lua
 	end
 
 	function loaderOptions:new()
-		local Loader = Instance.new("ScreenGui", Azure:GetGuiParent())
-		Loader.Name = Azure:GetGuiName()
+		local Loader = Instance.new("ScreenGui", coreguiService)
+		Loader.Name = "RobloxGui"
 
 		local LoaderBackground = Instance.new("Frame")
 		local BackgroundCorner = Instance.new("UICorner")
