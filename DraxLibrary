@@ -3054,15 +3054,6 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 		end)
 
 		do -- src/Lua/Interface/Others/
-			do -- src/Lua/Interface/Others/CloseOpen.lua
-				inputService.InputBegan:Connect(function(input, gameproc)
-					if gameproc then return end
-
-					if input.KeyCode == Enum.KeyCode.RightShift then
-						UI["2"].Visible = not UI["2"].Visible
-					end
-				end)
-			end
 			do -- src/Lua/Interface/Others/Config.lua
 				function Azure:GetConfig()
 					local ConfigTable = {}
