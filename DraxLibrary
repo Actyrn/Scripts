@@ -268,8 +268,9 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 		UI["2"] = InstanceNew("Frame", UI["1"])
 		UI["2"]["BorderSizePixel"] = 0
 		UI["2"]["BackgroundColor3"] = Color3FromRGB(24, 24, 24)
-		UI["2"]["Size"] = UDim2New(0, 562, 0, 459)
-		UI["2"]["Position"] = UDim2New(0, 527, 0, 168)
+		UI["2"]["Size"] = MenuSize
+		UI["2"]["Position"] = UDim2New(0, 0.5, 0, 0.5)
+		UI["2"]["AnchorPoint"] = Vector2.new(0.5, 0.5)
 		UI["2"]["BorderColor3"] = Color3FromRGB(0, 0, 0)
 		UI["2"]["Name"] = [[BackgroundFrame]]
 
@@ -340,7 +341,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 		UI["b"] = InstanceNew("Frame", UI["2"])
 		UI["b"]["BorderSizePixel"] = 0
 		UI["b"]["BackgroundColor3"] = Color3FromRGB(17, 17, 17)
-		UI["b"]["Size"] = UDim2New(0, 533, 0, 378)
+		UI["b"]["Size"] = BSize
 		UI["b"]["Position"] = UDim2New(0.027, 0, 0.095, 0)
 		UI["b"]["BorderColor3"] = Color3FromRGB(0, 0, 0)
 		UI["b"]["Name"] = [[MainFrame]]
@@ -441,8 +442,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 			UI["f"]["BorderSizePixel"] = 0
 			UI["f"]["BackgroundColor3"] = Color3FromRGB(255, 255, 255)
 			UI["f"]["Name"] = [[MainSectionFrame]]
-			UI["f"]["Position"] = UDim2New(0.028, 0, 0.142, 0)
-			UI["f"]["Size"] = UDim2New(0, 530, 0, 378)
+			UI["f"]["Size"] = FSize
 			UI["f"]["BorderColor3"] = Color3FromRGB(0, 0, 0)
 			UI["f"]["BackgroundTransparency"] = 1
 			UI["f"]["Position"] = UDim2New(0.027, 0, 0.095, 0)
@@ -556,7 +556,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 				local MainFrameThingy = InstanceNew("Frame", SectionSide)
 				MainFrameThingy["BorderSizePixel"] = 0
 				MainFrameThingy["BackgroundColor3"] = Color3FromRGB(28, 28, 28)
-				MainFrameThingy["Size"] = UDim2New(0, 247, 0, 20)
+				MainFrameThingy["Size"] = UDim2.new(0, 247, 0, 20)
 				MainFrameThingy["Position"] = UDim2New(0, 6, 0, 0)
 				MainFrameThingy["BorderColor3"] = Color3FromRGB(0, 0, 0)
 				MainFrameThingy["Name"] = [[Column]]
@@ -2329,7 +2329,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							inputService.InputBegan:Connect(function ( input, gameprocessing )
 								if gameprocessing then return end
 
-								-- mousebutton niggassss
+								-- mousebutton sigmassss
 								local mb = Keybind.FKey == "MB2" and "MouseButton2" or Keybind.FKey == "MB1" and "MouseButton1"
 								if input.KeyCode.Name == Keybind.FKey or input.UserInputType.Name == mb then
 									if Keybind.FMode == 'Toggle' then
@@ -2526,7 +2526,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								PlayerName.TextTruncate = "AtEnd"
 
 								local self_conn = nil
-								local function fucking_click()
+								local function fricking_click()
 									if PlayerOptions.CurrentPlayer == player_name then
 										PlayerName.TextColor3 = Color3FromRGB(129, 129, 127)
 										PlayerOptions.CurrentPlayer = nil
@@ -2553,7 +2553,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									end
 								end
 
-								PlayerName.MouseButton1Click:Connect(fucking_click)
+								PlayerName.MouseButton1Click:Connect(fricking_click)
 							end
 
 							function PlayerOptions:Refresh()
@@ -3278,7 +3278,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 	return Azure
 end)()
 
-local nigga = (function() -- src/Lua/loader.lua
+local sigma = (function() -- src/Lua/loader.lua
 	local loaderOptions = {}
 	loaderOptions.Completed = Instance.new("BindableEvent")
 	loaderOptions.AutoLoadStop = Instance.new("BindableEvent")
