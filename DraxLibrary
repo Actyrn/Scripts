@@ -268,7 +268,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 		UI["2"] = InstanceNew("Frame", UI["1"])
 		UI["2"]["BorderSizePixel"] = 0
 		UI["2"]["BackgroundColor3"] = Color3FromRGB(24, 24, 24)
-		UI["2"]["Size"] = UDim2New(0, 562, 0, 459)
+		UI["2"]["Size"] = UDim2New(0, 400, 0, 500)
 		UI["2"]["Position"] = UDim2New(0, 527, 0, 168)
 		UI["2"]["BorderColor3"] = Color3FromRGB(0, 0, 0)
 		UI["2"]["Name"] = [[BackgroundFrame]]
@@ -3356,7 +3356,7 @@ local nigga = (function() -- src/Lua/loader.lua
 
 		InfoFrame.Name = "InfoFrame"
 		InfoFrame.Parent = LoaderBackground
-		InfoFrame.Size = UDim2.new(0, 400, 0, 500)
+		InfoFrame.Size = UDim2.new(0, 332, 0, 103)
 		InfoFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		InfoFrame.Position = UDim2.new(0.0173913036, 0, 0.164948449, 0)
 		InfoFrame.BorderSizePixel = 0
