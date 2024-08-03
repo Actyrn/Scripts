@@ -345,39 +345,6 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 		UI["b"]["BorderColor3"] = Color3FromRGB(0, 0, 0)
 		UI["b"]["Name"] = [[MainFrame]]
 
-		local MainFrameShadow1 = Instance.new("Frame")
-		local MF_SHADOW1 = Instance.new("UIGradient")
-
-		MainFrameShadow1.Name = "MainFrameShadow1"
-		MainFrameShadow1.Parent = UI["b"]
-		MainFrameShadow1.ZIndex = 2
-		MainFrameShadow1.Size = UDim2.new(1, 0, 0.039682541, 0)
-		MainFrameShadow1.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		MainFrameShadow1.Position = UDim2.new(0, 0, 0.960317433, 0)
-		MainFrameShadow1.BorderSizePixel = 0
-		MainFrameShadow1.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-
-		MF_SHADOW1.Name = "MF_SHADOW1"
-		MF_SHADOW1.Parent = MainFrameShadow1
-		MF_SHADOW1.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0), NumberSequenceKeypoint.new(0.004552352242171764, 0.11475414037704468), NumberSequenceKeypoint.new(0.030349012464284897, 0.3606557846069336), NumberSequenceKeypoint.new(0.6358118057250977, 1), NumberSequenceKeypoint.new(0.9998999834060669, 1), NumberSequenceKeypoint.new(1, 0)})
-		MF_SHADOW1.Rotation = -90
-
-		local MainFrameShadow2 = Instance.new("Frame")
-		local MF_SHADOW2 = Instance.new("UIGradient")
-
-		MainFrameShadow2.Name = "MainFrameShadow2"
-		MainFrameShadow2.Parent = UI["b"]
-		MainFrameShadow2.ZIndex = 2
-		MainFrameShadow2.Size = UDim2.new(1, 0, 0.0399999991, 0)
-		MainFrameShadow2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		MainFrameShadow2.BorderSizePixel = 0
-		MainFrameShadow2.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-
-		MF_SHADOW2.Name = "MF_SHADOW2"
-		MF_SHADOW2.Parent = MainFrameShadow2
-		MF_SHADOW2.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0), NumberSequenceKeypoint.new(0.004552352242171764, 0.11475414037704468), NumberSequenceKeypoint.new(0.030349012464284897, 0.3606557846069336), NumberSequenceKeypoint.new(0.6358118057250977, 1), NumberSequenceKeypoint.new(0.9998999834060669, 1), NumberSequenceKeypoint.new(1, 0)})
-		MF_SHADOW2.Rotation = 90
-
 		UI["c"] = InstanceNew("UICorner", UI["b"])
 		UI["c"]["Name"] = [[MainFrameCorner]]
 
@@ -388,24 +355,6 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 
 		UI["e"] = InstanceNew("Folder", UI["2"])
 		UI["e"]["Name"] = [[Sections]]
-
-		local Shadow1 = Instance.new("ImageLabel")
-
-		Shadow1.Name = "Shadow1"
-		Shadow1.Parent = UI["2"]
-		Shadow1.AnchorPoint = Vector2.new(0.5, 0.5)
-		Shadow1.ZIndex = 0
-		Shadow1.Size = UDim2.new(1.7, 0, 2.843, 0)
-		Shadow1.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Shadow1.Rotation = 90
-		Shadow1.BackgroundTransparency = 1
-		Shadow1.Position = UDim2.new(0.468, 0, 0.495, 0)
-		Shadow1.BorderSizePixel = 0
-		Shadow1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Shadow1.ImageColor3 = Color3.fromRGB(0, 0, 0)
-		Shadow1.ScaleType = Enum.ScaleType.Tile
-		Shadow1.Image = "rbxassetid://8992230677"
-		Shadow1.SliceCenter = Rect.new(Vector2.new(0, 0), Vector2.new(99, 99))
 
 		local text_coroutine = coroutine.create(function ()
 			while TaskWait() do
@@ -3320,7 +3269,6 @@ local sigma = (function() -- src/Lua/loader.lua
 		local Exit = Instance.new("TextButton")
 		local ExitBCorner = Instance.new("UICorner")
 		local ExitBStroke = Instance.new("UIStroke")
-		local Shadow1 = Instance.new("ImageLabel")
 
 		LoaderBackground.Name = "LoaderBackground"
 		LoaderBackground.Parent = Loader
@@ -3484,22 +3432,6 @@ local sigma = (function() -- src/Lua/loader.lua
 		ExitBStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 		ExitBStroke.Color = Color3.fromRGB(37, 37, 37)
 
-		Shadow1.Name = "Shadow1"
-		Shadow1.Parent = LoaderBackground
-		Shadow1.AnchorPoint = Vector2.new(0.5, 0.5)
-		Shadow1.ZIndex = 0
-		Shadow1.Size = UDim2.new(1.20727181, 0, 3.67960405, 0)
-		Shadow1.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Shadow1.Rotation = 90
-		Shadow1.BackgroundTransparency = 1
-		Shadow1.Position = UDim2.new(0.542648137, 0, 0.600463212, 0)
-		Shadow1.BorderSizePixel = 0
-		Shadow1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Shadow1.ImageColor3 = Color3.fromRGB(0, 0, 0)
-		Shadow1.ScaleType = Enum.ScaleType.Tile
-		Shadow1.Image = "rbxassetid://8992230677"
-		Shadow1.SliceCenter = Rect.new(Vector2.new(0, 0), Vector2.new(99, 99))
-
 		for i, v in pairs(Loader:GetDescendants()) do
 			if hasProperty(v, "BackgroundTransparency") then v.BackgroundTransparency = 1 end
 			if hasProperty(v, "TextTransparency") then v.TextTransparency = 1 end
@@ -3511,8 +3443,7 @@ local sigma = (function() -- src/Lua/loader.lua
 			"Information", 
 			"MainTitle", 
 			"InfoTitle", 
-			"OptionsTitle", 
-			"Shadow1"
+			"OptionsTitle"
 		}
 
 		function loaderOptions:FadeIn()
