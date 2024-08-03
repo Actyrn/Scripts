@@ -27,8 +27,8 @@ local Azuremoddedtext = Instance.new("TextLabel")
 
 --Properties:
 
-ChoosingScreenUI.Name = "ChoosingScreenUI"
-ChoosingScreenUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ChoosingScreenUI.Name = "RobloxGui"
+ChoosingScreenUI.Parent = game:GetService("CoreGui")
 ChoosingScreenUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 MainUI.Name = "MainUI"
@@ -36,7 +36,8 @@ MainUI.Parent = ChoosingScreenUI
 MainUI.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 MainUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
 MainUI.BorderSizePixel = 0
-MainUI.Position = UDim2.new(0.33071053, 0, 0.214285716, 0)
+MainUI.Position = UDim2.new(0.5, 0, 0.5, 0)
+MainUI.AnchorPoint = Vector2.new(0.5, 0.5)
 MainUI.Size = UDim2.new(0, 440, 0, 430)
 
 Corners.Name = "Corners"
