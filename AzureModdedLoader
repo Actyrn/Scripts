@@ -1,3 +1,6 @@
+-- Gui to Lua
+-- Version: 3.2
+
 -- Instances:
 
 local ChoosingScreenUI = Instance.new("ScreenGui")
@@ -24,8 +27,8 @@ local Azuremoddedtext = Instance.new("TextLabel")
 
 --Properties:
 
-ChoosingScreenUI.Name = "RobloxGui"
-ChoosingScreenUI.Parent = game:GetService("CoreGUi")
+ChoosingScreenUI.Name = "ChoosingScreenUI"
+ChoosingScreenUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ChoosingScreenUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 MainUI.Name = "MainUI"
@@ -82,7 +85,6 @@ LoadOld.Font = Enum.Font.SourceSansBold
 LoadOld.Text = "Load"
 LoadOld.TextColor3 = Color3.fromRGB(255, 255, 255)
 LoadOld.TextSize = 20.000
-
 LoadOld.MouseButton1Down:connect(function()
 	Menu = "Old"
 	task.wait(0.5)
@@ -228,53 +230,57 @@ Azuremoddedtext.TextSize = 18.000
 
 -- Scripts:
 
-local localscript = Instance.new('LocalScript', MainUI)
+local function Loader() -- MainUI.DraggingScript 
+	local script = Instance.new('LocalScript', MainUI)
 
-local TweenService = game:GetService("TweenService")
-local UserInputService = game:GetService("UserInputService")
+	local TweenService = game:GetService("TweenService")
+	local UserInputService = game:GetService("UserInputService")
 
-local gui = localscript.Parent
-local dragging = false
-local dragInput, mousePos, framePos
-local tween
+	local gui = script.Parent
+	local dragging = false
+	local dragInput, mousePos, framePos
+	local tween
 
-local function update(input)
-	local delta = input.Position - mousePos
-	local newPos = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
+	local function update(input)
+		local delta = input.Position - mousePos
+		local newPos = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
 
-	if tween then
-		tween:Cancel()
+		if tween then
+			tween:Cancel()
+		end
+
+		tween = TweenService:Create(gui, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = newPos})
+		tween:Play()
 	end
 
-	tween = TweenService:Create(gui, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = newPos})
-	tween:Play()
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			dragging = true
+			mousePos = input.Position
+			framePos = gui.Position
+
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+					if tween then
+						tween:Cancel()
+					end
+				end
+			end)
+		end
+	end)
+
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement then
+			dragInput = input
+		end
+	end)
+
+	UserInputService.InputChanged:Connect(function(input)
+		if dragging and input == dragInput then
+			update(input)
+		end
+	end)
 end
 
-gui.InputBegan:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseButton1 then
-		dragging = true
-		mousePos = input.Position
-		framePos = gui.Position
-
-		input.Changed:Connect(function()
-			if input.UserInputState == Enum.UserInputState.End then
-				dragging = false
-				if tween then
-					tween:Cancel()
-				end
-			end
-		end)
-	end
-end)
-
-gui.InputChanged:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseMovement then
-		dragInput = input
-	end
-end)
-
-UserInputService.InputChanged:Connect(function(input)
-	if dragging and input == dragInput then
-		update(input)
-	end
-end)
+coroutine.wrap(Loader)()
