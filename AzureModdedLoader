@@ -225,7 +225,7 @@ Azuremoddedtext.BorderSizePixel = 0
 Azuremoddedtext.Position = UDim2.new(0.0136366412, 0, 0, 0)
 Azuremoddedtext.Size = UDim2.new(0, 160, 0, 25)
 Azuremoddedtext.Font = Enum.Font.SourceSansBold
-Azuremoddedtext.Text = "Azure Modded.lua"
+Azuremoddedtext.Text = "Azure Modded"
 Azuremoddedtext.TextColor3 = Color3.fromRGB(255, 255, 255)
 Azuremoddedtext.TextSize = 18.000
 
