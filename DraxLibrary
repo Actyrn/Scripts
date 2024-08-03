@@ -269,8 +269,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 		UI["2"]["BorderSizePixel"] = 0
 		UI["2"]["BackgroundColor3"] = Color3FromRGB(24, 24, 24)
 		UI["2"]["Size"] = MenuSize
-		UI["2"]["Position"] = UDim2New(0, 0.5, 0, 0.5)
-		UI["2"]["AnchorPoint"] = Vector2.new(0.5, 0.5)
+		UI["2"]["Position"] = UDim2New(0.5, -UI["2"].Size.X.Offset / 2, 0.5, -UI["2"].Size.Y.Offset / 2)
 		UI["2"]["BorderColor3"] = Color3FromRGB(0, 0, 0)
 		UI["2"]["Name"] = [[BackgroundFrame]]
 
