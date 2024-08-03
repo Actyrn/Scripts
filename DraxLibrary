@@ -168,8 +168,8 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 	}
 
 	getgenv().theme = {
-		accent = nil, 
-		scroll = nil
+		accent = Color3.fromRGB(210, 210, 210), 
+		scroll = Color3.fromRGB(175, 175, 175)
 	}
 
 	getgenv().theme_event = Instance.new('BindableEvent')
@@ -269,7 +269,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 		UI["2"]["BorderSizePixel"] = 0
 		UI["2"]["BackgroundColor3"] = Color3FromRGB(24, 24, 24)
 		UI["2"]["Size"] = MenuSize
-		UI["2"]["Position"] = UDim2New(0.5, -UI["2"].Size.X.Offset / 2, 0.5, -UI["2"].Size.Y.Offset / 2)
+		UI["2"]["Position"] = UDim2New(0, 500, 0, 62)
 		UI["2"]["BorderColor3"] = Color3FromRGB(0, 0, 0)
 		UI["2"]["Name"] = [[BackgroundFrame]]
 
