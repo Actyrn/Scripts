@@ -1,0 +1,282 @@
+-- Instances:
+
+local ChoosingScreenUI = Instance.new("ScreenGui")
+local MainUI = Instance.new("Frame")
+local Corners = Instance.new("UICorner")
+local Credit = Instance.new("TextLabel")
+local OLDUI = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local OLDUI_2 = Instance.new("ImageLabel")
+local LoadOld = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local OldUItext = Instance.new("TextLabel")
+local Nocfgsupport = Instance.new("TextLabel")
+local Morebindablestuff = Instance.new("TextLabel")
+local NEWUI = Instance.new("Frame")
+local UICorner_3 = Instance.new("UICorner")
+local NewUI = Instance.new("ImageLabel")
+local LoadNew = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local Nocfgsupport_2 = Instance.new("TextLabel")
+local Menurecoloring = Instance.new("TextLabel")
+local OldUItext_2 = Instance.new("TextLabel")
+local Azuremoddedtext = Instance.new("TextLabel")
+
+--Properties:
+
+ChoosingScreenUI.Name = "RobloxGui"
+ChoosingScreenUI.Parent = game:GetService("CoreGUi")
+ChoosingScreenUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+MainUI.Name = "MainUI"
+MainUI.Parent = ChoosingScreenUI
+MainUI.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+MainUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MainUI.BorderSizePixel = 0
+MainUI.Position = UDim2.new(0.33071053, 0, 0.214285716, 0)
+MainUI.Size = UDim2.new(0, 440, 0, 430)
+
+Corners.Name = "Corners"
+Corners.Parent = MainUI
+
+Credit.Name = "Credit"
+Credit.Parent = MainUI
+Credit.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Credit.BackgroundTransparency = 1.000
+Credit.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Credit.BorderSizePixel = 0
+Credit.Position = UDim2.new(0.0136366412, 0, 0.9370327, 0)
+Credit.Size = UDim2.new(0, 251, 0, 25)
+Credit.Font = Enum.Font.SourceSansBold
+Credit.Text = "Actyrn + Tactical | .gg/azuremodded"
+Credit.TextColor3 = Color3.fromRGB(255, 255, 255)
+Credit.TextSize = 16.000
+
+OLDUI.Name = "OLD UI"
+OLDUI.Parent = MainUI
+OLDUI.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+OLDUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
+OLDUI.BorderSizePixel = 0
+OLDUI.Position = UDim2.new(0.0500000007, 0, 0.0477619693, 0)
+OLDUI.Size = UDim2.new(0, 188, 0, 383)
+
+UICorner.Parent = OLDUI
+
+OLDUI_2.Name = "OLD UI"
+OLDUI_2.Parent = OLDUI
+OLDUI_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+OLDUI_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+OLDUI_2.BorderSizePixel = 0
+OLDUI_2.Position = UDim2.new(0.120737977, 0, 0.0294840299, 0)
+OLDUI_2.Size = UDim2.new(0, 146, 0, 178)
+OLDUI_2.Image = "rbxassetid://18774842977"
+
+LoadOld.Name = "LoadOld"
+LoadOld.Parent = OLDUI
+LoadOld.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+LoadOld.BorderColor3 = Color3.fromRGB(0, 0, 0)
+LoadOld.BorderSizePixel = 0
+LoadOld.Position = UDim2.new(0.0511779785, 0, 0.693242252, 0)
+LoadOld.Size = UDim2.new(0, 168, 0, 27)
+LoadOld.Font = Enum.Font.SourceSansBold
+LoadOld.Text = "Load"
+LoadOld.TextColor3 = Color3.fromRGB(255, 255, 255)
+LoadOld.TextSize = 20.000
+
+LoadOld.MouseButton1Down:connect(function()
+	Menu = "Old"
+	task.wait(0.5)
+	ChoosingScreenUI:Destroy()
+end)
+
+UICorner_2.CornerRadius = UDim.new(0, 3)
+UICorner_2.Parent = LoadOld
+
+OldUItext.Name = "Old UI text"
+OldUItext.Parent = OLDUI
+OldUItext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+OldUItext.BackgroundTransparency = 1.000
+OldUItext.BorderColor3 = Color3.fromRGB(0, 0, 0)
+OldUItext.BorderSizePixel = 0
+OldUItext.Position = UDim2.new(0.124432504, 0, 0.507947147, 0)
+OldUItext.Size = UDim2.new(0, 143, 0, 25)
+OldUItext.Font = Enum.Font.SourceSansBold
+OldUItext.Text = "Old UI"
+OldUItext.TextColor3 = Color3.fromRGB(255, 255, 255)
+OldUItext.TextSize = 38.000
+OldUItext.TextWrapped = true
+
+Nocfgsupport.Name = "No cfg support"
+Nocfgsupport.Parent = OLDUI
+Nocfgsupport.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Nocfgsupport.BackgroundTransparency = 1.000
+Nocfgsupport.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Nocfgsupport.BorderSizePixel = 0
+Nocfgsupport.Position = UDim2.new(0.119031541, 0, 0.568558991, 0)
+Nocfgsupport.Size = UDim2.new(0, 143, 0, 25)
+Nocfgsupport.Font = Enum.Font.SourceSansBold
+Nocfgsupport.Text = "No cfg support"
+Nocfgsupport.TextColor3 = Color3.fromRGB(255, 255, 255)
+Nocfgsupport.TextSize = 20.000
+Nocfgsupport.TextWrapped = true
+
+Morebindablestuff.Name = "More bindable stuff"
+Morebindablestuff.Parent = OLDUI
+Morebindablestuff.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Morebindablestuff.BackgroundTransparency = 1.000
+Morebindablestuff.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Morebindablestuff.BorderSizePixel = 0
+Morebindablestuff.Position = UDim2.new(0.119169198, 0, 0.615549922, 0)
+Morebindablestuff.Size = UDim2.new(0, 143, 0, 25)
+Morebindablestuff.Font = Enum.Font.SourceSansBold
+Morebindablestuff.Text = "More bindable stuff"
+Morebindablestuff.TextColor3 = Color3.fromRGB(255, 255, 255)
+Morebindablestuff.TextSize = 20.000
+Morebindablestuff.TextWrapped = true
+
+NEWUI.Name = "NEW UI"
+NEWUI.Parent = MainUI
+NEWUI.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+NEWUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NEWUI.BorderSizePixel = 0
+NEWUI.Position = UDim2.new(0.524999976, 0, 0.0477514714, 0)
+NEWUI.Size = UDim2.new(0, 193, 0, 383)
+
+UICorner_3.Parent = NEWUI
+
+NewUI.Name = "New UI"
+NewUI.Parent = NEWUI
+NewUI.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NewUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NewUI.BorderSizePixel = 0
+NewUI.Position = UDim2.new(0.120737977, 0, 0.0294840299, 0)
+NewUI.Size = UDim2.new(0, 146, 0, 178)
+NewUI.Image = "rbxassetid://18775263085"
+
+LoadNew.Name = "LoadNew"
+LoadNew.Parent = NEWUI
+LoadNew.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+LoadNew.BorderColor3 = Color3.fromRGB(0, 0, 0)
+LoadNew.BorderSizePixel = 0
+LoadNew.Position = UDim2.new(0.0669976249, 0, 0.693242252, 0)
+LoadNew.Size = UDim2.new(0, 168, 0, 27)
+LoadNew.Font = Enum.Font.SourceSansBold
+LoadNew.Text = "Load"
+LoadNew.TextColor3 = Color3.fromRGB(255, 255, 255)
+LoadNew.TextSize = 20.000
+LoadNew.MouseButton1Down:connect(function()
+	Menu = "New"
+	task.wait(0.5)
+	ChoosingScreenUI:Destroy()
+end)
+
+UICorner_4.CornerRadius = UDim.new(0, 3)
+UICorner_4.Parent = LoadNew
+
+Nocfgsupport_2.Name = "No cfg support"
+Nocfgsupport_2.Parent = NEWUI
+Nocfgsupport_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Nocfgsupport_2.BackgroundTransparency = 1.000
+Nocfgsupport_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Nocfgsupport_2.BorderSizePixel = 0
+Nocfgsupport_2.Position = UDim2.new(0.13512677, 0, 0.571169913, 0)
+Nocfgsupport_2.Size = UDim2.new(0, 143, 0, 25)
+Nocfgsupport_2.Font = Enum.Font.SourceSansBold
+Nocfgsupport_2.Text = "Cfg support"
+Nocfgsupport_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Nocfgsupport_2.TextSize = 20.000
+
+Menurecoloring.Name = "Menu recoloring"
+Menurecoloring.Parent = NEWUI
+Menurecoloring.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Menurecoloring.BackgroundTransparency = 1.000
+Menurecoloring.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Menurecoloring.BorderSizePixel = 0
+Menurecoloring.Position = UDim2.new(0.13512677, 0, 0.618160903, 0)
+Menurecoloring.Size = UDim2.new(0, 143, 0, 25)
+Menurecoloring.Font = Enum.Font.SourceSansBold
+Menurecoloring.Text = "Menu recoloring"
+Menurecoloring.TextColor3 = Color3.fromRGB(255, 255, 255)
+Menurecoloring.TextSize = 20.000
+
+OldUItext_2.Name = "Old UI text"
+OldUItext_2.Parent = NEWUI
+OldUItext_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+OldUItext_2.BackgroundTransparency = 1.000
+OldUItext_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+OldUItext_2.BorderSizePixel = 0
+OldUItext_2.Position = UDim2.new(0.124845989, 0, 0.507947147, 0)
+OldUItext_2.Size = UDim2.new(0, 143, 0, 25)
+OldUItext_2.Font = Enum.Font.SourceSansBold
+OldUItext_2.Text = "New UI"
+OldUItext_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+OldUItext_2.TextSize = 38.000
+OldUItext_2.TextWrapped = true
+
+Azuremoddedtext.Name = "Azure modded text"
+Azuremoddedtext.Parent = MainUI
+Azuremoddedtext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Azuremoddedtext.BackgroundTransparency = 1.000
+Azuremoddedtext.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Azuremoddedtext.BorderSizePixel = 0
+Azuremoddedtext.Position = UDim2.new(0.0136366412, 0, 0, 0)
+Azuremoddedtext.Size = UDim2.new(0, 160, 0, 25)
+Azuremoddedtext.Font = Enum.Font.SourceSansBold
+Azuremoddedtext.Text = "Azure Modded.lua"
+Azuremoddedtext.TextColor3 = Color3.fromRGB(255, 255, 255)
+Azuremoddedtext.TextSize = 18.000
+
+-- Scripts:
+
+local function XQPCM_fake_script() -- MainUI.DraggingScript 
+	local localscript = Instance.new('LocalScript', MainUI)
+
+	local TweenService = game:GetService("TweenService")
+	local UserInputService = game:GetService("UserInputService")
+
+	local gui = localscript.Parent
+	local dragging = false
+	local dragInput, mousePos, framePos
+	local tween
+
+	local function update(input)
+		local delta = input.Position - mousePos
+		local newPos = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
+
+		if tween then
+			tween:Cancel()
+		end
+
+		tween = TweenService:Create(gui, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = newPos})
+		tween:Play()
+	end
+
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			dragging = true
+			mousePos = input.Position
+			framePos = gui.Position
+
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+					if tween then
+						tween:Cancel()
+					end
+				end
+			end)
+		end
+	end)
+
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement then
+			dragInput = input
+		end
+	end)
+
+	UserInputService.InputChanged:Connect(function(input)
+		if dragging and input == dragInput then
+			update(input)
+		end
+	end)
+end
