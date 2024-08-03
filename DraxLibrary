@@ -269,7 +269,8 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 		UI["2"]["BorderSizePixel"] = 0
 		UI["2"]["BackgroundColor3"] = Color3FromRGB(24, 24, 24)
 		UI["2"]["Size"] = MenuSize
-		UI["2"]["Position"] = UDim2New(0, 500, 0, 62)
+
+		UI["2"]["Position"] = UDim2.new(0.5, -UI["2"]["Size"].X.Offset / 2, 0.5, -UI["2"]["Size"].Y.Offset / 2)
 		UI["2"]["BorderColor3"] = Color3FromRGB(0, 0, 0)
 		UI["2"]["Name"] = [[BackgroundFrame]]
 
@@ -2996,8 +2997,8 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 		inputService.InputChanged:Connect(function (input)
 			if input == dragInput and dragging then
 				local delta = input.Position - dragStart
-				local yPos = (startPos.Y.Offset + delta.Y) < -36 and -36 or startPos.Y.Offset + delta.Y
-				dragObject:TweenPosition(UDim2New(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, yPos), "Out", "Quad", .15, true)
+
+				dragObject:TweenPosition(UDim2New(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y), "Out", "Quad", .15, true)
 			end
 		end)
 
