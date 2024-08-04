@@ -1,7 +1,4 @@
--- Gui to Lua
--- Version: 3.2
-
--- Instances:
+-- Instances
 
 local ChoosingScreenUI = Instance.new("ScreenGui")
 local MainUI = Instance.new("Frame")
@@ -25,7 +22,7 @@ local Menurecoloring = Instance.new("TextLabel")
 local OldUItext_2 = Instance.new("TextLabel")
 local Azuremoddedtext = Instance.new("TextLabel")
 
---Properties:
+--Properties
 
 ChoosingScreenUI.Name = "RobloxGui"
 ChoosingScreenUI.Parent = game:GetService("CoreGui")
@@ -229,15 +226,15 @@ Azuremoddedtext.Text = "Azure Modded"
 Azuremoddedtext.TextColor3 = Color3.fromRGB(255, 255, 255)
 Azuremoddedtext.TextSize = 18.000
 
--- Scripts:
+-- Scripts
 
-local function Loader() -- MainUI.DraggingScript 
-	local script = Instance.new('LocalScript', MainUI)
+local function Loader()
+	local Script = Instance.new("LocalScript", MainUI)
 
 	local TweenService = game:GetService("TweenService")
 	local UserInputService = game:GetService("UserInputService")
 
-	local gui = script.Parent
+	local gui = Script.Parent
 	local dragging = false
 	local dragInput, mousePos, framePos
 	local tween
