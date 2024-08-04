@@ -11,18 +11,18 @@ local LoadOld = Instance.new("TextButton")
 local UICorner_2 = Instance.new("UICorner")
 local OldUItext = Instance.new("TextLabel")
 local Nocfgsupport = Instance.new("TextLabel")
-local Morebindablestuff = Instance.new("TextLabel")
+local WorksOnMobile = Instance.new("TextLabel")
 local NEWUI = Instance.new("Frame")
 local UICorner_3 = Instance.new("UICorner")
 local NewUI = Instance.new("ImageLabel")
 local LoadNew = Instance.new("TextButton")
 local UICorner_4 = Instance.new("UICorner")
-local Nocfgsupport_2 = Instance.new("TextLabel")
+local Cfgsupport = Instance.new("TextLabel")
 local Menurecoloring = Instance.new("TextLabel")
-local OldUItext_2 = Instance.new("TextLabel")
+local NewUitext = Instance.new("TextLabel")
 local Azuremoddedtext = Instance.new("TextLabel")
 
---Properties
+-- Properties
 
 ChoosingScreenUI.Name = "RobloxGui"
 ChoosingScreenUI.Parent = game:GetService("CoreGui")
@@ -120,19 +120,19 @@ Nocfgsupport.TextColor3 = Color3.fromRGB(255, 255, 255)
 Nocfgsupport.TextSize = 20.000
 Nocfgsupport.TextWrapped = true
 
-Morebindablestuff.Name = "More bindable stuff"
-Morebindablestuff.Parent = OLDUI
-Morebindablestuff.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Morebindablestuff.BackgroundTransparency = 1.000
-Morebindablestuff.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Morebindablestuff.BorderSizePixel = 0
-Morebindablestuff.Position = UDim2.new(0.119169198, 0, 0.615549922, 0)
-Morebindablestuff.Size = UDim2.new(0, 143, 0, 25)
-Morebindablestuff.Font = Enum.Font.SourceSansBold
-Morebindablestuff.Text = "More bindable stuff"
-Morebindablestuff.TextColor3 = Color3.fromRGB(255, 255, 255)
-Morebindablestuff.TextSize = 20.000
-Morebindablestuff.TextWrapped = true
+WorksOnMobile.Name = "Works on mobile"
+WorksOnMobile.Parent = OLDUI
+WorksOnMobile.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+WorksOnMobile.BackgroundTransparency = 1.000
+WorksOnMobile.BorderColor3 = Color3.fromRGB(0, 0, 0)
+WorksOnMobile.BorderSizePixel = 0
+WorksOnMobile.Position = UDim2.new(0.119169198, 0, 0.615549922, 0)
+WorksOnMobile.Size = UDim2.new(0, 143, 0, 25)
+WorksOnMobile.Font = Enum.Font.SourceSansBold
+WorksOnMobile.Text = "Works on mobile"
+WorksOnMobile.TextColor3 = Color3.fromRGB(255, 255, 255)
+WorksOnMobile.TextSize = 20.000
+WorksOnMobile.TextWrapped = true
 
 NEWUI.Name = "NEW UI"
 NEWUI.Parent = MainUI
@@ -173,18 +173,18 @@ end)
 UICorner_4.CornerRadius = UDim.new(0, 3)
 UICorner_4.Parent = LoadNew
 
-Nocfgsupport_2.Name = "No cfg support"
-Nocfgsupport_2.Parent = NEWUI
-Nocfgsupport_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Nocfgsupport_2.BackgroundTransparency = 1.000
-Nocfgsupport_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Nocfgsupport_2.BorderSizePixel = 0
-Nocfgsupport_2.Position = UDim2.new(0.13512677, 0, 0.571169913, 0)
-Nocfgsupport_2.Size = UDim2.new(0, 143, 0, 25)
-Nocfgsupport_2.Font = Enum.Font.SourceSansBold
-Nocfgsupport_2.Text = "Cfg support"
-Nocfgsupport_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-Nocfgsupport_2.TextSize = 20.000
+Cfgsupport.Name = "Cfg support"
+Cfgsupport.Parent = NEWUI
+Cfgsupport.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Cfgsupport.BackgroundTransparency = 1.000
+Cfgsupport.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Cfgsupport.BorderSizePixel = 0
+Cfgsupport.Position = UDim2.new(0.13512677, 0, 0.571169913, 0)
+Cfgsupport.Size = UDim2.new(0, 143, 0, 25)
+Cfgsupport.Font = Enum.Font.SourceSansBold
+Cfgsupport.Text = "Cfg support"
+Cfgsupport.TextColor3 = Color3.fromRGB(255, 255, 255)
+Cfgsupport.TextSize = 20.000
 
 Menurecoloring.Name = "Menu recoloring"
 Menurecoloring.Parent = NEWUI
@@ -199,21 +199,21 @@ Menurecoloring.Text = "Menu recoloring"
 Menurecoloring.TextColor3 = Color3.fromRGB(255, 255, 255)
 Menurecoloring.TextSize = 20.000
 
-OldUItext_2.Name = "Old UI text"
-OldUItext_2.Parent = NEWUI
-OldUItext_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-OldUItext_2.BackgroundTransparency = 1.000
-OldUItext_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-OldUItext_2.BorderSizePixel = 0
-OldUItext_2.Position = UDim2.new(0.124845989, 0, 0.507947147, 0)
-OldUItext_2.Size = UDim2.new(0, 143, 0, 25)
-OldUItext_2.Font = Enum.Font.SourceSansBold
-OldUItext_2.Text = "New UI"
-OldUItext_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-OldUItext_2.TextSize = 38.000
-OldUItext_2.TextWrapped = true
+NewUitext.Name = "New UI"
+NewUitext.Parent = NEWUI
+NewUitext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NewUitext.BackgroundTransparency = 1.000
+NewUitext.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NewUitext.BorderSizePixel = 0
+NewUitext.Position = UDim2.new(0.124845989, 0, 0.507947147, 0)
+NewUitext.Size = UDim2.new(0, 143, 0, 25)
+NewUitext.Font = Enum.Font.SourceSansBold
+NewUitext.Text = "New UI"
+NewUitext.TextColor3 = Color3.fromRGB(255, 255, 255)
+NewUitext.TextSize = 38.000
+NewUitext.TextWrapped = true
 
-Azuremoddedtext.Name = "Azure modded text"
+Azuremoddedtext.Name = "Azure modded"
 Azuremoddedtext.Parent = MainUI
 Azuremoddedtext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Azuremoddedtext.BackgroundTransparency = 1.000
@@ -228,18 +228,38 @@ Azuremoddedtext.TextSize = 18.000
 
 -- Scripts
 
-local function Loader()
-	local Script = Instance.new("LocalScript", MainUI)
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
 
-	local TweenService = game:GetService("TweenService")
-	local UserInputService = game:GetService("UserInputService")
+local dragging = false
+local dragInput, mousePos, framePos
+local tween
 
-	local gui = Script.Parent
-	local dragging = false
-	local dragInput, mousePos, framePos
-	local tween
+MainUI.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		dragging = true
+		mousePos = input.Position
+		framePos = MainUI.Position
 
-	local function update(input)
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+				if tween then
+					tween:Cancel()
+				end
+			end
+		end)
+	end
+end)
+
+MainUI.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement then
+		dragInput = input
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if dragging and input == dragInput then
 		local delta = input.Position - mousePos
 		local newPos = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
 
@@ -247,38 +267,7 @@ local function Loader()
 			tween:Cancel()
 		end
 
-		tween = TweenService:Create(gui, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = newPos})
+		tween = TweenService:Create(MainUI, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = newPos})
 		tween:Play()
 	end
-
-	gui.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			dragging = true
-			mousePos = input.Position
-			framePos = gui.Position
-
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragging = false
-					if tween then
-						tween:Cancel()
-					end
-				end
-			end)
-		end
-	end)
-
-	gui.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement then
-			dragInput = input
-		end
-	end)
-
-	UserInputService.InputChanged:Connect(function(input)
-		if dragging and input == dragInput then
-			update(input)
-		end
-	end)
-end
-
-coroutine.wrap(Loader)()
+end)
