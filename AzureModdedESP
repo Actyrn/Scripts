@@ -12,7 +12,9 @@ local ESP = {
 	UnlockTracers = false, 
 
 	Objects = setmetatable({}, {__mode = "kv"}), 
-	Overrides = {}
+	Overrides = {}, 
+
+	MainRenderStepped = nil
 }
 
 local Rainbow = 0
@@ -360,7 +362,7 @@ for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 	end
 end
 
-game:GetService("RunService").RenderStepped:Connect(function()
+ESP.MainRenderStepped = game:GetService("RunService").RenderStepped:Connect(function()
 	Rainbow = (Rainbow + 0.001) % 1
 
 	for i, v in (pairs or ipairs)(ESP.Objects) do
