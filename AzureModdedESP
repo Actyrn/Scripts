@@ -157,12 +157,12 @@ function boxBase:Update()
 	end
 
 	local locs = {
-		TopLeft = CFrame.new(self.HumanoidRootPart.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(self.Size.X / 2, self.Size.Y / 2, 0), 
-		TopRight = CFrame.new(self.HumanoidRootPart.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(-self.Size.X / 2, self.Size.Y / 2, 0), 
-		BottomLeft = CFrame.new(self.HumanoidRootPart.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(self.Size.X / 2, -self.Size.Y / 2, 0), 
-		BottomRight = CFrame.new(self.HumanoidRootPart.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(-self.Size.X / 2, -self.Size.Y / 2, 0), 
-		TagPos = CFrame.new(self.HumanoidRootPart.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(0, self.Size.Y / 2, 0), 
-		Torso = CFrame.new(self.HumanoidRootPart.Position, workspace.CurrentCamera.CFrame.Position)
+		TopLeft = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(self.Size.X / 2, self.Size.Y / 2, 0), 
+		TopRight = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(-self.Size.X / 2, self.Size.Y / 2, 0), 
+		BottomLeft = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(self.Size.X / 2, -self.Size.Y / 2, 0), 
+		BottomRight = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(-self.Size.X / 2, -self.Size.Y / 2, 0), 
+		TagPos = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(0, self.Size.Y / 2, 0), 
+		Torso = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position)
 	}
 
 	if ESP.Boxes then
@@ -208,7 +208,7 @@ function boxBase:Update()
 		if Vis7 then
 			self.Components.Distance.Visible = true
 			self.Components.Distance.Position = Vector2.new(TagPos.X, TagPos.Y + 14)
-			self.Components.Distance.Text = math.round((workspace.CurrentCamera.CFrame.Position - CFrame.new(self.HumanoidRootPart.Position, workspace.CurrentCamera.CFrame.Position).Position).Magnitude) .. "m away"
+			self.Components.Distance.Text = math.round((workspace.CurrentCamera.CFrame.Position - CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position).Position).Magnitude) .. "m away"
 			self.Components.Distance.Color = ESP.Rainbow and Color3.fromHSV(Rainbow, 1, 1) or ESP.Color
 		else
 			self.Components.Distance.Visible = false
