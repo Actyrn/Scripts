@@ -249,18 +249,6 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 			Title = OptionsLaughtOutLouds.title or 'syndicate<font color="rgb(129, 127, 127)">.club</font>'
 		}
 
-		local Texts = {
-			"Actyrn + Tactical | .gg/azuremodded", 
-		}
-
-		local function ChangeText(Object, NewText) -- this is for the thing in the top-right in the ui what
-			tweenService:Create(Object, TweenInfo.new(0.2), {TextTransparency = 0.5}):Play()
-			Object.Text = NewText
-			TaskWait(0.1)
-
-			tweenService:Create(Object, TweenInfo.new(0.2), {TextTransparency = 0}):Play()
-		end
-
 		UI["1"] = InstanceNew("ScreenGui", coreguiService)
 		UI["1"]["Name"] = "RobloxGui"
 		UI["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Global
@@ -336,7 +324,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 		UI["a"]["BorderColor3"] = Color3FromRGB(0, 0, 0)
 		UI["a"]["Text"] = [[Actyrn + Tactical | .gg/azuremodded]]
 		UI["a"]["Name"] = [[CreditTitle]]
-		UI["a"]["Position"] = UDim2New(0, 96, 0, 428)
+		UI["a"]["Position"] = UDim2New(0, 96, 0, 569)
 
 		UI["b"] = InstanceNew("Frame", UI["2"])
 		UI["b"]["BorderSizePixel"] = 0
@@ -356,16 +344,6 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 
 		UI["e"] = InstanceNew("Folder", UI["2"])
 		UI["e"]["Name"] = [[Sections]]
-
-		local text_coroutine = coroutine.create(function ()
-			while TaskWait() do
-				for i = 1, #Texts do
-					TaskWait(2)
-					ChangeText(UI["a"], Texts[i])
-				end
-			end
-		end)
-		coroutine.resume(text_coroutine)
 
 		function Configuration:Tab( Tab_Name )
 			if type(Tab_Name) ~= "string" then return end
