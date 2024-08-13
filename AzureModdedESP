@@ -269,7 +269,6 @@ function ESP:Add(obj, options)
 	box.Components["Quad"] = Draw("Quad", {
 		Thickness = 2, 
 		Color = ESP.Rainbow and Color3.fromHSV(Rainbow, 1, 1) or ESP.Color, 
-		Transparency = 1, 
 		Filled = false, 
 		Visible = self.Boxes
 	})
@@ -294,7 +293,6 @@ function ESP:Add(obj, options)
 	box.Components["Tracer"] = Draw("Line", {
 		Thickness = 2, 
 		Color = box.Color, 
-		Transparency = 1, 
 		Visible = self.Tracers
 	})
 
