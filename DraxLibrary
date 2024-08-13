@@ -324,7 +324,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 		UI["a"]["BorderColor3"] = Color3FromRGB(0, 0, 0)
 		UI["a"]["Text"] = [[Actyrn + Tactical | .gg/azuremodded]]
 		UI["a"]["Name"] = [[CreditTitle]]
-		UI["a"]["Position"] = UDim2New(0, 96, 0, 590)
+		UI["a"]["Position"] = UDim2New(0, 96, 0, 580)
 
 		UI["b"] = InstanceNew("Frame", UI["2"])
 		UI["b"]["BorderSizePixel"] = 0
