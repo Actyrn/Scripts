@@ -1472,7 +1472,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							SaturationButton.MouseButton1Down:Connect(function (input)
 								Colorpicker.SlidingSat = true
 
-								SlideSaturation({ Position = game.UserInputService:GetMouseLocation() - Vector2New(0, 36) })
+								SlideSaturation({ Position = game:GetService("UserInputService"):GetMouseLocation() - Vector2New(0, 36) })
 							end)
 
 							local function SlideHue(input)
@@ -1488,7 +1488,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							TextButton.MouseButton1Down:Connect(function (input)
 								Colorpicker.SlidingHue = true
 
-								SlideHue({ Position = game.UserInputService:GetMouseLocation() - Vector2New(0, 36) })
+								SlideHue({ Position = game:GetService("UserInputService"):GetMouseLocation() - Vector2New(0, 36) })
 							end)
 
 							local function SlideTrans(input)
@@ -1503,7 +1503,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							TransparencyButton.MouseButton1Down:Connect(function (input)
 								Colorpicker.SlidingAlpha = true
 
-								SlideTrans({ Position = game.UserInputService:GetMouseLocation() - Vector2New(0, 36) })
+								SlideTrans({ Position = game:GetService("UserInputService"):GetMouseLocation() - Vector2New(0, 36) })
 							end)
 
 							inputService.InputEnded:Connect(function (input)
