@@ -35,7 +35,8 @@ local esp = {
 	healthbartexttransparency = 0, 
 
 	renderdistance = math.huge, 
-	players = {}
+	plrs = {}, 
+	MainRenderStepped = nil
 }
 
 local camera = workspace.CurrentCamera
@@ -58,10 +59,10 @@ function draw.new(object, properties): new_drawing
 	return object
 end
 
-game:GetService("RunService").RenderStepped:Connect(function()
+esp.MainRenderStepped = game:GetService("RunService").RenderStepped:Connect(function()
 	for i, v in next, players:GetPlayers() do
 		if v ~= localplayer and v.Character then
-			local drawingInstances = esp.players[v]
+			local drawingInstances = esp.plrs[v]
 			if not drawingInstances then continue end
 
 			if esp.enabled then
@@ -213,7 +214,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 end)
 
 players.PlayerAdded:Connect(function(player)
-	esp.players[player] = {
+	esp.plrs[player] = {
 		Box = draw.new("Square", {Visible = false, Filled = false, ZIndex = 999, Thickness = 1, Transparency = 1}), 
 		BoxOutline = draw.new("Square", {Visible = false, Filled = false, ZIndex = 1, Color = Color3.fromRGB(0, 0, 0), Thickness = 3, Transparency = 1}), 
 		Health = draw.new("Line", {Visible = false, ZIndex = 999, Thickness = 1, Color = Color3.fromRGB(0, 255, 0), Transparency = 1}), 
@@ -225,8 +226,8 @@ players.PlayerAdded:Connect(function(player)
 end)
 
 players.PlayerRemoving:Connect(function(player)
-	if esp.players[player] then
-		for i, v in pairs(esp.players[player]) do
+	if esp.plrs[player] then
+		for i, v in pairs(esp.plrs[player]) do
 			if v then
 				if v == "Cham" then
 					v.Parent = nil
@@ -236,13 +237,13 @@ players.PlayerRemoving:Connect(function(player)
 			end
 		end
 
-		esp.players[player] = nil
+		esp.plrs[player] = nil
 	end
 end)
 
 for i, v in next, players:GetPlayers() do
 	if v ~= localplayer then
-		esp.players[v] = {
+		esp.plrs[v] = {
 			Box = draw.new("Square", {Visible = false, Filled = false, ZIndex = 999, Thickness = 1}), 
 			BoxOutline = draw.new("Square", {Visible = false, Filled = false, ZIndex = 1, Color = Color3.fromRGB(0, 0, 0), Thickness = 3}), 
 			Health = draw.new("Line", {Visible = false, ZIndex = 999, Thickness = 1, Color = Color3.fromRGB(0, 255, 0)}), 
