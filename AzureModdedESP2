@@ -19,7 +19,7 @@ local esp = {
 	chams = false, 
 	chamscolor = Color3.fromRGB(255, 255, 255), 
 	chamsoutline = Color3.fromRGB(0, 0, 0), 
-	chamstransparencyinline = 0.25, 
+	chamstransparencyinline = 0.5, 
 	chamstransparencyoutline = 0, 
 
 	name = false, 
@@ -34,13 +34,13 @@ local esp = {
 	healthbartextoutline = Color3.fromRGB(0, 0, 0), 
 	healthbartexttransparency = 0, 
 
-	renderdistance = math.huge, 
-	players = {}
+	renderdistance = math.huge
 }
 
 local camera = workspace.CurrentCamera
 local players = game:GetService("Players")
 local localplayer = players.LocalPlayer
+local players = {}
 
 local draw = {
 	currDrawings = {}
@@ -48,23 +48,27 @@ local draw = {
 
 function draw.new(object, properties): new_drawing
 	local object = Drawing.new(object)
+
 	for i, v in next, properties do
 		object[i] = v
 	end
+
 	table.insert(draw.currDrawings, object)
+
 	return object
 end
 
 game:GetService("RunService").RenderStepped:Connect(function()
 	for i, v in next, players:GetPlayers() do
 		if v ~= localplayer and v.Character then
-			local drawingInstances = esp.players[v]
+			local drawingInstances = players[v]
 			if not drawingInstances then continue end
 
 			if esp.enabled then
 				local character = v.Character
-				local _, onscreen = camera:WorldToScreenPoint(character.HumanoidRootPart.Position)
+				local position, onscreen = camera:WorldToScreenPoint(character.HumanoidRootPart.Position)
 				local distfromchar = (camera.CFrame.Position - v.Character.HumanoidRootPart.Position).Magnitude
+
 				if esp.renderdistance < distfromchar then 
 					drawingInstances.Box.Visible = false
 					drawingInstances.BoxOutline.Visible = false
@@ -89,6 +93,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 							drawingInstances.BoxOutline.Position = boxPosition
 							drawingInstances.BoxOutline.Visible = true
 							drawingInstances.BoxOutline.Color = esp.boxoutline
+
 							if esp.fading then
 								drawingInstances.Box.Transparency = 1 - (math.sin(tick() * esp.fadingspeed) + 1) / 2
 								drawingInstances.BoxOutline.Transparency = 1 - (math.sin(tick() * esp.fadingspeed) + 1) / 2
@@ -100,6 +105,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 							drawingInstances.Box.Visible = false
 							drawingInstances.BoxOutline.Visible = false
 						end
+
 						if esp.health then
 							drawingInstances.Health.From = Vector2.new((boxPosition.X - 5), boxPosition.Y + boxSize.Y)
 							drawingInstances.Health.To = Vector2.new(drawingInstances.Health.From.X, drawingInstances.Health.From.Y - (character.Humanoid.Health / character.Humanoid.MaxHealth) * boxSize.Y)
@@ -118,6 +124,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 								drawingInstances.Health.Transparency = 1 - esp.healthtransparency
 								drawingInstances.HealthOutline.Transparency = 1 - esp.healthoutlinetransparency
 							end
+
 							if esp.healthbartext then
 								drawingInstances.HealthText.Visible = true
 								drawingInstances.HealthText.Text = math.round(character.Humanoid.Health) .. "%"
@@ -125,6 +132,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 								drawingInstances.HealthText.Color = esp.healthbartextcolor
 								drawingInstances.HealthText.OutlineColor = esp.healthbartextoutline
 								drawingInstances.HealthText.Font = Drawing.Fonts.Plex
+
 								if esp.fading then
 									drawingInstances.HealthText.Transparency = 1 - (math.sin(tick() * esp.fadingspeed) + 1) / 2
 								else
@@ -138,10 +146,12 @@ game:GetService("RunService").RenderStepped:Connect(function()
 							drawingInstances.HealthOutline.Visible = false
 							drawingInstances.HealthText.Visible = false
 						end
+
 						if esp.chams then
 							drawingInstances.Cham.Parent = character
 							drawingInstances.Cham.FillColor = esp.chamscolor
 							drawingInstances.Cham.OutlineColor = esp.chamsoutline
+
 							if esp.fading then
 								drawingInstances.Cham.FillTransparency = (math.sin(tick() * esp.fadingspeed) + 1) / 2
 								drawingInstances.Cham.OutlineTransparency = (math.sin(tick() * esp.fadingspeed) + 1) / 2
@@ -152,19 +162,25 @@ game:GetService("RunService").RenderStepped:Connect(function()
 						else
 							drawingInstances.Cham.Parent = nil
 						end
+
 						if esp.name or esp.distance then
 							drawingInstances.Name.Visible = true
-							if esp.distance and esp.name then
+
+							if esp.name and esp.distance then
 								drawingInstances.Name.Text = character.Humanoid.DisplayName .. " [" .. math.round(distfromchar) .. "m]"
-							elseif esp.distance then
-								drawingInstances.Name.Text = "" .. math.round(distfromchar) .. " meters away"
+
 							elseif esp.name then
 								drawingInstances.Name.Text = character.Humanoid.DisplayName
+
+							elseif esp.distance then
+								drawingInstances.Name.Text = "" .. math.round(distfromchar) .. " meters away"
 							end
+
 							drawingInstances.Name.Position = Vector2.new(boxSize.X / 2 + boxPosition.X, boxPosition.Y - 16)
 							drawingInstances.Name.Color = esp.namecolor
 							drawingInstances.Name.OutlineColor = esp.nameoutline
 							drawingInstances.Name.Font = Drawing.Fonts.Plex
+
 							if esp.fading then
 								drawingInstances.Name.Transparency = 1 - (math.sin(tick() * esp.fadingspeed) + 1) / 2
 							else
@@ -197,7 +213,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 end)
 
 players.PlayerAdded:Connect(function(player)
-	esp.players[player] = {
+	players[player] = {
 		Box = draw.new("Square", {Visible = false, Filled = false, ZIndex = 999, Thickness = 1, Transparency = 1}), 
 		BoxOutline = draw.new("Square", {Visible = false, Filled = false, ZIndex = 1, Color = Color3.fromRGB(0, 0, 0), Thickness = 3, Transparency = 1}), 
 		Health = draw.new("Line", {Visible = false, ZIndex = 999, Thickness = 1, Color = Color3.fromRGB(0, 255, 0), Transparency = 1}), 
@@ -209,8 +225,8 @@ players.PlayerAdded:Connect(function(player)
 end)
 
 players.PlayerRemoving:Connect(function(player)
-	if esp.players[player] then
-		for i, v in pairs(esp.players[player]) do
+	if players[player] then
+		for i, v in pairs(players[player]) do
 			if v then
 				if v == "Cham" then
 					v.Parent = nil
@@ -219,13 +235,14 @@ players.PlayerRemoving:Connect(function(player)
 				end
 			end
 		end
-		esp.players[player] = nil
+
+		players[player] = nil
 	end
 end)
 
 for i, v in next, players:GetPlayers() do
 	if v ~= localplayer then
-		esp.players[v] = {
+		players[v] = {
 			Box = draw.new("Square", {Visible = false, Filled = false, ZIndex = 999, Thickness = 1}), 
 			BoxOutline = draw.new("Square", {Visible = false, Filled = false, ZIndex = 1, Color = Color3.fromRGB(0, 0, 0), Thickness = 3}), 
 			Health = draw.new("Line", {Visible = false, ZIndex = 999, Thickness = 1, Color = Color3.fromRGB(0, 255, 0)}), 
