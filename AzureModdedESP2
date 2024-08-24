@@ -19,8 +19,8 @@ local esp = {
 	chams = false, 
 	chamscolor = Color3.fromRGB(255, 255, 255), 
 	chamsoutline = Color3.fromRGB(0, 0, 0), 
-	chamstransparencyinline = 0.5, 
-	chamstransparencyoutline = 0.5, 
+	chamstransparencyinline = 0, 
+	chamstransparencyoutline = 0, 
 
 	name = false, 
 	namecolor = Color3.fromRGB(255, 255, 255), 
