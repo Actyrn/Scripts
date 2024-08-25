@@ -5,7 +5,7 @@ local esp = {
 	fadingspeed = 5, 
 
 	box = false, 
-	boxcolor = Color3.fromRGB(255, 255, 255), 
+	boxcolor = Color3.fromRGB(210, 210, 210), 
 	boxoutline = Color3.fromRGB(0, 0, 0), 
 	boxtransparency = 0, 
 	boxoutlinetransparency = 0, 
@@ -17,20 +17,20 @@ local esp = {
 	healthoutlinetransparency = 0, 
 
 	chams = false, 
-	chamscolor = Color3.fromRGB(255, 255, 255), 
+	chamscolor = Color3.fromRGB(210, 210, 210), 
 	chamsoutline = Color3.fromRGB(0, 0, 0), 
 	chamstransparencyinline = 0, 
 	chamstransparencyoutline = 0, 
 
 	name = false, 
-	namecolor = Color3.fromRGB(255, 255, 255), 
+	namecolor = Color3.fromRGB(210, 210, 210), 
 	nameoutline = Color3.fromRGB(0, 0, 0), 
 	nametransparency = 0, 
 
 	distance = false, 
 
 	healthbartext = false, 
-	healthbartextcolor = Color3.fromRGB(255, 255, 255), 
+	healthbartextcolor = Color3.fromRGB(210, 210, 210), 
 	healthbartextoutline = Color3.fromRGB(0, 0, 0), 
 	healthbartexttransparency = 0, 
 
@@ -195,7 +195,6 @@ esp.MainRenderStepped = game:GetService("RunService").RenderStepped:Connect(func
 						drawingInstances.BoxOutline.Visible = false
 						drawingInstances.Health.Visible = false
 						drawingInstances.HealthOutline.Visible = false
-						drawingInstances.Cham.Parent = nil
 						drawingInstances.Name.Visible = false
 						drawingInstances.HealthText.Visible = false
 					end
@@ -220,8 +219,8 @@ players.PlayerAdded:Connect(function(player)
 		Health = draw.new("Line", {Visible = false, ZIndex = 999, Thickness = 1, Color = Color3.fromRGB(0, 255, 0), Transparency = 1}), 
 		HealthOutline = draw.new("Line", {Visible = false, ZIndex = 0, Thickness = 3, Color = Color3.fromRGB(0, 0, 0), Transparency = 1}), 
 		Cham = Instance.new("Highlight"), 
-		Name = draw.new("Text", {Visible = false, Size = 13, Center = true, Outline = true, Font = Drawing.Fonts.Plex, Color = Color3.fromRGB(255, 255, 255), Transparency = 1}), 
-		HealthText = draw.new("Text", {Visible = false, Size = 13, Center = true, Outline = true, Font = Drawing.Fonts.Plex, Color = Color3.fromRGB(255, 255, 255), Transparency = 1})
+		Name = draw.new("Text", {Visible = false, Size = 13, Center = true, Outline = true, Font = Drawing.Fonts.Plex, Color = Color3.fromRGB(210, 210, 210), Transparency = 1}), 
+		HealthText = draw.new("Text", {Visible = false, Size = 13, Center = true, Outline = true, Font = Drawing.Fonts.Plex, Color = Color3.fromRGB(210, 210, 210), Transparency = 1})
 	}
 end)
 
@@ -249,8 +248,8 @@ for i, v in next, players:GetPlayers() do
 			Health = draw.new("Line", {Visible = false, ZIndex = 999, Thickness = 1, Color = Color3.fromRGB(0, 255, 0)}), 
 			HealthOutline = draw.new("Line", {Visible = false, ZIndex = 0, Thickness = 3, Color = Color3.fromRGB(0, 0, 0)}), 
 			Cham = Instance.new("Highlight"), 
-			Name = draw.new("Text", {Visible = false, Size = 13, Center = true, Outline = true, Font = Drawing.Fonts.Plex, Color = Color3.fromRGB(255, 255, 255)}), 
-			HealthText = draw.new("Text", {Visible = false, Size = 13, Center = true, Outline = true, Font = Drawing.Fonts.Plex, Color = Color3.fromRGB(255, 255, 255)})
+			Name = draw.new("Text", {Visible = false, Size = 13, Center = true, Outline = true, Font = Drawing.Fonts.Plex, Color = Color3.fromRGB(210, 210, 210)}), 
+			HealthText = draw.new("Text", {Visible = false, Size = 13, Center = true, Outline = true, Font = Drawing.Fonts.Plex, Color = Color3.fromRGB(210, 210, 210)})
 		}
 	end
 end
