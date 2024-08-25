@@ -218,7 +218,7 @@ players.PlayerAdded:Connect(function(player)
 		BoxOutline = draw.new("Square", {Visible = false, Filled = false, ZIndex = 1, Color = Color3.fromRGB(0, 0, 0), Thickness = 3, Transparency = 1}), 
 		Health = draw.new("Line", {Visible = false, ZIndex = 999, Thickness = 1, Color = Color3.fromRGB(0, 255, 0), Transparency = 1}), 
 		HealthOutline = draw.new("Line", {Visible = false, ZIndex = 0, Thickness = 3, Color = Color3.fromRGB(0, 0, 0), Transparency = 1}), 
-		Cham = Instance.new("Highlight", player), 
+		Cham = Instance.new("Highlight"), 
 		Name = draw.new("Text", {Visible = false, Size = 13, Center = true, Outline = true, Font = Drawing.Fonts.Plex, Color = Color3.fromRGB(210, 210, 210), Transparency = 1}), 
 		HealthText = draw.new("Text", {Visible = false, Size = 13, Center = true, Outline = true, Font = Drawing.Fonts.Plex, Color = Color3.fromRGB(210, 210, 210), Transparency = 1})
 	}
