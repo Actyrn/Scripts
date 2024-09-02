@@ -16,18 +16,19 @@ if not isfolder("actyrn/configs") then
 	makefolder("actyrn/configs")
 end
 
-local playerService = game:GetService("Players")
-local coreguiService = game:GetService("CoreGui")
-local starterguiService = game:GetService("StarterGui")
-local tweenService = game:GetService("TweenService")
-local inputService = game:GetService("UserInputService")
-local rsService = game:GetService("RunService")
-local replicatedStorage = game:GetService("ReplicatedStorage")
-local textService = game:GetService("TextService")
-local httpService = game:GetService("HttpService")
+local playerService = cloneref(game:GetService("Players"))
+local coreguiService = cloneref(game:GetService("CoreGui"))
+local starterguiService = cloneref(game:GetService("StarterGui"))
+local tweenService = cloneref(game:GetService("TweenService"))
+local inputService = cloneref(game:GetService("UserInputService"))
+local rsService = cloneref(game:GetService("RunService"))
+local replicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
+local textService = cloneref(game:GetService("TextService"))
+local httpService = cloneref(game:GetService("HttpService"))
+local userInputService = cloneref(game:GetService("UserInputService"))
 local userSettings = UserSettings()
-local userGameSettings = userSettings:GetService("UserGameSettings")
-local inputManager = game:GetService("VirtualInputManager")
+local userGameSettings = cloneref(userSettings:GetService("UserGameSettings"))
+local inputManager = cloneref(game:GetService("VirtualInputManager"))
 
 local LocalPlayer = playerService.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
@@ -1472,7 +1473,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							SaturationButton.MouseButton1Down:Connect(function (input)
 								Colorpicker.SlidingSat = true
 
-								SlideSaturation({ Position = game:GetService("UserInputService"):GetMouseLocation() - Vector2New(0, 36) })
+								SlideSaturation({ Position = userInputService:GetMouseLocation() - Vector2New(0, 36) })
 							end)
 
 							local function SlideHue(input)
@@ -1488,7 +1489,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							TextButton.MouseButton1Down:Connect(function (input)
 								Colorpicker.SlidingHue = true
 
-								SlideHue({ Position = game:GetService("UserInputService"):GetMouseLocation() - Vector2New(0, 36) })
+								SlideHue({ Position = userInputService:GetMouseLocation() - Vector2New(0, 36) })
 							end)
 
 							local function SlideTrans(input)
@@ -1503,7 +1504,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							TransparencyButton.MouseButton1Down:Connect(function (input)
 								Colorpicker.SlidingAlpha = true
 
-								SlideTrans({ Position = game:GetService("UserInputService"):GetMouseLocation() - Vector2New(0, 36) })
+								SlideTrans({ Position = userInputService:GetMouseLocation() - Vector2New(0, 36) })
 							end)
 
 							inputService.InputEnded:Connect(function (input)
@@ -3219,7 +3220,7 @@ local sigma = (function() -- src/Lua/loader.lua
 	end
 
 	local function Tween(object, tweenInfo, property_Table)
-		local newTween = game:GetService("TweenService"):Create(object, tweenInfo, property_Table)
+		local newTween = tweenService:Create(object, tweenInfo, property_Table)
 		newTween:Play()
 		return newTween
 	end
