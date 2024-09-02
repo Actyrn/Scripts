@@ -39,8 +39,9 @@ local esp = {
 	MainRenderStepped = nil
 }
 
-local camera = workspace.CurrentCamera
-local players = game:GetService("Players")
+local camera = cloneref(game:GetService("Workspace").CurrentCamera)
+local players = cloneref(game:GetService("Players"))
+local runservice = cloneref(game:GetService("RunService"))
 local localplayer = players.LocalPlayer
 
 local draw = {
@@ -59,7 +60,7 @@ function draw.new(object, properties): new_drawing
 	return object
 end
 
-esp.MainRenderStepped = game:GetService("RunService").RenderStepped:Connect(function()
+esp.MainRenderStepped = runservice.RenderStepped:Connect(function()
 	for i, v in next, players:GetPlayers() do
 		if v ~= localplayer and v.Character then
 			local drawingInstances = esp.plrs[v]
