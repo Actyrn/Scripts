@@ -35,7 +35,7 @@ local esp = {
 	healthbartexttransparency = 0, 
 
 	userenderdistance = false, 
-	renderdistance = math.huge, 
+	renderdistance = 5000, 
 
 	plrs = {}, 
 	MainRenderStepped = nil
