@@ -34,7 +34,9 @@ local esp = {
 	healthbartextoutline = Color3.fromRGB(0, 0, 0), 
 	healthbartexttransparency = 0, 
 
+	userenderdistance = false, 
 	renderdistance = math.huge, 
+
 	plrs = {}, 
 	MainRenderStepped = nil
 }
@@ -70,8 +72,9 @@ esp.MainRenderStepped = runservice.RenderStepped:Connect(function()
 				local character = v.Character
 				local position, onscreen = camera:WorldToScreenPoint(character.HumanoidRootPart.Position)
 				local distfromchar = (camera.CFrame.Position - v.Character.HumanoidRootPart.Position).Magnitude
+				local renderdistance = esp.userenderdistance and esp.renderdistance or math.huge
 
-				if esp.renderdistance < distfromchar then 
+				if renderdistance < distfromchar then 
 					drawingInstances.Box.Visible = false
 					drawingInstances.BoxOutline.Visible = false
 					drawingInstances.Health.Visible = false
