@@ -62,11 +62,11 @@ end
 
 esp.MainRenderStepped = runservice.RenderStepped:Connect(function()
 	for i, v in next, players:GetPlayers() do
-		if v ~= localplayer and v.Character then
+		if v ~= localplayer then
 			local drawingInstances = esp.plrs[v]
 			if not drawingInstances then continue end
 
-			if esp.enabled then
+			if esp.enabled and v.Character then
 				local character = v.Character
 				local position, onscreen = camera:WorldToScreenPoint(character.HumanoidRootPart.Position)
 				local distfromchar = (camera.CFrame.Position - v.Character.HumanoidRootPart.Position).Magnitude
@@ -196,6 +196,7 @@ esp.MainRenderStepped = runservice.RenderStepped:Connect(function()
 						drawingInstances.BoxOutline.Visible = false
 						drawingInstances.Health.Visible = false
 						drawingInstances.HealthOutline.Visible = false
+						drawingInstances.Cham.Parent = nil
 						drawingInstances.Name.Visible = false
 						drawingInstances.HealthText.Visible = false
 					end
