@@ -21,6 +21,7 @@ local RunService = cloneref(game:GetService("RunService"))
 local UserInputService = cloneref(game:GetService("UserInputService"))
 local Players = cloneref(game:GetService("Players"))
 
+local workspace = cloneref(game:GetService("Workspace"))
 local Rainbow = 0
 
 local function Draw(obj, props)
