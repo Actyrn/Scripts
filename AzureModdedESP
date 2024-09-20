@@ -17,6 +17,10 @@ local ESP = {
 	MainRenderStepped = nil
 }
 
+local RunService = cloneref(game:GetService("RunService"))
+local UserInputService = cloneref(game:GetService("UserInputService"))
+local Players = cloneref(game:GetService("Players"))
+
 local Rainbow = 0
 
 local function Draw(obj, props)
@@ -50,7 +54,7 @@ function ESP:GetPlrFromChar(char)
 		return ov(char)
 	end
 
-	return game:GetService("Players"):GetPlayerFromCharacter(char)
+	return Players:GetPlayerFromCharacter(char)
 end
 
 function ESP:Toggle(bool)
@@ -229,7 +233,7 @@ function boxBase:Update()
 			self.Components.Tracer.To = Vector2.new(TorsoPos.X, TorsoPos.Y)
 
 			if ESP.UnlockTracers then
-				self.Components.Tracer.From = game:GetService("UserInputService"):GetMouseLocation()
+				self.Components.Tracer.From = UserInputService:GetMouseLocation()
 			else
 				self.Components.Tracer.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
 			end
@@ -254,7 +258,7 @@ function ESP:Add(obj, options)
 		Color = options.Color, 
 		Size = options.Size or Vector3.new(4, 6, 0), 
 		Object = obj, 
-		Player = options.Player or game:GetService("Players"):GetPlayerFromCharacter(obj), 
+		Player = options.Player or Players:GetPlayerFromCharacter(obj), 
 		PrimaryPart = options.PrimaryPart or obj.ClassName == "Model" and (obj.PrimaryPart or obj:FindFirstChild("HumanoidRootPart") or obj:FindFirstChildWhichIsA("BasePart")) or obj:IsA("BasePart") and obj, 
 		Components = {}, 
 		IsEnabled = options.IsEnabled, 
@@ -325,7 +329,7 @@ function ESP:Add(obj, options)
 end
 
 local function CharAdded(char)
-	local p = game:GetService("Players"):GetPlayerFromCharacter(char)
+	local p = Players:GetPlayerFromCharacter(char)
 
 	if not char:FindFirstChild("HumanoidRootPart") then
 		local ev
@@ -355,14 +359,14 @@ local function PlayerAdded(p)
 	end
 end
 
-game:GetService("Players").PlayerAdded:Connect(PlayerAdded)
-for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-	if v ~= game:GetService("Players").LocalPlayer then
+Players.PlayerAdded:Connect(PlayerAdded)
+for i, v in pairs(Players:GetPlayers()) do
+	if v ~= Players.LocalPlayer then
 		PlayerAdded(v)
 	end
 end
 
-ESP.MainRenderStepped = game:GetService("RunService").RenderStepped:Connect(function()
+ESP.MainRenderStepped = RunService.RenderStepped:Connect(function()
 	Rainbow = (Rainbow + 0.001) % 1
 
 	for i, v in (pairs or ipairs)(ESP.Objects) do
