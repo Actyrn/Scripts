@@ -21,7 +21,7 @@ local RunService = cloneref(game:GetService("RunService"))
 local UserInputService = cloneref(game:GetService("UserInputService"))
 local Players = cloneref(game:GetService("Players"))
 
-local workspace = cloneref(game:GetService("Workspace"))
+local workspace2 = cloneref(game:GetService("Workspace"))
 local Rainbow = 0
 
 local function Draw(obj, props)
@@ -149,7 +149,7 @@ function boxBase:Update()
 		allow = false
 	end
 
-	if not workspace:IsAncestorOf(self.PrimaryPart) and not self.RenderInNil then
+	if not workspace2:IsAncestorOf(self.PrimaryPart) and not self.RenderInNil then
 		allow = false
 	end
 
@@ -163,19 +163,19 @@ function boxBase:Update()
 	end
 
 	local locs = {
-		TopLeft = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(self.Size.X / 2, self.Size.Y / 2, 0), 
-		TopRight = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(-self.Size.X / 2, self.Size.Y / 2, 0), 
-		BottomLeft = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(self.Size.X / 2, -self.Size.Y / 2, 0), 
-		BottomRight = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(-self.Size.X / 2, -self.Size.Y / 2, 0), 
-		TagPos = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position) * CFrame.new(0, self.Size.Y / 2, 0), 
-		Torso = CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position)
+		TopLeft = CFrame.new(self.PrimaryPart.CFrame.Position, workspace2.CurrentCamera.CFrame.Position) * CFrame.new(self.Size.X / 2, self.Size.Y / 2, 0), 
+		TopRight = CFrame.new(self.PrimaryPart.CFrame.Position, workspace2.CurrentCamera.CFrame.Position) * CFrame.new(-self.Size.X / 2, self.Size.Y / 2, 0), 
+		BottomLeft = CFrame.new(self.PrimaryPart.CFrame.Position, workspace2.CurrentCamera.CFrame.Position) * CFrame.new(self.Size.X / 2, -self.Size.Y / 2, 0), 
+		BottomRight = CFrame.new(self.PrimaryPart.CFrame.Position, workspace2.CurrentCamera.CFrame.Position) * CFrame.new(-self.Size.X / 2, -self.Size.Y / 2, 0), 
+		TagPos = CFrame.new(self.PrimaryPart.CFrame.Position, workspace2.CurrentCamera.CFrame.Position) * CFrame.new(0, self.Size.Y / 2, 0), 
+		Torso = CFrame.new(self.PrimaryPart.CFrame.Position, workspace2.CurrentCamera.CFrame.Position)
 	}
 
 	if ESP.Boxes then
-		local TopLeft, Vis1 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.TopLeft.Position)
-		local TopRight, Vis2 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.TopRight.Position)
-		local BottomLeft, Vis3 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.BottomLeft.Position)
-		local BottomRight, Vis4 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.BottomRight.Position)
+		local TopLeft, Vis1 = workspace2.CurrentCamera.WorldToViewportPoint(workspace2.CurrentCamera, locs.TopLeft.Position)
+		local TopRight, Vis2 = workspace2.CurrentCamera.WorldToViewportPoint(workspace2.CurrentCamera, locs.TopRight.Position)
+		local BottomLeft, Vis3 = workspace2.CurrentCamera.WorldToViewportPoint(workspace2.CurrentCamera, locs.BottomLeft.Position)
+		local BottomRight, Vis4 = workspace2.CurrentCamera.WorldToViewportPoint(workspace2.CurrentCamera, locs.BottomRight.Position)
 
 		if self.Components.Quad then
 			if Vis1 or Vis2 or Vis3 or Vis4 then
@@ -197,7 +197,7 @@ function boxBase:Update()
 	end
 
 	if ESP.Names then
-		local TagPos, Vis5 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.TagPos.Position)
+		local TagPos, Vis5 = workspace2.CurrentCamera.WorldToViewportPoint(workspace2.CurrentCamera, locs.TagPos.Position)
 
 		if Vis5 then
 			self.Components.Name.Visible = true
@@ -212,12 +212,12 @@ function boxBase:Update()
 	end
 
 	if ESP.Distance then
-		local TagPos, Vis7 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.TagPos.Position)
+		local TagPos, Vis7 = workspace2.CurrentCamera.WorldToViewportPoint(workspace2.CurrentCamera, locs.TagPos.Position)
 
 		if Vis7 then
 			self.Components.Distance.Visible = true
 			self.Components.Distance.Position = Vector2.new(TagPos.X, TagPos.Y + 14)
-			self.Components.Distance.Text = math.round((workspace.CurrentCamera.CFrame.Position - CFrame.new(self.PrimaryPart.CFrame.Position, workspace.CurrentCamera.CFrame.Position).Position).Magnitude) .. "m away"
+			self.Components.Distance.Text = math.round((workspace2.CurrentCamera.CFrame.Position - CFrame.new(self.PrimaryPart.CFrame.Position, workspace2.CurrentCamera.CFrame.Position).Position).Magnitude) .. "m away"
 			self.Components.Distance.Color = ESP.Rainbow and Color3.fromHSV(Rainbow, 1, 1) or ESP.Color
 		else
 			self.Components.Distance.Visible = false
@@ -227,7 +227,7 @@ function boxBase:Update()
 	end
 
 	if ESP.Tracers then
-		local TorsoPos, Vis6 = workspace.CurrentCamera.WorldToViewportPoint(workspace.CurrentCamera, locs.Torso.Position)
+		local TorsoPos, Vis6 = workspace2.CurrentCamera.WorldToViewportPoint(workspace2.CurrentCamera, locs.Torso.Position)
 
 		if Vis6 then
 			self.Components.Tracer.Visible = true
@@ -236,7 +236,7 @@ function boxBase:Update()
 			if ESP.UnlockTracers then
 				self.Components.Tracer.From = UserInputService:GetMouseLocation()
 			else
-				self.Components.Tracer.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
+				self.Components.Tracer.From = Vector2.new(workspace2.CurrentCamera.ViewportSize.X / 2, workspace2.CurrentCamera.ViewportSize.Y)
 			end
 
 			self.Components.Tracer.Color = ESP.Rainbow and Color3.fromHSV(Rainbow, 1, 1) or ESP.Color
