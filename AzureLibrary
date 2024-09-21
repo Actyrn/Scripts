@@ -9,7 +9,7 @@ local tweenservice = cloneref(game:GetService("TweenService"))
 local textservice = cloneref(game:GetService("TextService"))
 local coregui = cloneref(game:GetService("CoreGui"))
 local httpservice = cloneref(game:GetService("HttpService"))
-local workspace = cloneref(game:GetService("Workspace"))
+local workspace2 = cloneref(game:GetService("Workspace"))
 local guiservice = cloneref(game:GetService("GuiService"))
 local marketplaceservice = cloneref(game:GetService("MarketplaceService"))
 
@@ -1699,7 +1699,7 @@ function library:CreateWindow(name, size, hidebutton)
 					slider:Set(slider.default)
 
 					function slider:Refresh()
-						local mousepos = workspace.CurrentCamera:WorldToViewportPoint(mouse.Hit.Position)
+						local mousepos = workspace2.CurrentCamera:WorldToViewportPoint(mouse.Hit.Position)
 						local percent = math.clamp(mousepos.X - slider.SlideBar.AbsolutePosition.X, 0, slider.Main.AbsoluteSize.X) / slider.Main.AbsoluteSize.X
 						local value = math.round((slider.min + (slider.max - slider.min) * percent) * slider.decimals) / slider.decimals
 						value = math.clamp(value, slider.min, slider.max)
@@ -2059,7 +2059,7 @@ function library:CreateWindow(name, size, hidebutton)
 				end)
 
 				function slider:Refresh()
-					local mousepos = workspace.CurrentCamera:WorldToViewportPoint(mouse.Hit.Position)
+					local mousepos = workspace2.CurrentCamera:WorldToViewportPoint(mouse.Hit.Position)
 					local percent = math.clamp(mousepos.X - slider.SlideBar.AbsolutePosition.X, 0, slider.Main.AbsoluteSize.X) / slider.Main.AbsoluteSize.X
 					local value = math.round((slider.min + (slider.max - slider.min) * percent) * slider.decimals) / slider.decimals
 					value = math.clamp(value, slider.min, slider.max)
