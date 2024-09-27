@@ -173,7 +173,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 		scroll = Color3.fromRGB(175, 175, 175)
 	}
 
-	getgenv().theme_event = Instance.new('BindableEvent')
+	getgenv().theme_event = Instance.new("BindableEvent")
 
 	getgenv().UI = Azure.Instances
 	local UIModule = include "UI"
@@ -247,7 +247,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 	function Azure:Create(OptionsLaughtOutLouds)
 		local Configuration = {
 			Tabs = {}, 
-			Title = OptionsLaughtOutLouds.title or 'syndicate<font color="rgb(129, 127, 127)">.club</font>'
+			Title = OptionsLaughtOutLouds.title or "Azure Modded"
 		}
 
 		UI["1"] = InstanceNew("ScreenGui", coreguiService)
@@ -440,7 +440,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 			UI["LISTLAYOUT_RIGHT"].SortOrder = Enum.SortOrder.LayoutOrder
 			UI["LISTLAYOUT_RIGHT"].Padding = UDim.new(0, 19)
 
-			local localization = UI['LISTLAYOUT_LEFT']
+			local localization = UI["LISTLAYOUT_LEFT"]
 			local localization2 = UI["LISTLAYOUT_RIGHT"]
 
 			localization.Changed:Connect(function ()
@@ -2260,9 +2260,9 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								-- mousebutton sigmassss
 								local mb = Keybind.FKey == "MB2" and "MouseButton2" or Keybind.FKey == "MB1" and "MouseButton1"
 								if input.KeyCode.Name == Keybind.FKey or input.UserInputType.Name == mb then
-									if Keybind.FMode == 'Toggle' then
+									if Keybind.FMode == "Toggle" then
 										Keybind.Toggled = not Keybind.Toggled
-									elseif Keybind.FMode == 'Hold' then
+									elseif Keybind.FMode == "Hold" then
 										Keybind.Toggled = true
 
 										local c c = inputService.InputEnded:Connect(function ( input )
