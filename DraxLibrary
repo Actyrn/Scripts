@@ -318,12 +318,12 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 		UI["a"]["TextScaled"] = false
 		UI["a"]["BackgroundColor3"] = Color3FromRGB(255, 255, 255)
 		UI["a"]["TextSize"] = 16
-		UI["a"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+		UI["a"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Italic)
 		UI["a"]["TextColor3"] = Color3FromRGB(255, 255, 255)
 		UI["a"]["BackgroundTransparency"] = 1
 		UI["a"]["Size"] = UDim2New(0, 452, 0, 19)
 		UI["a"]["BorderColor3"] = Color3FromRGB(0, 0, 0)
-		UI["a"]["Text"] = [[Actyrn + Tactical | .gg/azuremodded]]
+		UI["a"]["Text"] = AText
 		UI["a"]["Name"] = [[CreditTitle]]
 		UI["a"]["Position"] = UDim2New(0, 96, 0, 579)
 
