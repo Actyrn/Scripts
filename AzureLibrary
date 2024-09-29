@@ -1314,12 +1314,12 @@ function library:CreateWindow(name, size, hidebutton)
 				end
 
 				function toggle:AddColorpicker(default, callback, flag)
-					local colorpicker = {}
+					local colorpicker = { }
 
 					colorpicker.callback = callback or function() end
 					colorpicker.default = default or Color3.fromRGB(255, 255, 255)
 					colorpicker.value = colorpicker.default
-					colorpicker.flag = flag or ((toggle.text or "") .. #toggle.Items:GetChildren())
+					colorpicker.flag = flag or ( (toggle.text or "") .. tostring(#toggle.Items:GetChildren()))
 
 					colorpicker.Main = Instance.new("Frame", toggle.Items)
 					colorpicker.Main.ZIndex = 6
@@ -1331,7 +1331,7 @@ function library:CreateWindow(name, size, hidebutton)
 					colorpicker.Gradient.Rotation = 90
 
 					local clr = Color3.new(math.clamp(colorpicker.value.R / 1.7, 0, 1), math.clamp(colorpicker.value.G / 1.7, 0, 1), math.clamp(colorpicker.value.B / 1.7, 0, 1))
-					colorpicker.Gradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, colorpicker.value), ColorSequenceKeypoint.new(1, clr)})
+					colorpicker.Gradient.Color = ColorSequence.new({ ColorSequenceKeypoint.new(0.00, colorpicker.value), ColorSequenceKeypoint.new(1.00, clr) })
 
 					colorpicker.BlackOutline2 = Instance.new("Frame", colorpicker.Main)
 					colorpicker.BlackOutline2.Name = "blackline"
@@ -1339,7 +1339,7 @@ function library:CreateWindow(name, size, hidebutton)
 					colorpicker.BlackOutline2.Size = colorpicker.Main.Size + UDim2.fromOffset(6, 6)
 					colorpicker.BlackOutline2.BorderSizePixel = 0
 					colorpicker.BlackOutline2.BackgroundColor3 = window.theme.outlinecolor2
-					colorpicker.BlackOutline2.Position = UDim2.fromOffset(- 3, - 3)
+					colorpicker.BlackOutline2.Position = UDim2.fromOffset(-3, -3)
 					updateevent.Event:Connect(function(theme)
 						if window.OpenedColorPickers[colorpicker.MainPicker] then
 							colorpicker.BlackOutline2.BackgroundColor3 = theme.accentcolor
@@ -1354,7 +1354,7 @@ function library:CreateWindow(name, size, hidebutton)
 					colorpicker.Outline.Size = colorpicker.Main.Size + UDim2.fromOffset(4, 4)
 					colorpicker.Outline.BorderSizePixel = 0
 					colorpicker.Outline.BackgroundColor3 = window.theme.outlinecolor
-					colorpicker.Outline.Position = UDim2.fromOffset(- 2, - 2)
+					colorpicker.Outline.Position = UDim2.fromOffset(-2, -2)
 					updateevent.Event:Connect(function(theme)
 						colorpicker.Outline.BackgroundColor3 = theme.outlinecolor
 					end)
@@ -1365,7 +1365,7 @@ function library:CreateWindow(name, size, hidebutton)
 					colorpicker.BlackOutline.Size = colorpicker.Main.Size + UDim2.fromOffset(2, 2)
 					colorpicker.BlackOutline.BorderSizePixel = 0
 					colorpicker.BlackOutline.BackgroundColor3 = window.theme.outlinecolor2
-					colorpicker.BlackOutline.Position = UDim2.fromOffset(- 1, - 1)
+					colorpicker.BlackOutline.Position = UDim2.fromOffset(-1, -1)
 					updateevent.Event:Connect(function(theme)
 						colorpicker.BlackOutline.BackgroundColor3 = theme.outlinecolor2
 					end)
@@ -1390,8 +1390,8 @@ function library:CreateWindow(name, size, hidebutton)
 					colorpicker.MainPicker.Size = UDim2.fromOffset(180, 196)
 					colorpicker.MainPicker.BorderSizePixel = 0
 					colorpicker.MainPicker.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-					colorpicker.MainPicker.Rotation = 0
-					colorpicker.MainPicker.Position = UDim2.fromOffset(- colorpicker.MainPicker.AbsoluteSize.X + colorpicker.Main.AbsoluteSize.X, 17)
+					colorpicker.MainPicker.Rotation = 0.000000000000001
+					colorpicker.MainPicker.Position = UDim2.fromOffset(-colorpicker.MainPicker.AbsoluteSize.X + colorpicker.Main.AbsoluteSize.X, 17)
 
 					colorpicker.BlackOutline3 = Instance.new("Frame", colorpicker.MainPicker)
 					colorpicker.BlackOutline3.Name = "blackline"
@@ -1399,7 +1399,7 @@ function library:CreateWindow(name, size, hidebutton)
 					colorpicker.BlackOutline3.Size = colorpicker.MainPicker.Size + UDim2.fromOffset(6, 6)
 					colorpicker.BlackOutline3.BorderSizePixel = 0
 					colorpicker.BlackOutline3.BackgroundColor3 = window.theme.outlinecolor2
-					colorpicker.BlackOutline3.Position = UDim2.fromOffset(- 3, - 3)
+					colorpicker.BlackOutline3.Position = UDim2.fromOffset(-3, -3)
 					updateevent.Event:Connect(function(theme)
 						colorpicker.BlackOutline3.BackgroundColor3 = theme.outlinecolor2
 					end)
@@ -1410,7 +1410,7 @@ function library:CreateWindow(name, size, hidebutton)
 					colorpicker.Outline2.Size = colorpicker.MainPicker.Size + UDim2.fromOffset(4, 4)
 					colorpicker.Outline2.BorderSizePixel = 0
 					colorpicker.Outline2.BackgroundColor3 = window.theme.outlinecolor
-					colorpicker.Outline2.Position = UDim2.fromOffset(- 2, - 2)
+					colorpicker.Outline2.Position = UDim2.fromOffset(-2, -2)
 					updateevent.Event:Connect(function(theme)
 						colorpicker.Outline2.BackgroundColor3 = theme.outlinecolor
 					end)
@@ -1421,7 +1421,7 @@ function library:CreateWindow(name, size, hidebutton)
 					colorpicker.BlackOutline3.Size = colorpicker.MainPicker.Size + UDim2.fromOffset(2, 2)
 					colorpicker.BlackOutline3.BorderSizePixel = 0
 					colorpicker.BlackOutline3.BackgroundColor3 = window.theme.outlinecolor2
-					colorpicker.BlackOutline3.Position = UDim2.fromOffset(- 1, - 1)
+					colorpicker.BlackOutline3.Position = UDim2.fromOffset(-1, -1)
 					updateevent.Event:Connect(function(theme)
 						colorpicker.BlackOutline3.BackgroundColor3 = theme.outlinecolor2
 					end)
@@ -1458,7 +1458,7 @@ function library:CreateWindow(name, size, hidebutton)
 					end)
 
 					colorpicker.gradient = Instance.new("UIGradient", colorpicker.selector)
-					colorpicker.gradient.Color = ColorSequence.new({
+					colorpicker.gradient.Color = ColorSequence.new({ 
 						ColorSequenceKeypoint.new(0, Color3.new(1, 0, 0)), 
 						ColorSequenceKeypoint.new(0.17, Color3.new(1, 0, 1)), 
 						ColorSequenceKeypoint.new(0.33, Color3.new(0, 0, 1)), 
@@ -1504,14 +1504,13 @@ function library:CreateWindow(name, size, hidebutton)
 							library.flags[colorpicker.flag] = color
 						end
 						local clr = Color3.new(math.clamp(color.R / 1.7, 0, 1), math.clamp(color.G / 1.7, 0, 1), math.clamp(color.B / 1.7, 0, 1))
-						colorpicker.Gradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, color), ColorSequenceKeypoint.new(1, clr)})
+						colorpicker.Gradient.Color = ColorSequence.new({ ColorSequenceKeypoint.new(0.00, color), ColorSequenceKeypoint.new(1.00, clr) })
 						pcall(colorpicker.callback, color)
 					end
 
 					function colorpicker:Get(value)
 						return colorpicker.value
 					end
-
 					colorpicker:Set(colorpicker.default)
 
 					local dragging_selector = false
@@ -1577,7 +1576,7 @@ function library:CreateWindow(name, size, hidebutton)
 					colorpicker.Outline.InputBegan:Connect(inputBegan)
 					colorpicker.BlackOutline2.InputBegan:Connect(inputBegan)
 					table.insert(library.items, colorpicker)
-
+					
 					return colorpicker
 				end
 
@@ -2104,7 +2103,7 @@ function library:CreateWindow(name, size, hidebutton)
 			end
 
 			function sector:AddColorpicker(text, default, callback, flag)
-				local colorpicker = {}
+				local colorpicker = { }
 
 				colorpicker.text = text or ""
 				colorpicker.callback = callback or function() end
@@ -2138,7 +2137,7 @@ function library:CreateWindow(name, size, hidebutton)
 				colorpicker.Gradient.Rotation = 90
 
 				local clr = Color3.new(math.clamp(colorpicker.value.R / 1.7, 0, 1), math.clamp(colorpicker.value.G / 1.7, 0, 1), math.clamp(colorpicker.value.B / 1.7, 0, 1))
-				colorpicker.Gradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, colorpicker.value), ColorSequenceKeypoint.new(1, clr)})
+				colorpicker.Gradient.Color = ColorSequence.new({ ColorSequenceKeypoint.new(0.00, colorpicker.value), ColorSequenceKeypoint.new(1.00, clr) })
 
 				colorpicker.BlackOutline2 = Instance.new("Frame", colorpicker.Main)
 				colorpicker.BlackOutline2.Name = "blackline"
@@ -2146,7 +2145,7 @@ function library:CreateWindow(name, size, hidebutton)
 				colorpicker.BlackOutline2.Size = colorpicker.Main.Size + UDim2.fromOffset(6, 6)
 				colorpicker.BlackOutline2.BorderSizePixel = 0
 				colorpicker.BlackOutline2.BackgroundColor3 = window.theme.outlinecolor2
-				colorpicker.BlackOutline2.Position = UDim2.fromOffset(- 3, - 3)
+				colorpicker.BlackOutline2.Position = UDim2.fromOffset(-3, -3)
 				updateevent.Event:Connect(function(theme)
 					colorpicker.BlackOutline2.BackgroundColor3 = window.OpenedColorPickers[colorpicker.MainPicker] and theme.accentcolor or theme.outlinecolor2
 				end)
@@ -2157,7 +2156,7 @@ function library:CreateWindow(name, size, hidebutton)
 				colorpicker.Outline.Size = colorpicker.Main.Size + UDim2.fromOffset(4, 4)
 				colorpicker.Outline.BorderSizePixel = 0
 				colorpicker.Outline.BackgroundColor3 = window.theme.outlinecolor
-				colorpicker.Outline.Position = UDim2.fromOffset(- 2, - 2)
+				colorpicker.Outline.Position = UDim2.fromOffset(-2, -2)
 				updateevent.Event:Connect(function(theme)
 					colorpicker.Outline.BackgroundColor3 = theme.outlinecolor
 				end)
@@ -2168,7 +2167,7 @@ function library:CreateWindow(name, size, hidebutton)
 				colorpicker.BlackOutline.Size = colorpicker.Main.Size + UDim2.fromOffset(2, 2)
 				colorpicker.BlackOutline.BorderSizePixel = 0
 				colorpicker.BlackOutline.BackgroundColor3 = window.theme.outlinecolor2
-				colorpicker.BlackOutline.Position = UDim2.fromOffset(- 1, - 1)
+				colorpicker.BlackOutline.Position = UDim2.fromOffset(-1, -1)
 				updateevent.Event:Connect(function(theme)
 					colorpicker.BlackOutline.BackgroundColor3 = theme.outlinecolor2
 				end)
@@ -2192,8 +2191,8 @@ function library:CreateWindow(name, size, hidebutton)
 				colorpicker.MainPicker.Size = UDim2.fromOffset(180, 196)
 				colorpicker.MainPicker.BorderSizePixel = 0
 				colorpicker.MainPicker.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-				colorpicker.MainPicker.Rotation = 0
-				colorpicker.MainPicker.Position = UDim2.fromOffset(- colorpicker.MainPicker.AbsoluteSize.X + colorpicker.Main.AbsoluteSize.X, 15)
+				colorpicker.MainPicker.Rotation = 0.000000000000001
+				colorpicker.MainPicker.Position = UDim2.fromOffset(-colorpicker.MainPicker.AbsoluteSize.X + colorpicker.Main.AbsoluteSize.X, 15)
 
 				colorpicker.BlackOutline3 = Instance.new("Frame", colorpicker.MainPicker)
 				colorpicker.BlackOutline3.Name = "blackline"
@@ -2201,7 +2200,7 @@ function library:CreateWindow(name, size, hidebutton)
 				colorpicker.BlackOutline3.Size = colorpicker.MainPicker.Size + UDim2.fromOffset(6, 6)
 				colorpicker.BlackOutline3.BorderSizePixel = 0
 				colorpicker.BlackOutline3.BackgroundColor3 = window.theme.outlinecolor2
-				colorpicker.BlackOutline3.Position = UDim2.fromOffset(- 3, - 3)
+				colorpicker.BlackOutline3.Position = UDim2.fromOffset(-3, -3)
 				updateevent.Event:Connect(function(theme)
 					colorpicker.BlackOutline3.BackgroundColor3 = theme.outlinecolor2
 				end)
@@ -2212,7 +2211,7 @@ function library:CreateWindow(name, size, hidebutton)
 				colorpicker.Outline2.Size = colorpicker.MainPicker.Size + UDim2.fromOffset(4, 4)
 				colorpicker.Outline2.BorderSizePixel = 0
 				colorpicker.Outline2.BackgroundColor3 = window.theme.outlinecolor
-				colorpicker.Outline2.Position = UDim2.fromOffset(- 2, - 2)
+				colorpicker.Outline2.Position = UDim2.fromOffset(-2, -2)
 				updateevent.Event:Connect(function(theme)
 					colorpicker.Outline2.BackgroundColor3 = theme.outlinecolor
 				end)
@@ -2223,18 +2222,18 @@ function library:CreateWindow(name, size, hidebutton)
 				colorpicker.BlackOutline3.Size = colorpicker.MainPicker.Size + UDim2.fromOffset(2, 2)
 				colorpicker.BlackOutline3.BorderSizePixel = 0
 				colorpicker.BlackOutline3.BackgroundColor3 = window.theme.outlinecolor2
-				colorpicker.BlackOutline3.Position = UDim2.fromOffset(- 1, - 1)
+				colorpicker.BlackOutline3.Position = UDim2.fromOffset(-1, -1)
 				updateevent.Event:Connect(function(theme)
 					colorpicker.BlackOutline3.BackgroundColor3 = theme.outlinecolor2
 				end)
 
 				colorpicker.hue = Instance.new("ImageLabel", colorpicker.MainPicker)
 				colorpicker.hue.ZIndex = 101
-				colorpicker.hue.Position = UDim2.new(0, 3, 0, 3)
-				colorpicker.hue.Size = UDim2.new(0, 172, 0, 172)
+				colorpicker.hue.Position = UDim2.new(0,3,0,3)
+				colorpicker.hue.Size = UDim2.new(0,172,0,172)
 				colorpicker.hue.Image = "rbxassetid://4155801252"
 				colorpicker.hue.ScaleType = Enum.ScaleType.Stretch
-				colorpicker.hue.BackgroundColor3 = Color3.new(1, 0, 0)
+				colorpicker.hue.BackgroundColor3 = Color3.new(1,0,0)
 				colorpicker.hue.BorderColor3 = window.theme.outlinecolor2
 				updateevent.Event:Connect(function(theme)
 					colorpicker.hue.BorderColor3 = theme.outlinecolor2
@@ -2250,9 +2249,9 @@ function library:CreateWindow(name, size, hidebutton)
 
 				colorpicker.selector = Instance.new("TextLabel", colorpicker.MainPicker)
 				colorpicker.selector.ZIndex = 100
-				colorpicker.selector.Position = UDim2.new(0, 3, 0, 181)
-				colorpicker.selector.Size = UDim2.new(0, 173, 0, 10)
-				colorpicker.selector.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				colorpicker.selector.Position = UDim2.new(0,3,0,181)
+				colorpicker.selector.Size = UDim2.new(0,173,0,10)
+				colorpicker.selector.BackgroundColor3 = Color3.fromRGB(255,255,255)
 				colorpicker.selector.BorderColor3 = window.theme.outlinecolor2
 				colorpicker.selector.Text = ""
 				updateevent.Event:Connect(function(theme)
@@ -2260,21 +2259,21 @@ function library:CreateWindow(name, size, hidebutton)
 				end)
 
 				colorpicker.gradient = Instance.new("UIGradient", colorpicker.selector)
-				colorpicker.gradient.Color = ColorSequence.new({
-					ColorSequenceKeypoint.new(0, Color3.new(1, 0, 0)), 
-					ColorSequenceKeypoint.new(0.17, Color3.new(1, 0, 1)), 
-					ColorSequenceKeypoint.new(0.33, Color3.new(0, 0, 1)), 
-					ColorSequenceKeypoint.new(0.5, Color3.new(0, 1, 1)), 
-					ColorSequenceKeypoint.new(0.67, Color3.new(0, 1, 0)), 
-					ColorSequenceKeypoint.new(0.83, Color3.new(1, 1, 0)), 
-					ColorSequenceKeypoint.new(1, Color3.new(1, 0, 0))
+				colorpicker.gradient.Color = ColorSequence.new({ 
+					ColorSequenceKeypoint.new(0, Color3.new(1,0,0)), 
+					ColorSequenceKeypoint.new(0.17, Color3.new(1,0,1)), 
+					ColorSequenceKeypoint.new(0.33,Color3.new(0,0,1)), 
+					ColorSequenceKeypoint.new(0.5,Color3.new(0,1,1)), 
+					ColorSequenceKeypoint.new(0.67, Color3.new(0,1,0)), 
+					ColorSequenceKeypoint.new(0.83, Color3.new(1,1,0)), 
+					ColorSequenceKeypoint.new(1, Color3.new(1,0,0))
 				})
 
 				colorpicker.pointer = Instance.new("Frame", colorpicker.selector)
 				colorpicker.pointer.ZIndex = 101
 				colorpicker.pointer.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-				colorpicker.pointer.Position = UDim2.new(0, 0, 0, 0)
-				colorpicker.pointer.Size = UDim2.new(0, 2, 0, 10)
+				colorpicker.pointer.Position = UDim2.new(0,0,0,0)
+				colorpicker.pointer.Size = UDim2.new(0,2,0,10)
 				colorpicker.pointer.BorderColor3 = Color3.fromRGB(255, 255, 255)
 
 				if colorpicker.flag and colorpicker.flag ~= "" then
@@ -2298,31 +2297,27 @@ function library:CreateWindow(name, size, hidebutton)
 				function colorpicker:Set(value)
 					local color = Color3.new(math.clamp(value.r, 0, 1), math.clamp(value.g, 0, 1), math.clamp(value.b, 0, 1))
 					colorpicker.value = color
-
 					if colorpicker.flag and colorpicker.flag ~= "" then
 						library.flags[colorpicker.flag] = color
 					end
-
 					local clr = Color3.new(math.clamp(color.R / 1.7, 0, 1), math.clamp(color.G / 1.7, 0, 1), math.clamp(color.B / 1.7, 0, 1))
-					colorpicker.Gradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, color), ColorSequenceKeypoint.new(1, clr)})
+					colorpicker.Gradient.Color = ColorSequence.new({ ColorSequenceKeypoint.new(0.00, color), ColorSequenceKeypoint.new(1.00, clr) })
 					pcall(colorpicker.callback, color)
 				end
-
 				function colorpicker:Get()
 					return colorpicker.value
 				end
-
 				colorpicker:Set(colorpicker.default)
 
 				function colorpicker:AddDropdown(items, default, multichoice, callback, flag)
-					local dropdown = {}
+					local dropdown = { }
 
-					dropdown.defaultitems = items or {}
+					dropdown.defaultitems = items or { }
 					dropdown.default = default
 					dropdown.callback = callback or function() end
 					dropdown.multichoice = multichoice or false
-					dropdown.values = {}
-					dropdown.flag = flag or ((colorpicker.text or "") .. #sector.Items:GetChildren())
+					dropdown.values = { }
+					dropdown.flag = flag or ((colorpicker.text or "") .. tostring( #(sector.Items:GetChildren()) ))
 
 					dropdown.Main = Instance.new("TextButton", sector.Items)
 					dropdown.Main.Name = "dropdown"
@@ -2343,7 +2338,7 @@ function library:CreateWindow(name, size, hidebutton)
 
 					dropdown.Gradient = Instance.new("UIGradient", dropdown.Main)
 					dropdown.Gradient.Rotation = 90
-					dropdown.Gradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(49, 49, 49)), ColorSequenceKeypoint.new(1, Color3.fromRGB(39, 39, 39))}
+					dropdown.Gradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(49, 49, 49)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(39, 39, 39))}
 
 					dropdown.SelectedLabel = Instance.new("TextLabel", dropdown.Main)
 					dropdown.SelectedLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2378,7 +2373,7 @@ function library:CreateWindow(name, size, hidebutton)
 					dropdown.BlackOutline2.Size = dropdown.Main.Size + UDim2.fromOffset(6, 6)
 					dropdown.BlackOutline2.BorderSizePixel = 0
 					dropdown.BlackOutline2.BackgroundColor3 = window.theme.outlinecolor2
-					dropdown.BlackOutline2.Position = UDim2.fromOffset(- 3, - 3)
+					dropdown.BlackOutline2.Position = UDim2.fromOffset(-3, -3)
 					updateevent.Event:Connect(function(theme)
 						dropdown.BlackOutline2.BackgroundColor3 = theme.outlinecolor2
 					end)
@@ -2389,7 +2384,7 @@ function library:CreateWindow(name, size, hidebutton)
 					dropdown.Outline.Size = dropdown.Main.Size + UDim2.fromOffset(4, 4)
 					dropdown.Outline.BorderSizePixel = 0
 					dropdown.Outline.BackgroundColor3 = window.theme.outlinecolor
-					dropdown.Outline.Position = UDim2.fromOffset(- 2, - 2)
+					dropdown.Outline.Position = UDim2.fromOffset(-2, -2)
 					updateevent.Event:Connect(function(theme)
 						dropdown.Outline.BackgroundColor3 = theme.outlinecolor
 					end)
@@ -2400,7 +2395,7 @@ function library:CreateWindow(name, size, hidebutton)
 					dropdown.BlackOutline.Size = dropdown.Main.Size + UDim2.fromOffset(2, 2)
 					dropdown.BlackOutline.BorderSizePixel = 0
 					dropdown.BlackOutline.BackgroundColor3 = window.theme.outlinecolor2
-					dropdown.BlackOutline.Position = UDim2.fromOffset(- 1, - 1)
+					dropdown.BlackOutline.Position = UDim2.fromOffset(-1, -1)
 					updateevent.Event:Connect(function(theme)
 						dropdown.BlackOutline.BackgroundColor3 = theme.outlinecolor2
 					end)
@@ -2432,7 +2427,7 @@ function library:CreateWindow(name, size, hidebutton)
 					dropdown.BlackOutline2Items.Size = dropdown.ItemsFrame.Size + UDim2.fromOffset(6, 6)
 					dropdown.BlackOutline2Items.BorderSizePixel = 0
 					dropdown.BlackOutline2Items.BackgroundColor3 = window.theme.outlinecolor2
-					dropdown.BlackOutline2Items.Position = dropdown.ItemsFrame.Position + UDim2.fromOffset(- 3, - 3)
+					dropdown.BlackOutline2Items.Position = dropdown.ItemsFrame.Position + UDim2.fromOffset(-3, -3)
 					dropdown.BlackOutline2Items.Visible = false
 					updateevent.Event:Connect(function(theme)
 						dropdown.BlackOutline2Items.BackgroundColor3 = theme.outlinecolor2
@@ -2444,7 +2439,7 @@ function library:CreateWindow(name, size, hidebutton)
 					dropdown.OutlineItems.Size = dropdown.ItemsFrame.Size + UDim2.fromOffset(4, 4)
 					dropdown.OutlineItems.BorderSizePixel = 0
 					dropdown.OutlineItems.BackgroundColor3 = window.theme.outlinecolor
-					dropdown.OutlineItems.Position = dropdown.ItemsFrame.Position + UDim2.fromOffset(- 2, - 2)
+					dropdown.OutlineItems.Position = dropdown.ItemsFrame.Position + UDim2.fromOffset(-2, -2)
 					dropdown.OutlineItems.Visible = false
 					updateevent.Event:Connect(function(theme)
 						dropdown.OutlineItems.BackgroundColor3 = theme.outlinecolor
@@ -2453,10 +2448,10 @@ function library:CreateWindow(name, size, hidebutton)
 					dropdown.BlackOutlineItems = Instance.new("Frame", dropdown.Main)
 					dropdown.BlackOutlineItems.Name = "blackline"
 					dropdown.BlackOutlineItems.ZIndex = 7
-					dropdown.BlackOutlineItems.Size = dropdown.ItemsFrame.Size + UDim2.fromOffset(- 2, - 2)
+					dropdown.BlackOutlineItems.Size = dropdown.ItemsFrame.Size + UDim2.fromOffset(-2, -2)
 					dropdown.BlackOutlineItems.BorderSizePixel = 0
 					dropdown.BlackOutlineItems.BackgroundColor3 = window.theme.outlinecolor2
-					dropdown.BlackOutlineItems.Position = dropdown.ItemsFrame.Position + UDim2.fromOffset(- 1, - 1)
+					dropdown.BlackOutlineItems.Position = dropdown.ItemsFrame.Position + UDim2.fromOffset(-1, -1)
 					dropdown.BlackOutlineItems.Visible = false
 					updateevent.Event:Connect(function(theme)
 						dropdown.BlackOutlineItems.BackgroundColor3 = theme.outlinecolor2
@@ -2473,7 +2468,7 @@ function library:CreateWindow(name, size, hidebutton)
 					dropdown.IgnoreBackButtons.AutoButtonColor = false
 
 					if dropdown.flag and dropdown.flag ~= "" then
-						library.flags[dropdown.flag] = dropdown.multichoice and {dropdown.default or dropdown.defaultitems[1] or ""} or (dropdown.default or dropdown.defaultitems[1] or "")
+						library.flags[dropdown.flag] = dropdown.multichoice and { dropdown.default or dropdown.defaultitems[1] or "" } or (dropdown.default or dropdown.defaultitems[1] or "")
 					end
 
 					function dropdown:isSelected(item)
@@ -2482,7 +2477,6 @@ function library:CreateWindow(name, size, hidebutton)
 								return true
 							end
 						end
-
 						return false
 					end
 
@@ -2501,7 +2495,7 @@ function library:CreateWindow(name, size, hidebutton)
 							pcall(dropdown.callback, value)
 						else
 							dropdown:updateText(value)
-							dropdown.values = {value}
+							dropdown.values = { value }
 							pcall(dropdown.callback, value)
 						end
 
@@ -2515,7 +2509,7 @@ function library:CreateWindow(name, size, hidebutton)
 						return dropdown.multichoice and dropdown.values or dropdown.values[1]
 					end
 
-					dropdown.items = {}
+					dropdown.items = { }
 					function dropdown:Add(v)
 						local Item = Instance.new("TextButton", dropdown.ItemsFrame)
 						Item.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -2560,7 +2554,6 @@ function library:CreateWindow(name, size, hidebutton)
 							end
 
 							dropdown:Set(v)
-
 							return
 						end)
 
@@ -2589,7 +2582,7 @@ function library:CreateWindow(name, size, hidebutton)
 					function dropdown:Remove(value)
 						local item = dropdown.ItemsFrame:FindFirstChild(value)
 						if item then
-							for i, v in pairs(dropdown.items) do
+							for i,v in pairs(dropdown.items) do
 								if v == value then
 									table.remove(dropdown.items, i)
 								end
@@ -2605,9 +2598,9 @@ function library:CreateWindow(name, size, hidebutton)
 
 							item:Remove()
 						end
-					end
+					end 
 
-					for i, v in pairs(dropdown.defaultitems) do
+					for i,v in pairs(dropdown.defaultitems) do
 						dropdown:Add(v)
 					end
 
@@ -2617,23 +2610,20 @@ function library:CreateWindow(name, size, hidebutton)
 
 					local MouseButton1Down = function()
 						if dropdown.Nav.Rotation == 90 then
-							tweenservice:Create(dropdown.Nav, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {Rotation = - 90}):Play()
-							if dropdown.items and #dropdown.items ~= 0 then
-								dropdown.ItemsFrame.ScrollingEnabled = true
-								sector.Main.Parent.ScrollingEnabled = true
-								tweenservice:Create(dropdown.Nav, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {Rotation = - 90}):Play()
-								dropdown.ItemsFrame.Visible = true
-								dropdown.ItemsFrame.Active = true
-								dropdown.IgnoreBackButtons.Visible = true
-								dropdown.IgnoreBackButtons.Active = true
-								dropdown.OutlineItems.Visible = true
-								dropdown.BlackOutlineItems.Visible = true
-								dropdown.BlackOutline2Items.Visible = true
-							end
-						else
 							dropdown.ItemsFrame.ScrollingEnabled = true
+							sector.Main.Parent.ScrollingEnabled = false
+							tweenservice:Create(dropdown.Nav, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { Rotation = -90 }):Play()
+							dropdown.ItemsFrame.Visible = true
+							dropdown.ItemsFrame.Active = true
+							dropdown.IgnoreBackButtons.Visible = true
+							dropdown.IgnoreBackButtons.Active = true
+							dropdown.OutlineItems.Visible = true
+							dropdown.BlackOutlineItems.Visible = true
+							dropdown.BlackOutline2Items.Visible = true
+						else
+							dropdown.ItemsFrame.ScrollingEnabled = false
 							sector.Main.Parent.ScrollingEnabled = true
-							tweenservice:Create(dropdown.Nav, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {Rotation = 90}):Play()
+							tweenservice:Create(dropdown.Nav, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { Rotation = 90 }):Play()
 							dropdown.ItemsFrame.Visible = false
 							dropdown.ItemsFrame.Active = false
 							dropdown.IgnoreBackButtons.Visible = false
@@ -2656,7 +2646,6 @@ function library:CreateWindow(name, size, hidebutton)
 
 					sector:FixSize()
 					table.insert(library.items, dropdown)
-
 					return dropdown
 				end
 
@@ -2702,7 +2691,7 @@ function library:CreateWindow(name, size, hidebutton)
 
 				local inputBegan = function(input)
 					if input.UserInputType == Enum.UserInputType.MouseButton1 then
-						for i, v in pairs(window.OpenedColorPickers) do
+						for i,v in pairs(window.OpenedColorPickers) do
 							if v and i ~= colorpicker.MainPicker then
 								i.Visible = false
 								window.OpenedColorPickers[i] = false
@@ -2724,8 +2713,9 @@ function library:CreateWindow(name, size, hidebutton)
 				colorpicker.BlackOutline2.InputBegan:Connect(inputBegan)
 
 				sector:FixSize()
+				
 				table.insert(library.items, colorpicker)
-
+				
 				return colorpicker
 			end
 
