@@ -4,10 +4,6 @@ local SYC = {
 	}
 }
 
-if not getgenv().SYC then
-	getgenv().SYC = SYC
-end
-
 if not isfolder("actyrn") then
 	makefolder("actyrn")
 end
