@@ -151,7 +151,7 @@ function library:CreateWindow(name, size, hidebutton)
 
 	local function checkIfGuiInFront(Pos)
 		local objects = coregui:GetGuiObjectsAtPosition(Pos.X, Pos.Y)
-		for i, v in pairs(objects) do
+		for i, v in next, (objects) do
 			if not string.find(v:GetFullName(), window.name) then
 				table.remove(objects, i)
 			end
@@ -364,7 +364,7 @@ function library:CreateWindow(name, size, hidebutton)
 			repeat task.wait() until not block
 
 			block = true
-			for i, v in pairs(window.Tabs) do
+			for i, v in next, (window.Tabs) do
 				if v ~= tab then
 					v.TabButton.TextColor3 = Color3.fromRGB(230, 230, 230)
 					v.TabButton.Name = "Tab"
@@ -512,10 +512,10 @@ function library:CreateWindow(name, size, hidebutton)
 			function sector:FixSize()
 				sector.Main.Size = UDim2.fromOffset(window.size.X.Offset / 2 - 17, sector.ListLayout.AbsoluteContentSize.Y + 22)
 				local sizeleft, sizeright = 0, 0
-				for i, v in pairs(tab.SectorsLeft) do
+				for i, v in next, (tab.SectorsLeft) do
 					sizeleft = sizeleft + v.Main.AbsoluteSize.Y
 				end
-				for i, v in pairs(tab.SectorsRight) do
+				for i, v in next, (tab.SectorsRight) do
 					sizeright = sizeright + v.Main.AbsoluteSize.Y
 				end
 
@@ -1022,7 +1022,7 @@ function library:CreateWindow(name, size, hidebutton)
 					end
 
 					function dropdown:isSelected(item)
-						for i, v in pairs(dropdown.values) do
+						for i, v in next, (dropdown.values) do
 							if v == item then
 								return true
 							end
@@ -1081,7 +1081,7 @@ function library:CreateWindow(name, size, hidebutton)
 						Item.MouseButton1Down:Connect(function()
 							if dropdown.multichoice then
 								if dropdown:isSelected(v) then
-									for i2, v2 in pairs(dropdown.values) do
+									for i2, v2 in next, (dropdown.values) do
 										if v2 == v then
 											table.remove(dropdown.values, i2)
 										end
@@ -1134,7 +1134,7 @@ function library:CreateWindow(name, size, hidebutton)
 					function dropdown:Remove(value)
 						local item = dropdown.ItemsFrame:FindFirstChild(value)
 						if item then
-							for i, v in pairs(dropdown.items) do
+							for i, v in next, (dropdown.items) do
 								if v == value then
 									table.remove(dropdown.items, i)
 								end
@@ -1152,7 +1152,7 @@ function library:CreateWindow(name, size, hidebutton)
 						end
 					end
 
-					for i, v in pairs(dropdown.defaultitems) do
+					for i, v in next, (dropdown.defaultitems) do
 						dropdown:Add(v)
 					end
 
@@ -1555,7 +1555,7 @@ function library:CreateWindow(name, size, hidebutton)
 
 					local inputBegan = function(input)
 						if input.UserInputType == Enum.UserInputType.MouseButton1 then
-							for i, v in pairs(window.OpenedColorPickers) do
+							for i, v in next, (window.OpenedColorPickers) do
 								if v and i ~= colorpicker.MainPicker then
 									i.Visible = false
 									window.OpenedColorPickers[i] = false
@@ -2472,7 +2472,7 @@ function library:CreateWindow(name, size, hidebutton)
 					end
 
 					function dropdown:isSelected(item)
-						for i, v in pairs(dropdown.values) do
+						for i, v in next, (dropdown.values) do
 							if v == item then
 								return true
 							end
@@ -2530,7 +2530,7 @@ function library:CreateWindow(name, size, hidebutton)
 						Item.MouseButton1Down:Connect(function()
 							if dropdown.multichoice then
 								if dropdown:isSelected(v) then
-									for i2, v2 in pairs(dropdown.values) do
+									for i2, v2 in next, (dropdown.values) do
 										if v2 == v then
 											table.remove(dropdown.values, i2)
 										end
@@ -2582,7 +2582,7 @@ function library:CreateWindow(name, size, hidebutton)
 					function dropdown:Remove(value)
 						local item = dropdown.ItemsFrame:FindFirstChild(value)
 						if item then
-							for i,v in pairs(dropdown.items) do
+							for i,v in next, (dropdown.items) do
 								if v == value then
 									table.remove(dropdown.items, i)
 								end
@@ -2600,7 +2600,7 @@ function library:CreateWindow(name, size, hidebutton)
 						end
 					end 
 
-					for i,v in pairs(dropdown.defaultitems) do
+					for i,v in next, (dropdown.defaultitems) do
 						dropdown:Add(v)
 					end
 
@@ -2691,7 +2691,7 @@ function library:CreateWindow(name, size, hidebutton)
 
 				local inputBegan = function(input)
 					if input.UserInputType == Enum.UserInputType.MouseButton1 then
-						for i,v in pairs(window.OpenedColorPickers) do
+						for i,v in next, (window.OpenedColorPickers) do
 							if v and i ~= colorpicker.MainPicker then
 								i.Visible = false
 								window.OpenedColorPickers[i] = false
@@ -3021,7 +3021,7 @@ function library:CreateWindow(name, size, hidebutton)
 				end
 
 				function dropdown:isSelected(item)
-					for i, v in pairs(dropdown.values) do
+					for i, v in next, (dropdown.values) do
 						if v == item then
 							return true
 						end
@@ -3084,7 +3084,7 @@ function library:CreateWindow(name, size, hidebutton)
 					Item.MouseButton1Down:Connect(function()
 						if dropdown.multichoice then
 							if dropdown:isSelected(v) then
-								for i2, v2 in pairs(dropdown.values) do
+								for i2, v2 in next, (dropdown.values) do
 									if v2 == v then
 										table.remove(dropdown.values, i2)
 									end
@@ -3137,7 +3137,7 @@ function library:CreateWindow(name, size, hidebutton)
 				function dropdown:Remove(value)
 					local item = dropdown.ItemsFrame:FindFirstChild(value)
 					if item then
-						for i, v in pairs(dropdown.items) do
+						for i, v in next, (dropdown.items) do
 							if v == value then
 								table.remove(dropdown.items, i)
 							end
@@ -3155,7 +3155,7 @@ function library:CreateWindow(name, size, hidebutton)
 					end
 				end
 
-				for i, v in pairs(dropdown.defaultitems) do
+				for i, v in next, (dropdown.defaultitems) do
 					dropdown:Add(v)
 				end
 
@@ -3292,21 +3292,21 @@ function library:CreateWindow(name, size, hidebutton)
 			local configname = configsystem.sector:AddTextbox("Config Name", "", configname, function() end, "")
 			local default = (listfiles(configsystem.configFolder)[1] or ""):gsub(configsystem.configFolder .. "\\", ""):gsub(".txt", "")
 			local config = configsystem.sector:AddDropdown("Configs", {}, default, false, function() end, "")
-			for i, v in pairs(listfiles(configsystem.configFolder)) do
+			for i, v in next, (listfiles(configsystem.configFolder)) do
 				if v:find(".txt") then
 					config:Add(v:gsub(configsystem.configFolder .. "\\", ""):gsub(".txt", ""))
 				end
 			end
 
 			configsystem.Create = configsystem.sector:AddButton("Create", function()
-				for i, v in pairs(listfiles(configsystem.configFolder)) do
+				for i, v in next, (listfiles(configsystem.configFolder)) do
 					config:Remove(v:gsub(configsystem.configFolder .. "\\", ""):gsub(".txt", ""))
 				end
 
 				if configname:Get() and configname:Get() ~= "" then
 					local config2 = {}
 
-					for i, v in pairs(library.flags) do
+					for i, v in next, (library.flags) do
 						if (v and v ~= "") then
 							if (typeof(v) == "Color3") then
 								config2[i] = {v.R, v.G, v.B}
@@ -3322,7 +3322,7 @@ function library:CreateWindow(name, size, hidebutton)
 
 					writefile(configsystem.configFolder .. "/" .. configname:Get() .. ".txt", httpservice:JSONEncode(config2))
 
-					for i, v in pairs(listfiles(configsystem.configFolder)) do
+					for i, v in next, (listfiles(configsystem.configFolder)) do
 						if v:find(".txt") then
 							config:Add(v:gsub(configsystem.configFolder .. "\\", ""):gsub(".txt", ""))
 						end
@@ -3333,7 +3333,7 @@ function library:CreateWindow(name, size, hidebutton)
 			configsystem.Save = configsystem.sector:AddButton("Save", function()
 				local config = {}
 				if config:Get() and config:Get() ~= "" then
-					for i, v in pairs(library.flags) do
+					for i, v in next, (library.flags) do
 						if (v ~= nil and v ~= "") then
 							if (typeof(v) == "Color3") then
 								config[i] = {v.R, v.G, v.B}
@@ -3358,7 +3358,7 @@ function library:CreateWindow(name, size, hidebutton)
 						local readconfig = httpservice:JSONDecode(readfile(configsystem.configFolder .. "/" .. config:Get() .. ".txt"))
 						local newconfig = {}
 
-						for i, v in pairs(readconfig) do
+						for i, v in next, (readconfig) do
 							if (typeof(v) == "table") then
 								if (typeof(v[1]) == "number") then
 									newconfig[i] = Color3.new(v[1], v[2], v[3])
@@ -3374,8 +3374,8 @@ function library:CreateWindow(name, size, hidebutton)
 
 						library.flags = newconfig
 
-						for i, v in pairs(library.flags) do
-							for i2, v2 in pairs(library.items) do
+						for i, v in next, (library.flags) do
+							for i2, v2 in next, (library.items) do
 								if (i ~= nil and i ~= "" and i ~= "Configs_Name" and i ~= "Configs" and v2.flag) then
 									if (v2.flag == i) then
 										pcall(function()
@@ -3390,7 +3390,7 @@ function library:CreateWindow(name, size, hidebutton)
 			end)
 
 			configsystem.Delete = configsystem.sector:AddButton("Delete", function()
-				for i, v in pairs(listfiles(configsystem.configFolder)) do
+				for i, v in next, (listfiles(configsystem.configFolder)) do
 					config:Remove(v:gsub(configsystem.configFolder .. "\\", ""):gsub(".txt", ""))
 				end
 
@@ -3398,7 +3398,7 @@ function library:CreateWindow(name, size, hidebutton)
 				if (not isfile(configsystem.configFolder .. "/" .. config:Get() .. ".txt")) then return end
 				delfile(configsystem.configFolder .. "/" .. config:Get() .. ".txt")
 
-				for i, v in pairs(listfiles(configsystem.configFolder)) do
+				for i, v in next, (listfiles(configsystem.configFolder)) do
 					if v:find(".txt") then
 						config:Add(v:gsub(configsystem.configFolder .. "\\", ""):gsub(".txt", ""))
 					end
