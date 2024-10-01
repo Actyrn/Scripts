@@ -29,7 +29,7 @@ local function Draw(obj, props)
 
 	props = props or {}
 
-	for i, v in pairs(props) do
+	for i, v in next, props do
 		new[i] = v
 	end
 
@@ -60,12 +60,12 @@ end
 
 function ESP:Toggle(bool)
 	if not bool then
-		for i, v in pairs(self.Objects) do
+		for i, v in next, self.Objects do
 			if v.Type == "Box" then
 				if v.Temporary then
 					v:Remove()
 				else
-					for i, v in pairs(v.Components) do
+					for i, v in next, v.Components do
 						v.Visible = false
 					end
 				end
@@ -103,13 +103,13 @@ function ESP:AddObjectListener(parent, options)
 	if options.Recursive then
 		parent.DescendantAdded:Connect(NewListener)
 
-		for i, v in pairs(parent:GetDescendants()) do
+		for i, v in next, parent:GetDescendants() do
 			coroutine.wrap(NewListener)(v)
 		end
 	else
 		parent.ChildAdded:Connect(NewListener)
 
-		for i, v in pairs(parent:GetChildren()) do
+		for i, v in next, parent:GetChildren() do
 			coroutine.wrap(NewListener)(v)
 		end
 	end
@@ -121,7 +121,7 @@ boxBase.__index = boxBase
 function boxBase:Remove()
 	ESP.Objects[self.Object] = nil
 
-	for i, v in pairs(self.Components) do
+	for i, v in next, self.Components do
 		v.Visible = false
 		v:Remove()
 		self.Components[i] = nil
@@ -154,7 +154,7 @@ function boxBase:Update()
 	end
 
 	if not allow then
-		for i, v in pairs(self.Components) do
+		for i, v in next, self.Components do
 			v.Visible = false
 			self.Components.Quad.Thickness = 0
 		end
@@ -361,7 +361,7 @@ local function PlayerAdded(p)
 end
 
 Players.PlayerAdded:Connect(PlayerAdded)
-for i, v in pairs(Players:GetPlayers()) do
+for i, v in next, Players:GetPlayers() do
 	if v ~= Players.LocalPlayer then
 		PlayerAdded(v)
 	end
@@ -370,7 +370,7 @@ end
 ESP.MainRenderStepped = RunService.RenderStepped:Connect(function()
 	Rainbow = (Rainbow + 0.001) % 1
 
-	for i, v in (pairs or ipairs)(ESP.Objects) do
+	for i, v in next, ESP.Objects do
 		if v.Update then
 			local s, e = pcall(v.Update, v)
 		end
