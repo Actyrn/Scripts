@@ -69,22 +69,6 @@ if library.theme.cursor then
 	end
 end
 
-function library:GetGuiParent()
-	local safe, gui = pcall(function()
-		return coregui
-	end)
-
-	return safe and gui or players.LocalPlayer.PlayerGui
-end
-
-function library:GetGuiName()
-	if library:GetGuiParent() == players.LocalPlayer.PlayerGui then
-		return "Chat"
-	else
-		return "RobloxGui"
-	end
-end
-
 function library:CreateWindow(name, size, hidebutton)
 	local window = {}
 	window.name = name or ""
@@ -98,8 +82,8 @@ function library:CreateWindow(name, size, hidebutton)
 		window.theme = (theme or library.theme)
 	end
 
-	window.Main = Instance.new("ScreenGui", library:GetGuiParent())
-	window.Main.Name = library:GetGuiName()
+	window.Main = Instance.new("ScreenGui", coregui)
+	window.Main.Name = "RobloxGui"
 	window.Main.DisplayOrder = 15
 
 	local dragging, draginput2, dragstart2, startpos
@@ -3422,8 +3406,8 @@ function library:CreateWatermark(name, position)
 	watermark.Visible = true
 	watermark.text = " " .. name:gsub("{game}", gamename):gsub("{fps}", "0 FPS") .. " "
 
-	watermark.main = Instance.new("ScreenGui", library:GetGuiParent())
-	watermark.main.Name = library:GetGuiName()
+	watermark.main = Instance.new("ScreenGui", coregui)
+	watermark.main.Name = "RobloxGui"
 
 	watermark.mainbar = Instance.new("Frame", watermark.main)
 	watermark.mainbar.Name = "Main"
