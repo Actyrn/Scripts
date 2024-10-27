@@ -14,7 +14,6 @@ end
 
 local playerService = cloneref(game:GetService("Players"))
 local coreguiService = cloneref(game:GetService("CoreGui"))
-local starterguiService = cloneref(game:GetService("StarterGui"))
 local tweenService = cloneref(game:GetService("TweenService"))
 local inputService = cloneref(game:GetService("UserInputService"))
 local rsService = cloneref(game:GetService("RunService"))
@@ -246,7 +245,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 			Title = OptionsLaughtOutLouds.title or "Azure Modded"
 		}
 
-		UI["1"] = InstanceNew("ScreenGui", coreguiService)
+		UI["1"] = InstanceNew("ScreenGui", gethui and gethui() or coreguiService)
 		UI["1"]["Name"] = "RobloxGui"
 		UI["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Global
 
@@ -3222,7 +3221,7 @@ local sigma = (function() -- src/Lua/loader.lua
 	end
 
 	function loaderOptions:new()
-		local Loader = Instance.new("ScreenGui", coreguiService)
+		local Loader = Instance.new("ScreenGui", gethui and gethui() or coreguiService)
 		Loader.Name = "RobloxGui"
 
 		local LoaderBackground = Instance.new("Frame")
