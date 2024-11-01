@@ -10,14 +10,14 @@ isfile = isfile or function() end
 listfiles = listfiles or function() end
 readfile = readfile or function() end
 
-local ReplicatedStorage = cloneref(game:FindService("ReplicatedStorage"))
-local UserInputService  = cloneref(game:FindService("UserInputService"))
-local TweenService      = cloneref(game:FindService("TweenService"))
-local HttpService       = cloneref(game:FindService("HttpService"))
-local RunService        = cloneref(game:FindService("RunService"))
-local Workspace_        = cloneref(game:FindService("Workspace"))
-local Players           = cloneref(game:FindService("Players"))
-local Debris            = cloneref(game:FindService("Debris"))
+local ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
+local UserInputService  = cloneref(game:GetService("UserInputService"))
+local TweenService      = cloneref(game:GetService("TweenService"))
+local HttpService 	    = cloneref(game:GetService("HttpService"))
+local RunService        = cloneref(game:GetService("RunService"))
+local Workspace_        = cloneref(game:GetService("Workspace"))
+local Players           = cloneref(game:GetService("Players"))
+local Debris            = cloneref(game:GetService("Debris"))
 
 local hex = Color3.fromHex
 local hsv = Color3.fromHSV
@@ -147,7 +147,7 @@ library.instances = {}
 library.texts = {}
 library.fonts = {}
 library.theme = {
-	["AccentColor"] = rgb(100, 150, 245),
+	["AccentColor"] = rgb(99, 149, 244),
 	["PrimaryColor"] = rgb(27, 27, 27),
 	["SecondaryColor"] = rgb(44, 44, 44),
 	["OutlineColor"] = rgb(61, 61, 61),
@@ -1097,7 +1097,6 @@ library.keybind = function(parent, info)
 	end
 
 	local instances = {} do
-
 		instances.keybind = info.parent.class == "element" and parent or library:create("Frame", {
 			Parent = parent,
 			BackgroundTransparency = 1,
@@ -1127,6 +1126,7 @@ library.keybind = function(parent, info)
 			Parent = instances.keybind,
 			BorderColor3 = library.theme["OutlineColor"],
 			Text = "",
+			--Modal = true,
 			AutoButtonColor = false,
 			AnchorPoint = vec2(1, 0),
 			Size = dim2(0, 40, 0, 12),
@@ -1165,7 +1165,9 @@ library.keybind = function(parent, info)
 			PaddingRight = dim(0, 7)
 		})
 
-		instances.window = library:create("Frame", {
+		instances.window = library:create("TextButton", {
+			Text = "",
+			AutoButtonColor = false,
 			Parent = instances.key,
 			Visible = false,
 			BorderColor3 = library.theme["OutlineColor"],
@@ -1197,7 +1199,7 @@ library.keybind = function(parent, info)
 				TextColor3 = library.theme["TextColor"],
 				TextTransparency = info.mode == mode and 1 or 0,
 				Text = mode,
-				Modal = true,
+				--Modal = true,
 				Size = dim2(1, 0, 0, 13),
 				BackgroundTransparency = 1,
 				BorderSizePixel = 0,
@@ -1279,7 +1281,9 @@ library.colorpicker = function(parent, info)
 			BackgroundColor3 = library.theme["TextColor"]
 		})
 
-		instances.colorbutton = library:create("Frame", {
+		instances.colorbutton = library:create("TextButton", {
+			AutoButtonColor = false,
+			Text = "",
 			Parent = instances.gridbutton,
 			BorderColor3 = library.theme["OutlineColor"],
 			Size = dim2(1, 0, 1, 0),
@@ -1306,7 +1310,7 @@ library.colorpicker = function(parent, info)
 			AutoButtonColor = false,
 			Rotation = .0000000001,
 			Text = "",
-			Modal = true,
+			--Modal = true,
 			BorderColor3 = library.theme["OutlineColor"],
 			AnchorPoint = vec2(1, 0),
 			Position = dim2(1, 0, 1, 10),
@@ -1715,7 +1719,7 @@ library.dropdown = function(parent, info)
 			Visible = false,
 			Text = "",
 			AutoButtonColor = false,
-			Modal = true,
+			--Modal = true,
 			BorderColor3 = library.theme["OutlineColor"],
 			BorderSizePixel = 2,
 			Position = dim2(0, 0, 0, 35),
@@ -2313,10 +2317,7 @@ library.row = function(parent, info)
 end
 
 return {
-	create = function(self, fonts, defaultfont)
-		library.fonts = fonts
-		library.font = defaultfont
-
+	create = function(self)
 		return library
 	end
 }
