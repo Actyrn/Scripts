@@ -154,8 +154,8 @@ library.theme = {
 	["InlineColor"] = rgb(21, 21, 21),
 	["DividerColor"] = rgb(23, 23, 23),
 	["ElementColor"] = rgb(25, 25, 25),
-	["TextColor"] = rgb(200, 200, 200),
-	["RowTextColor"] = rgb(200, 200, 200),
+	["TextColor"] = rgb(210, 210, 210),
+	["RowTextColor"] = rgb(210, 210, 210),
 }
 
 library.defaulttheme = table.clone(library.theme)
