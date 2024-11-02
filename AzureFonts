@@ -72,7 +72,7 @@ end
 
 function library:fontchange(font)
 	library.font = font or library.font
-
+	
 	for _, text in library.texts do
 		if text.FontFace == library.font then continue end
 
@@ -127,11 +127,11 @@ function library:create(class, info, ignoretheme)
 			end
 		end
 	end
-
+	
 	if find(class, "Text") then
 		table.insert(library.texts, instance)
 	end
-
+	
 	table.insert(library.instances, instance)
 	return instance
 end
@@ -1798,6 +1798,7 @@ library.option = function(parent, info)
 			TextXAlignment = Enum.TextXAlignment.Left,
 			Size = dim2(1, 0, 1, 0),
 			BackgroundTransparency = 1,
+			TextTruncate = Enum.TextTruncate.AtEnd,
 			BorderSizePixel = 0,
 			ZIndex = 20,
 			TextSize = library.textsize,
