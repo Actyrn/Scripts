@@ -148,15 +148,15 @@ library.instances = {}
 library.texts = {}
 library.fonts = {}
 library.theme = {
-	["AccentColor"] = rgb(240, 182, 227),
-	["PrimaryColor"] = rgb(34, 33, 33),
-	["SecondaryColor"] = rgb(23, 23, 23),
-	["OutlineColor"] = rgb(14, 14, 14),
-	["InlineColor"] = rgb(21, 21, 21),
-	["DividerColor"] = rgb(23, 23, 23),
-	["ElementColor"] = rgb(25, 25, 25),
-	["TextColor"] = rgb(230, 230, 230),
-	["RowTextColor"] = rgb(230, 230, 230)
+	["AccentColor"] = rgb(150, 110, 185), -- Matching
+	["PrimaryColor"] = rgb(20, 20, 20), -- Matching
+	["SecondaryColor"] = rgb(30, 30, 30), -- Matching
+	["OutlineColor"] = rgb(20, 20, 20), -- Matching
+	["InlineColor"] = rgb(21, 21, 21), -- Matching
+	["DividerColor"] = rgb(30, 30, 30), -- Matching
+	["ElementColor"] = rgb(27, 27, 27), -- Matching
+	["TextColor"] = rgb(210, 210, 210), -- Matching
+	["RowTextColor"] = rgb(210, 210, 210) -- Matching
 }
 
 library.defaulttheme = table.clone(library.theme)
