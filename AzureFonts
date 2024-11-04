@@ -10,14 +10,14 @@ isfile = isfile or function() end
 listfiles = listfiles or function() end
 readfile = readfile or function() end
 
-local ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
-local UserInputService  = cloneref(game:GetService("UserInputService"))
-local TweenService      = cloneref(game:GetService("TweenService"))
-local HttpService       = cloneref(game:GetService("HttpService"))
-local RunService        = cloneref(game:GetService("RunService"))
-local Workspace_        = cloneref(game:GetService("Workspace"))
-local Players           = cloneref(game:GetService("Players"))
-local Debris            = cloneref(game:GetService("Debris"))
+local ReplicatedStorage = cloneref(game:FindService("ReplicatedStorage"))
+local UserInputService  = cloneref(game:FindService("UserInputService"))
+local TweenService      = cloneref(game:FindService("TweenService"))
+local HttpService       = cloneref(game:FindService("HttpService"))
+local RunService        = cloneref(game:FindService("RunService"))
+local Workspace_        = cloneref(game:FindService("Workspace"))
+local Players           = cloneref(game:FindService("Players"))
+local Debris            = cloneref(game:FindService("Debris"))
 
 local hex = Color3.fromHex
 local hsv = Color3.fromHSV
@@ -72,7 +72,7 @@ end
 
 function library:fontchange(font)
 	library.font = font or library.font
-	
+
 	for _, text in library.texts do
 		if text.FontFace == library.font then continue end
 
@@ -109,33 +109,6 @@ function library:themeinstance(obj, props)
 	table.insert(library.themedinstances, {obj, props})
 end
 
-function library:create(class, info, ignoretheme)
-	local instance = Instance.new(class)
-
-	for property, value in info do
-		instance[property] = value
-
-		if typeof(value) ~= "Color3" or ignoretheme then continue end
-		if property == "BorderColor3" and instance.BorderSizePixel == 0 then continue end
-
-		for key, color in library.theme do
-			if property ~= "TextColor3" and color == library.theme.TextColor then continue end
-
-			if color == value then 
-				table.insert(library.themedinstances[key], {instance, property})
-				continue
-			end
-		end
-	end
-	
-	if find(class, "Text") then
-		table.insert(library.texts, instance)
-	end
-	
-	table.insert(library.instances, instance)
-	return instance
-end
-
 function library:round(number, places)
 	return tonumber(string.format("%.14g", places * math.round(number / places)))
 	--[[places = gsub(-log10(places or 0.01), "^-0$", "0") 
@@ -143,19 +116,47 @@ function library:round(number, places)
 	return tonumber(format(`%.{places}f`, number))]]
 end
 
+function library:filterthemes(instance, property, value)
+	if typeof(value) ~= "Color3" or (property == "BorderColor3" and instance.BorderSizePixel == 0) then return end
+
+	for key, color in library.theme do
+		if color ~= value or (property ~= "TextColor3" and color == library.theme.TextColor) then continue end
+
+		table.insert(library.themedinstances[key], {instance, property})
+	end
+end
+
+function library:create(class, info, ignoretheme)
+	local instance = Instance.new(class)
+
+	for property, value in info do
+		instance[property] = value
+
+		if ignoretheme then continue end
+		library:filterthemes(instance, property, value)
+	end
+
+	if find(class, "Text") then
+		table.insert(library.texts, instance)
+	end
+
+	table.insert(library.instances, instance)
+	return instance
+end
+
 library.instances = {}
 library.texts = {}
 library.fonts = {}
 library.theme = {
-	["AccentColor"] = rgb(99, 149, 244),
-	["PrimaryColor"] = rgb(27, 27, 27),
-	["SecondaryColor"] = rgb(44, 44, 44),
-	["OutlineColor"] = rgb(61, 61, 61),
+	["AccentColor"] = rgb(240, 182, 227),
+	["PrimaryColor"] = rgb(34, 33, 33),
+	["SecondaryColor"] = rgb(23, 23, 23),
+	["OutlineColor"] = rgb(14, 14, 14),
 	["InlineColor"] = rgb(21, 21, 21),
 	["DividerColor"] = rgb(23, 23, 23),
 	["ElementColor"] = rgb(25, 25, 25),
-	["TextColor"] = rgb(210, 210, 210),
-	["RowTextColor"] = rgb(210, 210, 210),
+	["TextColor"] = rgb(230, 230, 230),
+	["RowTextColor"] = rgb(230, 230, 230)
 }
 
 library.defaulttheme = table.clone(library.theme)
@@ -458,12 +459,20 @@ library.window = function(parent, info)
 			ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 		})
 
-		instances.main = library:create("Frame", {
+		instances.background = library:create("Frame", {
 			Parent = instances.inline,
+			AnchorPoint = vec2(0.5, 0),
+			BackgroundTransparency = 1,
+			Position = dim2(0.5, 0, 0, 8),
+			Size = dim2(1, -15, 1, -15),
+			BorderSizePixel = 0
+		})
+
+		instances.main = library:create("Frame", {
+			Parent = instances.background,
 			BorderColor3 = library.theme["OutlineColor"],
-			AnchorPoint = vec2(0.5, 0.5),
-			Position = dim2(0.5, 0, 0.5, 12),
-			Size = dim2(1, -15, 1, -35),
+			Position = dim2(0, 0, 0, 21),
+			Size = dim2(1, 0, 1, -20),
 			ZIndex = 0,
 			BorderSizePixel = 2,
 			BackgroundColor3 = library.theme["PrimaryColor"]
@@ -485,11 +494,11 @@ library.window = function(parent, info)
 		})
 
 		instances.tabholder = library:create("Frame", {
-			Parent = instances.inline,
+			Parent = instances.background,
 			BackgroundTransparency = 1,
-			Position = dim2(0, 7, 0, 8),
+			Position = dim2(0, 0, 0, 0),
 			BorderColor3 = library.theme["OutlineColor"],
-			Size = dim2(1, -15, 0, 20),
+			Size = dim2(1, 0, 0, 20),
 			BorderSizePixel = 0,
 			BackgroundColor3 = library.theme["TextColor"]
 		})
@@ -1798,7 +1807,6 @@ library.option = function(parent, info)
 			TextXAlignment = Enum.TextXAlignment.Left,
 			Size = dim2(1, 0, 1, 0),
 			BackgroundTransparency = 1,
-			TextTruncate = Enum.TextTruncate.AtEnd,
 			BorderSizePixel = 0,
 			ZIndex = 20,
 			TextSize = library.textsize,
@@ -1949,9 +1957,9 @@ library.textbox = function(parent, info)
 			PlaceholderText = info.placeholder,
 			AutomaticSize = Enum.AutomaticSize.Y,
 			FontFace =  library.font,
+			Text = info.default or "",
 			TextColor3 = library.theme["TextColor"],
 			BorderColor3 = library.theme["OutlineColor"],
-			Text = info.title,
 			TextXAlignment = Enum.TextXAlignment.Left,
 			ClearTextOnFocus = info.cleartext,
 			BackgroundTransparency = 1,
