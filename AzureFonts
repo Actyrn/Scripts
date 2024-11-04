@@ -149,12 +149,12 @@ library.texts = {}
 library.fonts = {}
 library.theme = {
 	["AccentColor"] = rgb(150, 110, 185), -- Matching
-	["PrimaryColor"] = rgb(21, 21, 21), -- Matching
-	["SecondaryColor"] = rgb(28, 28, 28), -- Matching
-	["OutlineColor"] = rgb(19, 19, 19), -- Matching
-	["InlineColor"] = rgb(21, 21, 21), -- Matching
+	["PrimaryColor"] = rgb(30, 30, 30), -- Matching
+	["SecondaryColor"] = rgb(30, 30, 30), -- Matching
+	["OutlineColor"] = rgb(20, 20, 20), -- Matching
+	["InlineColor"] = rgb(20, 20, 20), -- Matching
 	["DividerColor"] = rgb(30, 30, 30), -- Matching
-	["ElementColor"] = rgb(28, 28, 28), -- Matching
+	["ElementColor"] = rgb(30, 30, 30), -- Matching
 	["TextColor"] = rgb(210, 210, 210), -- Matching
 	["RowTextColor"] = rgb(210, 210, 210) -- Matching
 }
