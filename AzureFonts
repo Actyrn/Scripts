@@ -153,10 +153,10 @@ library.theme = {
 	["SecondaryColor"] = rgb(28, 28, 28), -- Matching
 	["OutlineColor"] = rgb(21, 21, 21), -- Matching
 	["InlineColor"] = rgb(20, 20, 20), -- Matching
-	["DividerColor"] = rgb(30, 30, 30), -- Matching
+	["DividerColor"] = rgb(29, 29, 29), -- Matching
 	["ElementColor"] = rgb(28, 28, 28), -- Matching
 	["TextColor"] = rgb(210, 210, 210), -- Matching
-	["RowTextColor"] = rgb(210, 210, 210) -- Matching
+	["RowTextColor"] = rgb(215, 215, 215) -- Matching
 }
 
 library.defaulttheme = table.clone(library.theme)
