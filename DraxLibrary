@@ -17,13 +17,9 @@ local coreguiService = cloneref(game:GetService("CoreGui"))
 local tweenService = cloneref(game:GetService("TweenService"))
 local inputService = cloneref(game:GetService("UserInputService"))
 local rsService = cloneref(game:GetService("RunService"))
-local replicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
 local textService = cloneref(game:GetService("TextService"))
 local httpService = cloneref(game:GetService("HttpService"))
 local userInputService = cloneref(game:GetService("UserInputService"))
-local userSettings = UserSettings()
-local userGameSettings = cloneref(userSettings:GetService("UserGameSettings"))
-local inputManager = cloneref(game:GetService("VirtualInputManager"))
 
 local LocalPlayer = playerService.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
