@@ -75,7 +75,7 @@ do -- src/Lua/Modules/Base/
 			if Arguments then
 				local newObject = Drawing.new(Arguments[1])
 
-				for property, value in next, Arguments[2] do
+				for property, value in Arguments[2] do
 					newObject[property] = value
 				end
 
@@ -448,11 +448,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 			TabConfiguration.Right = rightblahInstance
 
 			function TabConfiguration:Select()
-				for i, v in next, UI["e"]:GetChildren() do
+				for i, v in UI["e"]:GetChildren() do
 					if v:IsA("UIListLayout") then return end
 					v.Visible = false
 				end
-				for i, v in next, UI["7"]:GetChildren() do
+				for i, v in UI["7"]:GetChildren() do
 					if v:IsA("TextButton") then
 						v.TextColor3 = Color3FromRGB(137, 137, 139)
 					end
@@ -890,7 +890,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							HumanoidRootPart_2.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
 
 							local function R15_function()
-								for _, bodypart in next, (R15:GetChildren()) do
+								for _, bodypart in (R15:GetChildren()) do
 									bodypart.AutoButtonColor = false
 
 									local name = bodypart.Name
@@ -932,7 +932,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							end
 
 							local function R6_FUNCTION()
-								for _, bodypart in next, (R6:GetChildren()) do
+								for _, bodypart in (R6:GetChildren()) do
 									local name = bodypart.Name
 
 									local self_conn = nil
@@ -975,7 +975,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							R15_function()
 
 							function BoneSelectorOptions:Update()
-								for i, v in next, (BoneSelector.FValues) do
+								for i, v in (BoneSelector.FValues) do
 									if BoneSelector.FValue == i then
 										v.Click()
 									else
@@ -991,7 +991,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									if type(value) == "table" then
 										BoneSelectorOptions:Refresh()
 
-										for i, v in next, (value) do
+										for i, v in (value) do
 											if not table.find(BoneSelector.FValue, i) then
 												BoneSelectorOptions:Set(v)
 											end
@@ -999,7 +999,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 
 										local RemovedButtons = {}
 
-										for i, v in next, (BoneSelector.FValue) do
+										for i, v in (BoneSelector.FValue) do
 											if not table.find(value, i) then
 												RemovedButtons[#RemovedButtons + 1] = v
 											end
@@ -1034,7 +1034,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								else
 									BoneSelector.FValue = value
 
-									for _, v in next, (BoneSelector.FValues) do
+									for _, v in (BoneSelector.FValues) do
 										v.UnClick()
 									end
 									BoneSelector["FValues"][BoneSelector.FValue].Click()
@@ -1050,7 +1050,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							end
 
 							function BoneSelectorOptions:Refresh()
-								for i, v in next, BoneSelector.FValues do
+								for i, v in BoneSelector.FValues do
 									if v.UnClick then
 										v.UnClick()
 									end
@@ -1360,7 +1360,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							TransparencyButton.TextColor3 = Color3FromRGB(0, 0, 0)
 							TransparencyButton.TextSize = 14.000
 
-							for _, object in next, ColorpickerContent:GetDescendants() do
+							for _, object in ColorpickerContent:GetDescendants() do
 								if object:IsA("UIGradient") then continue end
 
 								if object.ZIndex then
@@ -1380,7 +1380,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									self:FadeIn()
 								end, 
 								FadeIn = function ()
-									for _, object in next, ( ColorpickerContent:GetDescendants() ) do
+									for _, object in ( ColorpickerContent:GetDescendants() ) do
 										if object:IsA("Frame") then
 											tweenService:Create(object, TweenInfo.new(0.15), { BackgroundTransparency = 0 }):Play()
 										elseif object:IsA("ImageLabel") then
@@ -1389,7 +1389,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									end
 								end, 
 								FadeOut = function ()
-									for _, object in next, ( ColorpickerContent:GetDescendants() ) do
+									for _, object in ( ColorpickerContent:GetDescendants() ) do
 										if object:IsA("Frame") then
 											tweenService:Create(object, TweenInfo.new(0.15), { BackgroundTransparency = 1 }):Play()
 										elseif object:IsA("ImageLabel") then
@@ -1676,7 +1676,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									self:FadeIn()
 								end, 
 								FadeIn = function ()
-									for _, object in next, ( Inline:GetDescendants() ) do
+									for _, object in ( Inline:GetDescendants() ) do
 										if object:IsA("Frame") then
 											tweenService:Create(object, TweenInfo.new(0.15), { BackgroundTransparency = 0 }):Play()
 										elseif object:IsA("TextButton") then
@@ -1689,7 +1689,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									end
 								end, 
 								FadeOut = function ()
-									for _, object in next, ( Inline:GetDescendants() ) do
+									for _, object in ( Inline:GetDescendants() ) do
 										if object:IsA("Frame") then
 											tweenService:Create(object, TweenInfo.new(0.15), { BackgroundTransparency = 1 }):Play()
 										elseif object:IsA("TextButton") then
@@ -1806,7 +1806,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							end
 
 							function Dropdown:Update()
-								for i, v in next, (Dropdown.FValues) do
+								for i, v in (Dropdown.FValues) do
 									if Dropdown.FValue == i then
 										v.Click()
 									else
@@ -1822,7 +1822,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									local CurrentText = {}
 
 									if #Dropdown.FValue > 0 then
-										for _, v in next, (Dropdown.FValue) do
+										for _, v in (Dropdown.FValue) do
 											CurrentText[#CurrentText + 1] = v
 
 											local Text = table.concat(CurrentText, ", ")
@@ -1841,7 +1841,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							function Dropdown:Set(value)
 								if DropdownOptions.Multi then
 									if typeof(value) == "table" then
-										for i, v in next, (value) do
+										for i, v in (value) do
 											if not table.find(Dropdown.FValue, i) then
 												Dropdown:Set(v)
 											end
@@ -1849,7 +1849,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 
 										local RemovedButtons = {}
 
-										for i, v in next, (Dropdown.FValue) do
+										for i, v in (Dropdown.FValue) do
 											if not table.find(value, i) then
 												RemovedButtons[#RemovedButtons + 1] = v
 											end
@@ -1900,7 +1900,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							end
 
 							function Dropdown:Refresh(tbl)
-								for _, v in next, (Dropdown.FValues) do
+								for _, v in (Dropdown.FValues) do
 									v.Objects.Name:Destroy()
 									v = nil
 								end
@@ -1912,7 +1912,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									table.clear(Dropdown.FValue)
 									Count = 0
 
-									for _, v in next, (tbl) do
+									for _, v in (tbl) do
 										Dropdown:CreateValue(v)
 									end
 
@@ -1924,7 +1924,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								else
 									Count = 0
 
-									for _, v in next, (tbl) do
+									for _, v in (tbl) do
 										Dropdown:CreateValue(v)
 									end
 
@@ -1938,7 +1938,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									Azure.Flags[DropdownOptions.Flag .. "f"] = { [1] = function(value) Dropdown:Refresh(value) end, [2] = function(value) Dropdown:Set(value) end }
 								end
 
-								for _, v in next, (tbl) do
+								for _, v in (tbl) do
 									Dropdown:CreateValue(v)
 								end
 
@@ -1947,7 +1947,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								return Dropdown
 							end
 
-							for _, v in next, (DropdownOptions.Content) do
+							for _, v in (DropdownOptions.Content) do
 								Dropdown:CreateValue(v)
 							end
 
@@ -2068,7 +2068,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									self:FadeIn()
 								end, 
 								FadeIn = function ()
-									for _, object in next, ( KeybindContent:GetDescendants() ) do
+									for _, object in ( KeybindContent:GetDescendants() ) do
 										if object:IsA("Frame") then
 											tweenService:Create(object, TweenInfo.new(0.1), { BackgroundTransparency = 0 }):Play()
 										elseif object:IsA("TextButton") then
@@ -2077,7 +2077,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									end
 								end, 
 								FadeOut = function ()
-									for _, object in next, ( KeybindContent:GetDescendants() ) do
+									for _, object in ( KeybindContent:GetDescendants() ) do
 										if object:IsA("Frame") then
 											tweenService:Create(object, TweenInfo.new(0.1), { BackgroundTransparency = 1 }):Play()
 										elseif object:IsA("TextButton") then
@@ -2142,7 +2142,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								end
 							end
 
-							for _, v in next, ({ "Toggle", "Hold", "Always" }) do
+							for _, v in ({ "Toggle", "Hold", "Always" }) do
 								local Button = {}
 								local KB_Button = InstanceNew("TextButton")
 								KB_Button.Name = "KB_Button"
@@ -2163,7 +2163,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								KeybindContent.Size += UDim2New(0, 0, 0, TextBoundY)
 
 								function Button:Click(igr)
-									for _, v in next, (Keybind.Modes) do
+									for _, v in (Keybind.Modes) do
 										v:Unclick()
 									end
 
@@ -2388,7 +2388,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							}
 
 							function PlayerOptions:Clear()
-								for _, child in ipairs(Players:GetChildren()) do
+								for _, child in (Players:GetChildren()) do
 									if child:IsA("Frame") then
 										child:Destroy()
 									end
@@ -2454,7 +2454,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 											self_conn:Disconnect() self_conn = nil
 										end
 									else
-										for i, v in ipairs(Players:GetDescendants()) do
+										for i, v in (Players:GetDescendants()) do
 											if v.Name == "PlayerName" then
 												v.TextColor3 = Color3FromRGB(129, 129, 127)
 											end
@@ -2478,7 +2478,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							function PlayerOptions:Refresh()
 								PlayerOptions:Clear()
 
-								for _, player in ipairs(playerService:GetPlayers()) do
+								for _, player in (playerService:GetPlayers()) do
 									if player == LocalPlayer then continue end
 
 									local name = player.Name
@@ -2492,7 +2492,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 
 							function PlayerOptions:Search()
 								local search = string.lower(SearchBar.Text)
-								for i, v in next, (Players:GetChildren()) do
+								for i, v in (Players:GetChildren()) do
 									if v:IsA("Frame") then
 										if search ~= "" then
 											local commanditemlist = string.lower(v.Name)
@@ -2977,7 +2977,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 				function Azure:GetConfig()
 					local ConfigTable = {}
 
-					for i, v in next, (Azure.ConfigFlags) do
+					for i, v in (Azure.ConfigFlags) do
 						local Value = Azure.Flags[i]
 
 						if typeof(Value) == "EnumItem" then
@@ -2995,7 +2995,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 				function Azure:LoadConfig(config)
 					local Config = httpService:JSONDecode(config)
 
-					for i, v in next, (Config) do
+					for i, v in (Config) do
 						local Func = Azure.ConfigFlags[i]
 
 						if Func then
@@ -3403,7 +3403,7 @@ local sigma = (function() -- src/Lua/loader.lua
 		ExitBStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 		ExitBStroke.Color = Color3.fromRGB(37, 37, 37)
 
-		for i, v in next, (Loader:GetDescendants()) do
+		for i, v in (Loader:GetDescendants()) do
 			if hasProperty(v, "BackgroundTransparency") then v.BackgroundTransparency = 1 end
 			if hasProperty(v, "TextTransparency") then v.TextTransparency = 1 end
 			if hasProperty(v, "ImageTransparency") then v.ImageTransparency = 1 end
@@ -3418,7 +3418,7 @@ local sigma = (function() -- src/Lua/loader.lua
 		}
 
 		function loaderOptions:FadeIn()
-			for i, v in next, (Loader:GetDescendants()) do
+			for i, v in (Loader:GetDescendants()) do
 				if hasProperty(v, "BackgroundTransparency") and not table.find(names_to_look_and_ignore, v.Name) then Tween(v, TweenInfo.new(0.2), {BackgroundTransparency = 0}) end
 				if hasProperty(v, "TextTransparency") then Tween(v, TweenInfo.new(0.2), {TextTransparency = 0}) end
 				if hasProperty(v, "ImageTransparency") then Tween(v, TweenInfo.new(0.2), {ImageTransparency = 0}) end
@@ -3427,7 +3427,7 @@ local sigma = (function() -- src/Lua/loader.lua
 		end
 
 		function loaderOptions:FadeOut()
-			for i, v in next, (Loader:GetDescendants()) do
+			for i, v in (Loader:GetDescendants()) do
 				if hasProperty(v, "BackgroundTransparency") then Tween(v, TweenInfo.new(0.2), {BackgroundTransparency = 1}) end
 				if hasProperty(v, "TextTransparency") then Tween(v, TweenInfo.new(0.2), {TextTransparency = 1}) end
 				if hasProperty(v, "ImageTransparency") then Tween(v, TweenInfo.new(0.2), {ImageTransparency = 1}) end
