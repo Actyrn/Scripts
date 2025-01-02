@@ -25,17 +25,13 @@ local LocalPlayer = playerService.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 
 -- localization of lua libraries. this reduces the need to repeatedly look up these global libraries.
-local MathHuge, MathAbs, MathAcos, MathAsin, MathAtan, MathAtan2, MathCeil, MathCos, MathCosh, MathDeg, MathExp, MathFloor, MathFmod, MathFrexp, MathLdexp, MathLog, MathLog10, MathMax, MathMin, MathModf, MathPi, MathPow, MathRad, MathRandom, MathRandomseed, MathSin, MathSinh, MathSqrt, MathTan, MathTanh = math.huge, math.abs, math.acos, math.asin, math.atan, math.atan2, math.ceil, math.cos, math.cosh, math.deg, math.exp, math.floor, math.fmod, math.frexp, math.ldexp, math.log, math.log10, math.max, math.min, math.modf, math.pi, math.pow, math.rad, math.random, math.randomseed, math.sin, math.sinh, math.sqrt, math.tan, math.tanh
-local TableConcat, TableInsert, TablePack, TableRemove, TableSort, TableUnpack, TableClear, TableFind = table.concat, table.insert, table.pack, table.remove, table.sort, table.unpack, table.clear, table.find
-local Vector2New, Vector2Zero = Vector2.new, Vector2.zero
+local Vector2New = Vector2.new
 local Vector3New, Vector3Zero, Vector3One, Vector3FromNormalId, Vector3FromAxis = Vector3.new, Vector3.zero, Vector3.one, Vector3.FromNormalId, Vector3.FromAxis
 local UDim2New = UDim2.new
 local CFrameNew, CFrameAngles, CFrameFromAxisAngle, CFrameFromEulerAnglesXYZ, CFrameFromMatrix, CFrameFromOrientation, CFrameFromQuaternion = CFrame.new, CFrame.Angles, CFrame.fromAxisAngle, CFrame.fromEulerAnglesXYZ, CFrame.fromMatrix, CFrame.fromOrientation, CFrame.fromQuaternion
 local Color3New, Color3FromRGB, Color3FromHSV = Color3.new, Color3.fromRGB, Color3.fromHSV
 local InstanceNew = Instance.new
 local TaskDelay, TaskSpawn, TaskWait = task.delay, task.spawn, task.wait
-local RaycastParamsNew = RaycastParams.new
-local DrawingNew = Drawing.new
 
 -- importing of files, this is bundled with a bundler.
 local ModuleHandler = (function() -- src/Lua/Modules/ModuleHandler.lua
@@ -131,12 +127,13 @@ do -- src/Lua/Modules/Base/
 		-- @https://devforum.roblox.com/t/how-to-ensure-a-plain-text-string-when-using-rich-text-field/1640202
 		function SYC.Modules.UI.RichTextToNormalText(str)
 			local output_string = str
-			while true do 
-				if not output_string:find("<") and not output_string:find(">") then break end -- If not found any <...>
-				if (output_string:find("<") and not output_string:find(">")) or (output_string:find(">") and not output_string:find("<")) then return error("Invalid RichText") end -- if found only "<..." or "...>"
-				output_string = output_string:gsub(output_string:sub(output_string:find("<"), output_string:find(">")), "", 1) -- Removing this "<...>"
-				TaskWait()
-			end
+			TaskSpawn(function()
+				while TaskWait() do 
+					if not output_string:find("<") and not output_string:find(">") then break end -- If not found any <...>
+					if (output_string:find("<") and not output_string:find(">")) or (output_string:find(">") and not output_string:find("<")) then return error("Invalid RichText") end -- if found only "<..." or "...>"
+					output_string = output_string:gsub(output_string:sub(output_string:find("<"), output_string:find(">")), "", 1) -- Removing this "<...>"
+				end
+			end)
 			return output_string
 		end
 	end
@@ -160,11 +157,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 	}
 
 	getgenv().theme = {
-		accent = Color3.fromRGB(210, 210, 210), 
-		scroll = Color3.fromRGB(175, 175, 175)
+		accent = Color3FromRGB(210, 210, 210), 
+		scroll = Color3FromRGB(175, 175, 175)
 	}
 
-	getgenv().theme_event = Instance.new("BindableEvent")
+	getgenv().theme_event = InstanceNew("BindableEvent")
 
 	getgenv().UI = Azure.Instances
 	local UIModule = include "UI"
@@ -551,22 +548,22 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							local BSHStroke = InstanceNew("UIStroke")
 							local BSHCorner = InstanceNew("UICorner")
 							local R15 = InstanceNew("Frame")
-							local Head = Instance.new("TextButton")
-							local HumanoidRootPart = Instance.new("TextButton")
-							local LeftHand = Instance.new("TextButton")
-							local LeftLowerArm = Instance.new("TextButton")
-							local LowerTorso = Instance.new("TextButton")
-							local LeftUpperArm = Instance.new("TextButton")
-							local RightHand = Instance.new("TextButton")
-							local RightUpperArm = Instance.new("TextButton")
-							local RightLowerArm = Instance.new("TextButton")
-							local UpperTorso = Instance.new("TextButton")
-							local LeftUpperLeg = Instance.new("TextButton")
-							local LeftLowerLeg = Instance.new("TextButton")
-							local LeftFoot = Instance.new("TextButton")
-							local RightFoot = Instance.new("TextButton")
-							local RightUpperLeg = Instance.new("TextButton")
-							local RightLowerLeg = Instance.new("TextButton")
+							local Head = InstanceNew("TextButton")
+							local HumanoidRootPart = InstanceNew("TextButton")
+							local LeftHand = InstanceNew("TextButton")
+							local LeftLowerArm = InstanceNew("TextButton")
+							local LowerTorso = InstanceNew("TextButton")
+							local LeftUpperArm = InstanceNew("TextButton")
+							local RightHand = InstanceNew("TextButton")
+							local RightUpperArm = InstanceNew("TextButton")
+							local RightLowerArm = InstanceNew("TextButton")
+							local UpperTorso = InstanceNew("TextButton")
+							local LeftUpperLeg = InstanceNew("TextButton")
+							local LeftLowerLeg = InstanceNew("TextButton")
+							local LeftFoot = InstanceNew("TextButton")
+							local RightFoot = InstanceNew("TextButton")
+							local RightUpperLeg = InstanceNew("TextButton")
+							local RightLowerLeg = InstanceNew("TextButton")
 							local R6 = InstanceNew("Frame")
 							local Head_2 = InstanceNew("TextButton")
 							local LeftArm_2 = InstanceNew("TextButton")
@@ -579,15 +576,15 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							BoneSelectorHolder.Name = "BoneSelectorHolder"
 							BoneSelectorHolder.Parent = SectionColumnComponents
 							BoneSelectorHolder.Size = UDim2.new(1, 0, 0, 316)
-							BoneSelectorHolder.BorderColor3 = Color3.fromRGB(0, 0, 0)
+							BoneSelectorHolder.BorderColor3 = Color3FromRGB(0, 0, 0)
 							BoneSelectorHolder.Position = UDim2.new(0, 0, -1.17375305e-06, 0)
 							BoneSelectorHolder.BorderSizePixel = 0
-							BoneSelectorHolder.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+							BoneSelectorHolder.BackgroundColor3 = Color3FromRGB(16, 16, 16)
 
 							BSHStroke.Name = "BSHStroke"
 							BSHStroke.Parent = BoneSelectorHolder
 							BSHStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-							BSHStroke.Color = Color3.fromRGB(36, 36, 36)
+							BSHStroke.Color = Color3FromRGB(36, 36, 36)
 
 							BSHCorner.Name = "BSHCorner"
 							BSHCorner.Parent = BoneSelectorHolder
@@ -596,20 +593,20 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							R15.Parent = BoneSelectorHolder
 							R15.Size = UDim2.new(0, 217, 0, 308)
 							R15.Visible = true
-							R15.BorderColor3 = Color3.fromRGB(0, 0, 0)
+							R15.BorderColor3 = Color3FromRGB(0, 0, 0)
 							R15.BackgroundTransparency = 1
 							R15.Position = UDim2.new(0.0262008738, 0, 0.0187500007, 0)
 							R15.BorderSizePixel = 0
-							R15.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+							R15.BackgroundColor3 = Color3FromRGB(255, 255, 255)
 
 							Head.Name = "Head"
 							Head.Parent = R15
 							Head.Size = UDim2.new(0, 60, 0, 68)
-							Head.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							Head.BorderColor3 = Color3FromRGB(36, 36, 36)
 							Head.Position = UDim2.new(0.358999997, 0, 0.0579999983, 0)
 							Head.BorderSizePixel = 2
-							Head.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							Head.TextColor3 = Color3.fromRGB(0, 0, 0)
+							Head.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							Head.TextColor3 = Color3FromRGB(0, 0, 0)
 							Head.Text = ""
 							Head.TextSize = 14
 							Head.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -618,11 +615,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							HumanoidRootPart.Parent = R15
 							HumanoidRootPart.ZIndex = 2
 							HumanoidRootPart.Size = UDim2.new(0, 22, 0, 25)
-							HumanoidRootPart.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							HumanoidRootPart.BorderColor3 = Color3FromRGB(36, 36, 36)
 							HumanoidRootPart.Position = UDim2.new(0.446557671, 0, 0.402155876, 0)
 							HumanoidRootPart.BorderSizePixel = 2
-							HumanoidRootPart.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							HumanoidRootPart.TextColor3 = Color3.fromRGB(0, 0, 0)
+							HumanoidRootPart.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							HumanoidRootPart.TextColor3 = Color3FromRGB(0, 0, 0)
 							HumanoidRootPart.Text = ""
 							HumanoidRootPart.TextSize = 14
 							HumanoidRootPart.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -630,11 +627,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							LeftHand.Name = "LeftHand"
 							LeftHand.Parent = R15
 							LeftHand.Size = UDim2.new(0, 53, 0, 20)
-							LeftHand.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							LeftHand.BorderColor3 = Color3FromRGB(36, 36, 36)
 							LeftHand.Position = UDim2.new(0.0778940767, 0, 0.548259795, 0)
 							LeftHand.BorderSizePixel = 2
-							LeftHand.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							LeftHand.TextColor3 = Color3.fromRGB(0, 0, 0)
+							LeftHand.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							LeftHand.TextColor3 = Color3FromRGB(0, 0, 0)
 							LeftHand.Text = ""
 							LeftHand.TextSize = 14
 							LeftHand.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -642,11 +639,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							LeftLowerArm.Name = "LeftLowerArm"
 							LeftLowerArm.Parent = R15
 							LeftLowerArm.Size = UDim2.new(0, 53, 0, 44)
-							LeftLowerArm.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							LeftLowerArm.BorderColor3 = Color3FromRGB(36, 36, 36)
 							LeftLowerArm.Position = UDim2.new(0.0778940767, 0, 0.405238956, 0)
 							LeftLowerArm.BorderSizePixel = 2
-							LeftLowerArm.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							LeftLowerArm.TextColor3 = Color3.fromRGB(0, 0, 0)
+							LeftLowerArm.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							LeftLowerArm.TextColor3 = Color3FromRGB(0, 0, 0)
 							LeftLowerArm.Text = ""
 							LeftLowerArm.TextSize = 14
 							LeftLowerArm.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -654,11 +651,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							LowerTorso.Name = "LowerTorso"
 							LowerTorso.Parent = R15
 							LowerTorso.Size = UDim2.new(0, 76, 0, 20)
-							LowerTorso.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							LowerTorso.BorderColor3 = Color3FromRGB(36, 36, 36)
 							LowerTorso.Position = UDim2.new(0.32213372, 0, 0.54809612, 0)
 							LowerTorso.BorderSizePixel = 2
-							LowerTorso.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							LowerTorso.TextColor3 = Color3.fromRGB(0, 0, 0)
+							LowerTorso.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							LowerTorso.TextColor3 = Color3FromRGB(0, 0, 0)
 							LowerTorso.Text = ""
 							LowerTorso.TextSize = 14
 							LowerTorso.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -666,11 +663,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							LeftUpperArm.Name = "LeftUpperArm"
 							LeftUpperArm.Parent = R15
 							LeftUpperArm.Size = UDim2.new(0, 53, 0, 38)
-							LeftUpperArm.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							LeftUpperArm.BorderColor3 = Color3FromRGB(36, 36, 36)
 							LeftUpperArm.Position = UDim2.new(0.0778940767, 0, 0.278615594, 0)
 							LeftUpperArm.BorderSizePixel = 2
-							LeftUpperArm.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							LeftUpperArm.TextColor3 = Color3.fromRGB(0, 0, 0)
+							LeftUpperArm.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							LeftUpperArm.TextColor3 = Color3FromRGB(0, 0, 0)
 							LeftUpperArm.Text = ""
 							LeftUpperArm.TextSize = 14
 							LeftUpperArm.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -678,11 +675,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							RightHand.Name = "RightHand"
 							RightHand.Parent = R15
 							RightHand.Size = UDim2.new(0, 49, 0, 19)
-							RightHand.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							RightHand.BorderColor3 = Color3FromRGB(36, 36, 36)
 							RightHand.Position = UDim2.new(0.672364116, 0, 0.548259795, 0)
 							RightHand.BorderSizePixel = 2
-							RightHand.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							RightHand.TextColor3 = Color3.fromRGB(0, 0, 0)
+							RightHand.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							RightHand.TextColor3 = Color3FromRGB(0, 0, 0)
 							RightHand.Text = ""
 							RightHand.TextSize = 14
 							RightHand.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -690,11 +687,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							RightUpperArm.Name = "RightUpperArm"
 							RightUpperArm.Parent = R15
 							RightUpperArm.Size = UDim2.new(0, 53, 0, 38)
-							RightUpperArm.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							RightUpperArm.BorderColor3 = Color3FromRGB(36, 36, 36)
 							RightUpperArm.Position = UDim2.new(0.672364116, 0, 0.278615594, 0)
 							RightUpperArm.BorderSizePixel = 2
-							RightUpperArm.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							RightUpperArm.TextColor3 = Color3.fromRGB(0, 0, 0)
+							RightUpperArm.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							RightUpperArm.TextColor3 = Color3FromRGB(0, 0, 0)
 							RightUpperArm.Text = ""
 							RightUpperArm.TextSize = 14
 							RightUpperArm.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -702,11 +699,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							RightLowerArm.Name = "RightLowerArm"
 							RightLowerArm.Parent = R15
 							RightLowerArm.Size = UDim2.new(0, 53, 0, 44)
-							RightLowerArm.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							RightLowerArm.BorderColor3 = Color3FromRGB(36, 36, 36)
 							RightLowerArm.Position = UDim2.new(0.672364116, 0, 0.405238956, 0)
 							RightLowerArm.BorderSizePixel = 2
-							RightLowerArm.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							RightLowerArm.TextColor3 = Color3.fromRGB(0, 0, 0)
+							RightLowerArm.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							RightLowerArm.TextColor3 = Color3FromRGB(0, 0, 0)
 							RightLowerArm.Text = ""
 							RightLowerArm.TextSize = 14
 							RightLowerArm.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -714,11 +711,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							UpperTorso.Name = "UpperTorso"
 							UpperTorso.Parent = R15
 							UpperTorso.Size = UDim2.new(0, 76, 0, 82)
-							UpperTorso.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							UpperTorso.BorderColor3 = Color3FromRGB(36, 36, 36)
 							UpperTorso.Position = UDim2.new(0.32213372, 0, 0.279000014, 0)
 							UpperTorso.BorderSizePixel = 2
-							UpperTorso.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							UpperTorso.TextColor3 = Color3.fromRGB(0, 0, 0)
+							UpperTorso.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							UpperTorso.TextColor3 = Color3FromRGB(0, 0, 0)
 							UpperTorso.Text = ""
 							UpperTorso.TextSize = 14
 							UpperTorso.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -726,11 +723,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							LeftUpperLeg.Name = "LeftUpperLeg"
 							LeftUpperLeg.Parent = R15
 							LeftUpperLeg.Size = UDim2.new(0, 38, 0, 62)
-							LeftUpperLeg.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							LeftUpperLeg.BorderColor3 = Color3FromRGB(36, 36, 36)
 							LeftUpperLeg.Position = UDim2.new(0.32213372, 0, 0.613031149, 0)
 							LeftUpperLeg.BorderSizePixel = 2
-							LeftUpperLeg.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							LeftUpperLeg.TextColor3 = Color3.fromRGB(0, 0, 0)
+							LeftUpperLeg.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							LeftUpperLeg.TextColor3 = Color3FromRGB(0, 0, 0)
 							LeftUpperLeg.Text = ""
 							LeftUpperLeg.TextSize = 14
 							LeftUpperLeg.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -738,11 +735,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							LeftLowerLeg.Name = "LeftLowerLeg"
 							LeftLowerLeg.Parent = R15
 							LeftLowerLeg.Size = UDim2.new(0, 38, 0, 32)
-							LeftLowerLeg.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							LeftLowerLeg.BorderColor3 = Color3FromRGB(36, 36, 36)
 							LeftLowerLeg.Position = UDim2.new(0.32213372, 0, 0.814329863, 0)
 							LeftLowerLeg.BorderSizePixel = 2
-							LeftLowerLeg.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							LeftLowerLeg.TextColor3 = Color3.fromRGB(0, 0, 0)
+							LeftLowerLeg.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							LeftLowerLeg.TextColor3 = Color3FromRGB(0, 0, 0)
 							LeftLowerLeg.Text = ""
 							LeftLowerLeg.TextSize = 14
 							LeftLowerLeg.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -750,11 +747,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							LeftFoot.Name = "LeftFoot"
 							LeftFoot.Parent = R15
 							LeftFoot.Size = UDim2.new(0, 38, 0, 9)
-							LeftFoot.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							LeftFoot.BorderColor3 = Color3FromRGB(36, 36, 36)
 							LeftFoot.Position = UDim2.new(0.32213372, 0, 0.918225944, 0)
 							LeftFoot.BorderSizePixel = 2
-							LeftFoot.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							LeftFoot.TextColor3 = Color3.fromRGB(0, 0, 0)
+							LeftFoot.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							LeftFoot.TextColor3 = Color3FromRGB(0, 0, 0)
 							LeftFoot.Text = ""
 							LeftFoot.TextSize = 14
 							LeftFoot.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -762,11 +759,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							RightFoot.Name = "RightFoot"
 							RightFoot.Parent = R15
 							RightFoot.Size = UDim2.new(0, 38, 0, 9)
-							RightFoot.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							RightFoot.BorderColor3 = Color3FromRGB(36, 36, 36)
 							RightFoot.Position = UDim2.new(0.497248918, 0, 0.918225944, 0)
 							RightFoot.BorderSizePixel = 2
-							RightFoot.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							RightFoot.TextColor3 = Color3.fromRGB(0, 0, 0)
+							RightFoot.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							RightFoot.TextColor3 = Color3FromRGB(0, 0, 0)
 							RightFoot.Text = ""
 							RightFoot.TextSize = 14
 							RightFoot.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -774,11 +771,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							RightUpperLeg.Name = "RightUpperLeg"
 							RightUpperLeg.Parent = R15
 							RightUpperLeg.Size = UDim2.new(0, 38, 0, 62)
-							RightUpperLeg.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							RightUpperLeg.BorderColor3 = Color3FromRGB(36, 36, 36)
 							RightUpperLeg.Position = UDim2.new(0.497248918, 0, 0.613031149, 0)
 							RightUpperLeg.BorderSizePixel = 2
-							RightUpperLeg.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							RightUpperLeg.TextColor3 = Color3.fromRGB(0, 0, 0)
+							RightUpperLeg.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							RightUpperLeg.TextColor3 = Color3FromRGB(0, 0, 0)
 							RightUpperLeg.Text = ""
 							RightUpperLeg.TextSize = 14
 							RightUpperLeg.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -786,11 +783,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							RightLowerLeg.Name = "RightLowerLeg"
 							RightLowerLeg.Parent = R15
 							RightLowerLeg.Size = UDim2.new(0, 38, 0, 32)
-							RightLowerLeg.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							RightLowerLeg.BorderColor3 = Color3FromRGB(36, 36, 36)
 							RightLowerLeg.Position = UDim2.new(0.497248918, 0, 0.814329863, 0)
 							RightLowerLeg.BorderSizePixel = 2
-							RightLowerLeg.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							RightLowerLeg.TextColor3 = Color3.fromRGB(0, 0, 0)
+							RightLowerLeg.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							RightLowerLeg.TextColor3 = Color3FromRGB(0, 0, 0)
 							RightLowerLeg.Text = ""
 							RightLowerLeg.TextSize = 14
 							RightLowerLeg.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -799,20 +796,20 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							R6.Parent = BoneSelectorHolder
 							R6.Size = UDim2.new(0, 217, 0, 308)
 							R6.Visible = false
-							R6.BorderColor3 = Color3.fromRGB(0, 0, 0)
+							R6.BorderColor3 = Color3FromRGB(0, 0, 0)
 							R6.BackgroundTransparency = 1
 							R6.Position = UDim2.new(0.0262008738, 0, 0.0187500007, 0)
 							R6.BorderSizePixel = 0
-							R6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+							R6.BackgroundColor3 = Color3FromRGB(255, 255, 255)
 
 							Head_2.Name = "Head"
 							Head_2.Parent = R6
 							Head_2.Size = UDim2.new(0, 76, 0, 68)
-							Head_2.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							Head_2.BorderColor3 = Color3FromRGB(36, 36, 36)
 							Head_2.Position = UDim2.new(0.322580636, 0, 0.058441557, 0)
 							Head_2.BorderSizePixel = 2
-							Head_2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							Head_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+							Head_2.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							Head_2.TextColor3 = Color3FromRGB(0, 0, 0)
 							Head_2.Text = ""
 							Head_2.TextSize = 14
 							Head_2.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -820,11 +817,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							LeftArm_2.Name = "Left Arm"
 							LeftArm_2.Parent = R6
 							LeftArm_2.Size = UDim2.new(0, 53, 0, 103)
-							LeftArm_2.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							LeftArm_2.BorderColor3 = Color3FromRGB(36, 36, 36)
 							LeftArm_2.Position = UDim2.new(0.0783410147, 0, 0.27922079, 0)
 							LeftArm_2.BorderSizePixel = 2
-							LeftArm_2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							LeftArm_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+							LeftArm_2.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							LeftArm_2.TextColor3 = Color3FromRGB(0, 0, 0)
 							LeftArm_2.Text = ""
 							LeftArm_2.TextSize = 14
 							LeftArm_2.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -832,11 +829,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							RightArm_2.Name = "Right Arm"
 							RightArm_2.Parent = R6
 							RightArm_2.Size = UDim2.new(0, 53, 0, 103)
-							RightArm_2.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							RightArm_2.BorderColor3 = Color3FromRGB(36, 36, 36)
 							RightArm_2.Position = UDim2.new(0.672811031, 0, 0.27922079, 0)
 							RightArm_2.BorderSizePixel = 2
-							RightArm_2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							RightArm_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+							RightArm_2.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							RightArm_2.TextColor3 = Color3FromRGB(0, 0, 0)
 							RightArm_2.Text = ""
 							RightArm_2.TextSize = 14
 							RightArm_2.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -844,11 +841,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							RightLeg_2.Name = "Right Leg"
 							RightLeg_2.Parent = R6
 							RightLeg_2.Size = UDim2.new(0, 38, 0, 103)
-							RightLeg_2.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							RightLeg_2.BorderColor3 = Color3FromRGB(36, 36, 36)
 							RightLeg_2.Position = UDim2.new(0.497695863, 0, 0.613636374, 0)
 							RightLeg_2.BorderSizePixel = 2
-							RightLeg_2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							RightLeg_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+							RightLeg_2.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							RightLeg_2.TextColor3 = Color3FromRGB(0, 0, 0)
 							RightLeg_2.Text = ""
 							RightLeg_2.TextSize = 14
 							RightLeg_2.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -856,11 +853,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							LeftLeg_2.Name = "Left Leg"
 							LeftLeg_2.Parent = R6
 							LeftLeg_2.Size = UDim2.new(0, 38, 0, 103)
-							LeftLeg_2.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							LeftLeg_2.BorderColor3 = Color3FromRGB(36, 36, 36)
 							LeftLeg_2.Position = UDim2.new(0.322580636, 0, 0.613636374, 0)
 							LeftLeg_2.BorderSizePixel = 2
-							LeftLeg_2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							LeftLeg_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+							LeftLeg_2.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							LeftLeg_2.TextColor3 = Color3FromRGB(0, 0, 0)
 							LeftLeg_2.Text = ""
 							LeftLeg_2.TextSize = 14
 							LeftLeg_2.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -868,11 +865,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							Torso_3.Name = "Torso"
 							Torso_3.Parent = R6
 							Torso_3.Size = UDim2.new(0, 76, 0, 103)
-							Torso_3.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							Torso_3.BorderColor3 = Color3FromRGB(36, 36, 36)
 							Torso_3.Position = UDim2.new(0.322580636, 0, 0.27922079, 0)
 							Torso_3.BorderSizePixel = 2
-							Torso_3.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							Torso_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+							Torso_3.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							Torso_3.TextColor3 = Color3FromRGB(0, 0, 0)
 							Torso_3.Text = ""
 							Torso_3.TextSize = 14
 							Torso_3.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -880,11 +877,11 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							HumanoidRootPart_2.Name = "HumanoidRootPart"
 							HumanoidRootPart_2.Parent = R6
 							HumanoidRootPart_2.Size = UDim2.new(0, 31, 0, 30)
-							HumanoidRootPart_2.BorderColor3 = Color3.fromRGB(36, 36, 36)
+							HumanoidRootPart_2.BorderColor3 = Color3FromRGB(36, 36, 36)
 							HumanoidRootPart_2.Position = UDim2.new(0.42396313, 0, 0.373376638, 0)
 							HumanoidRootPart_2.BorderSizePixel = 2
-							HumanoidRootPart_2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-							HumanoidRootPart_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+							HumanoidRootPart_2.BackgroundColor3 = Color3FromRGB(27, 27, 27)
+							HumanoidRootPart_2.TextColor3 = Color3FromRGB(0, 0, 0)
 							HumanoidRootPart_2.Text = ""
 							HumanoidRootPart_2.TextSize = 14
 							HumanoidRootPart_2.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -1127,8 +1124,9 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								Tweens.OnClick()
 								pcall(ButtonOptions.callback)
 
-								TaskWait(0.1)
-								Tweens.OnHover()
+								TaskDelay(0.1, function()
+									Tweens.OnHover()
+								end)
 							end
 
 							Button.MouseButton1Click:Connect(OnClick)
@@ -1406,10 +1404,10 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 
 								contentAnimations:FadeOut()
 
-								TaskWait(0.15)
-
-								ColorpickerContent.Visible = false
-								ColorpickerInline.Visible = false
+								TaskDelay(0.15, function()
+									ColorpickerContent.Visible = false
+									ColorpickerInline.Visible = false
+								end)
 							end
 
 							local function FromRGBA (r, g, b)
@@ -1437,7 +1435,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								Colorpicker.ColorValue = color
 								Colorpicker.TransparencyValue = trans
 
-								SaturationBackground.BackgroundColor3 = Color3.fromHSV(Colorpicker.HuePosition, 1, 1)
+								SaturationBackground.BackgroundColor3 = Color3FromHSV(Colorpicker.HuePosition, 1, 1)
 
 								ColorpickerStatus.BackgroundColor3 = color
 
@@ -1458,7 +1456,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								local PosX = math.clamp(((input.Position.X - SaturationBackground.AbsolutePosition.X) / SaturationBackground.AbsoluteSize.X) * SaturationBackground.AbsoluteSize.X, 0, SaturationBackground.AbsoluteSize.X - 3)
 
 								SaturationPicker.Position = UDim2New(0, PosX, 0, PosY)
-								ColorpickerOptions:Set(Color3.fromHSV(Colorpicker.HuePosition, SizeX, SizeY), Colorpicker.TransparencyValue, true)
+								ColorpickerOptions:Set(Color3FromHSV(Colorpicker.HuePosition, SizeX, SizeY), Colorpicker.TransparencyValue, true)
 							end
 
 							SaturationButton.MouseButton1Down:Connect(function (input)
@@ -1474,7 +1472,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								HuePicker.Position = UDim2New(0, -2, 0, PosY - 2)
 								Colorpicker.HuePosition = SizeY
 
-								ColorpickerOptions:Set(Color3.fromHSV(SizeY, Sat, Val), Colorpicker.TransparencyValue, true)
+								ColorpickerOptions:Set(Color3FromHSV(SizeY, Sat, Val), Colorpicker.TransparencyValue, true)
 							end
 
 							TextButton.MouseButton1Down:Connect(function (input)
@@ -1489,7 +1487,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 
 								TransparencyPicker.Position = UDim2New(0, PosX, 0, -2)
 
-								ColorpickerOptions:Set(Color3.fromHSV(Colorpicker.HuePosition, Sat, Val), SizeX, true)
+								ColorpickerOptions:Set(Color3FromHSV(Colorpicker.HuePosition, Sat, Val), SizeX, true)
 							end
 
 							TransparencyButton.MouseButton1Down:Connect(function (input)
@@ -1712,9 +1710,9 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 
 								contentAnimations:FadeOut()
 
-								TaskWait(0.15)
-
-								Inline.Visible = false
+								TaskDelay(0.15, function()
+									Inline.Visible = false
+								end)
 							end
 
 							local Count = 0
@@ -1731,12 +1729,12 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									DropdownButton.Name = "DropdownButton"
 									DropdownButton.Parent = Inline
 									DropdownButton.Size = UDim2.new(1, 0, 0, 14)
-									DropdownButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+									DropdownButton.BorderColor3 = Color3FromRGB(0, 0, 0)
 									DropdownButton.BackgroundTransparency = 1
 									DropdownButton.Position = UDim2.new(0.0131004369, 0, 0, 0)
 									DropdownButton.BorderSizePixel = 0
-									DropdownButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-									DropdownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+									DropdownButton.BackgroundColor3 = Color3FromRGB(255, 255, 255)
+									DropdownButton.TextColor3 = Color3FromRGB(255, 255, 255)
 									DropdownButton.Text = ""
 									DropdownButton.TextXAlignment = Enum.TextXAlignment.Left
 									DropdownButton.TextSize = 14
@@ -1747,7 +1745,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									DBStroke.Name = "DBStroke"
 									DBStroke.Parent = DropdownButton
 									DBStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-									DBStroke.Color = Color3.fromRGB(24, 24, 24)
+									DBStroke.Color = Color3FromRGB(24, 24, 24)
 
 									DBCorner.Name = "DBCorner"
 									DBCorner.Parent = DropdownButton
@@ -1756,12 +1754,12 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									DBName.Name = "DBName"
 									DBName.Parent = DropdownButton
 									DBName.Size = UDim2.new(0, 226, 1, 0)
-									DBName.BorderColor3 = Color3.fromRGB(0, 0, 0)
+									DBName.BorderColor3 = Color3FromRGB(0, 0, 0)
 									DBName.BackgroundTransparency = 1
 									DBName.Position = UDim2.new(0.0131004369, 0, 0, 0)
 									DBName.BorderSizePixel = 0
-									DBName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-									DBName.TextColor3 = Color3.fromRGB(129, 129, 127)
+									DBName.BackgroundColor3 = Color3FromRGB(255, 255, 255)
+									DBName.TextColor3 = Color3FromRGB(129, 129, 127)
 									DBName.TextXAlignment = Enum.TextXAlignment.Left
 									DBName.TextSize = 14
 									DBName.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -1773,12 +1771,12 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 									Inline.Size += UDim2.new(0, 0, 0, 14)
 
 									local function Click()
-										DBName.TextColor3 = Color3.fromRGB(168, 157, 159)
+										DBName.TextColor3 = Color3FromRGB(168, 157, 159)
 										Dropdown.FValues[name].Selected = true
 									end
 
 									local function Unclick()
-										DBName.TextColor3 = Color3.fromRGB(129, 129, 127)
+										DBName.TextColor3 = Color3FromRGB(129, 129, 127)
 										Dropdown.FValues[name].Selected = false
 									end
 
@@ -2090,10 +2088,10 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							function contentAnimations:Close()
 								contentAnimations:FadeOut()
 
-								TaskWait(0.05)
-
-								KeybindContent.Visible = false
-								KeybindInline.Visible = false
+								TaskDelay(0.05, function()
+									KeybindContent.Visible = false
+									KeybindInline.Visible = false
+								end)
 							end
 
 							function Keybind:UpdateList()
@@ -2203,32 +2201,32 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 
 									KeybindButton.Text = "..."
 
-									TaskWait(0.02)
+									TaskDelay(0.02, function()
+										local Event Event = inputService.InputBegan:Connect(function (input)
+											local Key
+											local KeyName = input.KeyCode.Name == "Escape" and "NONE" or Keys[input.KeyCode] or Keys[input.UserInputType] or input.KeyCode.Name
 
-									local Event Event = inputService.InputBegan:Connect(function (input)
-										local Key
-										local KeyName = input.KeyCode.Name == "Escape" and "NONE" or Keys[input.KeyCode] or Keys[input.UserInputType] or input.KeyCode.Name
+											if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode.Name == "Escape" then
+												Keybind.FKey = "NONE"
+											elseif input.UserInputType == Enum.UserInputType.Keyboard then
+												Keybind.FKey = input.KeyCode.Name
+											elseif input.UserInputType == Enum.UserInputType.MouseButton1 then
+												Keybind.FKey = "MB1"
+											elseif input.UserInputType == Enum.UserInputType.MouseButton2 then
+												Keybind.FKey = "MB2"
+											end
 
-										if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode.Name == "Escape" then
-											Keybind.FKey = "NONE"
-										elseif input.UserInputType == Enum.UserInputType.Keyboard then
-											Keybind.FKey = input.KeyCode.Name
-										elseif input.UserInputType == Enum.UserInputType.MouseButton1 then
-											Keybind.FKey = "MB1"
-										elseif input.UserInputType == Enum.UserInputType.MouseButton2 then
-											Keybind.FKey = "MB2"
-										end
+											Keybind.Picking = false
 
-										Keybind.Picking = false
+											KeybindButton.Text = "key : " .. KeyName
 
-										KeybindButton.Text = "key : " .. KeyName
+											pcall(KeybindOptions.Callback, KeybindOptions:GetState())
+											Azure.Flags[KeybindOptions.Flag] = KeybindOptions:GetState()
+											Azure.Flags[KeybindOptions.Flag .. "_info"] = {Keybind.FKey, Keybind.FMode}
+											Keybind:UpdateList()
 
-										pcall(KeybindOptions.Callback, KeybindOptions:GetState())
-										Azure.Flags[KeybindOptions.Flag] = KeybindOptions:GetState()
-										Azure.Flags[KeybindOptions.Flag .. "_info"] = {Keybind.FKey, Keybind.FMode}
-										Keybind:UpdateList()
-
-										Event:Disconnect()
+											Event:Disconnect()
+										end)
 									end)
 								end
 
@@ -3199,8 +3197,8 @@ end)()
 
 local sigma = (function() -- src/Lua/loader.lua
 	local loaderOptions = {}
-	loaderOptions.Completed = Instance.new("BindableEvent")
-	loaderOptions.AutoLoadStop = Instance.new("BindableEvent")
+	loaderOptions.Completed = InstanceNew("BindableEvent")
+	loaderOptions.AutoLoadStop = InstanceNew("BindableEvent")
 	loaderOptions.Exit = false
 
 	local function hasProperty(object, propertyName)
@@ -3217,37 +3215,37 @@ local sigma = (function() -- src/Lua/loader.lua
 	end
 
 	function loaderOptions:new()
-		local Loader = Instance.new("ScreenGui", gethui and gethui() or coreguiService)
+		local Loader = InstanceNew("ScreenGui", gethui and gethui() or coreguiService)
 		Loader.Name = "RobloxGui"
 
-		local LoaderBackground = Instance.new("Frame")
-		local BackgroundCorner = Instance.new("UICorner")
-		local BackgroundStroke = Instance.new("UIStroke")
-		local MainTitle = Instance.new("TextLabel")
-		local InfoFrame = Instance.new("Frame")
-		local InfoFrameStroke = Instance.new("UIStroke")
-		local InfoFrameCorner = Instance.new("UICorner")
-		local InfoTitle = Instance.new("TextLabel")
-		local Information = Instance.new("TextLabel")
-		local InfoGame = Instance.new("ImageLabel")
-		local OptionsFrame = Instance.new("Frame")
-		local OptionsFrameStroke = Instance.new("UIStroke")
-		local OptionsFrameCorner = Instance.new("UICorner")
-		local OptionsTitle = Instance.new("TextLabel")
-		local Load_2 = Instance.new("TextButton")
-		local LoadBCorner = Instance.new("UICorner")
-		local LoadBStroke = Instance.new("UIStroke")
-		local Exit = Instance.new("TextButton")
-		local ExitBCorner = Instance.new("UICorner")
-		local ExitBStroke = Instance.new("UIStroke")
+		local LoaderBackground = InstanceNew("Frame")
+		local BackgroundCorner = InstanceNew("UICorner")
+		local BackgroundStroke = InstanceNew("UIStroke")
+		local MainTitle = InstanceNew("TextLabel")
+		local InfoFrame = InstanceNew("Frame")
+		local InfoFrameStroke = InstanceNew("UIStroke")
+		local InfoFrameCorner = InstanceNew("UICorner")
+		local InfoTitle = InstanceNew("TextLabel")
+		local Information = InstanceNew("TextLabel")
+		local InfoGame = InstanceNew("ImageLabel")
+		local OptionsFrame = InstanceNew("Frame")
+		local OptionsFrameStroke = InstanceNew("UIStroke")
+		local OptionsFrameCorner = InstanceNew("UICorner")
+		local OptionsTitle = InstanceNew("TextLabel")
+		local Load_2 = InstanceNew("TextButton")
+		local LoadBCorner = InstanceNew("UICorner")
+		local LoadBStroke = InstanceNew("UIStroke")
+		local Exit = InstanceNew("TextButton")
+		local ExitBCorner = InstanceNew("UICorner")
+		local ExitBStroke = InstanceNew("UIStroke")
 
 		LoaderBackground.Name = "LoaderBackground"
 		LoaderBackground.Parent = Loader
 		LoaderBackground.Size = UDim2.new(0, 345, 0, 194)
-		LoaderBackground.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		LoaderBackground.BorderColor3 = Color3FromRGB(0, 0, 0)
 		LoaderBackground.Position = UDim2.new(0.393320978, 0, 0.377049178, 0)
 		LoaderBackground.BorderSizePixel = 0
-		LoaderBackground.BackgroundColor3 = Color3.fromRGB(23, 23, 23)
+		LoaderBackground.BackgroundColor3 = Color3FromRGB(23, 23, 23)
 
 		BackgroundCorner.Name = "BackgroundCorner"
 		BackgroundCorner.Parent = LoaderBackground
@@ -3255,18 +3253,18 @@ local sigma = (function() -- src/Lua/loader.lua
 		BackgroundStroke.Name = "BackgroundStroke"
 		BackgroundStroke.Parent = LoaderBackground
 		BackgroundStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		BackgroundStroke.Color = Color3.fromRGB(30, 32, 30)
+		BackgroundStroke.Color = Color3FromRGB(30, 32, 30)
 		BackgroundStroke.Thickness = 2
 
 		MainTitle.Name = "MainTitle"
 		MainTitle.Parent = LoaderBackground
 		MainTitle.Size = UDim2.new(0, 81, 0, 20)
-		MainTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		MainTitle.BorderColor3 = Color3FromRGB(0, 0, 0)
 		MainTitle.BackgroundTransparency = 1
 		MainTitle.Position = UDim2.new(0, 6, 0, 6)
 		MainTitle.BorderSizePixel = 0
-		MainTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		MainTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+		MainTitle.BackgroundColor3 = Color3FromRGB(255, 255, 255)
+		MainTitle.TextColor3 = Color3FromRGB(255, 255, 255)
 		MainTitle.Text = "Actyrn"
 		MainTitle.TextStrokeTransparency = 0
 		MainTitle.TextSize = 16
@@ -3275,15 +3273,15 @@ local sigma = (function() -- src/Lua/loader.lua
 		InfoFrame.Name = "InfoFrame"
 		InfoFrame.Parent = LoaderBackground
 		InfoFrame.Size = UDim2.new(0, 332, 0, 103)
-		InfoFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		InfoFrame.BorderColor3 = Color3FromRGB(0, 0, 0)
 		InfoFrame.Position = UDim2.new(0.0173913036, 0, 0.164948449, 0)
 		InfoFrame.BorderSizePixel = 0
-		InfoFrame.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+		InfoFrame.BackgroundColor3 = Color3FromRGB(16, 16, 16)
 
 		InfoFrameStroke.Name = "InfoFrameStroke"
 		InfoFrameStroke.Parent = InfoFrame
 		InfoFrameStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		InfoFrameStroke.Color = Color3.fromRGB(28, 28, 28)
+		InfoFrameStroke.Color = Color3FromRGB(28, 28, 28)
 
 		InfoFrameCorner.Name = "InfoFrameCorner"
 		InfoFrameCorner.Parent = InfoFrame
@@ -3291,12 +3289,12 @@ local sigma = (function() -- src/Lua/loader.lua
 		InfoTitle.Name = "InfoTitle"
 		InfoTitle.Parent = InfoFrame
 		InfoTitle.Size = UDim2.new(0, 326, 0, 16)
-		InfoTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		InfoTitle.BorderColor3 = Color3FromRGB(0, 0, 0)
 		InfoTitle.BackgroundTransparency = 1
 		InfoTitle.Position = UDim2.new(0.0180722885, 0, 0, 0)
 		InfoTitle.BorderSizePixel = 0
-		InfoTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		InfoTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+		InfoTitle.BackgroundColor3 = Color3FromRGB(255, 255, 255)
+		InfoTitle.TextColor3 = Color3FromRGB(255, 255, 255)
 		InfoTitle.Text = "Information"
 		InfoTitle.TextXAlignment = Enum.TextXAlignment.Left
 		InfoTitle.TextSize = 16
@@ -3305,13 +3303,13 @@ local sigma = (function() -- src/Lua/loader.lua
 		Information.Name = "Information"
 		Information.Parent = InfoFrame
 		Information.Size = UDim2.new(0, 233, 0, 87)
-		Information.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Information.BorderColor3 = Color3FromRGB(0, 0, 0)
 		Information.BackgroundTransparency = 1
 		Information.Position = UDim2.new(0.298192769, 0, 0.155339807, 0)
 		Information.BorderSizePixel = 0
-		Information.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Information.BackgroundColor3 = Color3FromRGB(255, 255, 255)
 		Information.TextYAlignment = Enum.TextYAlignment.Top
-		Information.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Information.TextColor3 = Color3FromRGB(255, 255, 255)
 		Information.Text = "Version Loaded : Azure Modded"
 		Information.TextXAlignment = Enum.TextXAlignment.Left
 		Information.TextSize = 14
@@ -3320,23 +3318,23 @@ local sigma = (function() -- src/Lua/loader.lua
 		InfoGame.Name = "InfoGame"
 		InfoGame.Parent = InfoFrame
 		InfoGame.Size = UDim2.new(0, 81, 0, 81)
-		InfoGame.BorderColor3 = Color3.fromRGB(25, 25, 25)
+		InfoGame.BorderColor3 = Color3FromRGB(25, 25, 25)
 		InfoGame.Position = UDim2.new(0.036144577, 0, 0.155339807, 0)
-		InfoGame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		InfoGame.BackgroundColor3 = Color3FromRGB(255, 255, 255)
 		InfoGame.Image = "rbxassetid://18175856299"
 
 		OptionsFrame.Name = "OptionsFrame"
 		OptionsFrame.Parent = LoaderBackground
 		OptionsFrame.Size = UDim2.new(0, 332, 0, 47)
-		OptionsFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		OptionsFrame.BorderColor3 = Color3FromRGB(0, 0, 0)
 		OptionsFrame.Position = UDim2.new(0.0173913036, 0, 0.726804137, 0)
 		OptionsFrame.BorderSizePixel = 0
-		OptionsFrame.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+		OptionsFrame.BackgroundColor3 = Color3FromRGB(16, 16, 16)
 
 		OptionsFrameStroke.Name = "OptionsFrameStroke"
 		OptionsFrameStroke.Parent = OptionsFrame
 		OptionsFrameStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		OptionsFrameStroke.Color = Color3.fromRGB(28, 28, 28)
+		OptionsFrameStroke.Color = Color3FromRGB(28, 28, 28)
 
 		OptionsFrameCorner.Name = "OptionsFrameCorner"
 		OptionsFrameCorner.Parent = OptionsFrame
@@ -3344,12 +3342,12 @@ local sigma = (function() -- src/Lua/loader.lua
 		OptionsTitle.Name = "OptionsTitle"
 		OptionsTitle.Parent = OptionsFrame
 		OptionsTitle.Size = UDim2.new(0, 326, 0, 16)
-		OptionsTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		OptionsTitle.BorderColor3 = Color3FromRGB(0, 0, 0)
 		OptionsTitle.BackgroundTransparency = 1
 		OptionsTitle.Position = UDim2.new(0.0180722885, 0, 0, 0)
 		OptionsTitle.BorderSizePixel = 0
-		OptionsTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		OptionsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+		OptionsTitle.BackgroundColor3 = Color3FromRGB(255, 255, 255)
+		OptionsTitle.TextColor3 = Color3FromRGB(255, 255, 255)
 		OptionsTitle.Text = "Options"
 		OptionsTitle.TextXAlignment = Enum.TextXAlignment.Left
 		OptionsTitle.TextSize = 16
@@ -3359,12 +3357,12 @@ local sigma = (function() -- src/Lua/loader.lua
 		Load_2.Parent = OptionsFrame
 		Load_2.ZIndex = 2
 		Load_2.Size = UDim2.new(0, 153, 0, 17)
-		Load_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Load_2.BorderColor3 = Color3FromRGB(0, 0, 0)
 		Load_2.Position = UDim2.new(0.036144577, 0, 0.46808511, 0)
 		Load_2.BorderSizePixel = 0
-		Load_2.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+		Load_2.BackgroundColor3 = Color3FromRGB(21, 21, 21)
 		Load_2.AutoButtonColor = false
-		Load_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Load_2.TextColor3 = Color3FromRGB(255, 255, 255)
 		Load_2.Text = "load"
 		Load_2.TextStrokeTransparency = 1.0099999904632568
 		Load_2.TextSize = 14
@@ -3377,18 +3375,18 @@ local sigma = (function() -- src/Lua/loader.lua
 		LoadBStroke.Name = "LoadBStroke"
 		LoadBStroke.Parent = Load_2
 		LoadBStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		LoadBStroke.Color = Color3.fromRGB(37, 37, 37)
+		LoadBStroke.Color = Color3FromRGB(37, 37, 37)
 
 		Exit.Name = "Exit"
 		Exit.Parent = OptionsFrame
 		Exit.ZIndex = 2
 		Exit.Size = UDim2.new(0, 153, 0, 17)
-		Exit.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Exit.BorderColor3 = Color3FromRGB(0, 0, 0)
 		Exit.Position = UDim2.new(0.515060246, 0, 0.46808511, 0)
 		Exit.BorderSizePixel = 0
-		Exit.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+		Exit.BackgroundColor3 = Color3FromRGB(21, 21, 21)
 		Exit.AutoButtonColor = false
-		Exit.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Exit.TextColor3 = Color3FromRGB(255, 255, 255)
 		Exit.Text = "exit"
 		Exit.TextStrokeTransparency = 1.0099999904632568
 		Exit.TextSize = 14
@@ -3401,7 +3399,7 @@ local sigma = (function() -- src/Lua/loader.lua
 		ExitBStroke.Name = "ExitBStroke"
 		ExitBStroke.Parent = Exit
 		ExitBStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		ExitBStroke.Color = Color3.fromRGB(37, 37, 37)
+		ExitBStroke.Color = Color3FromRGB(37, 37, 37)
 
 		for i, v in (Loader:GetDescendants()) do
 			if hasProperty(v, "BackgroundTransparency") then v.BackgroundTransparency = 1 end
@@ -3441,19 +3439,21 @@ local sigma = (function() -- src/Lua/loader.lua
 
 		function loaderOptions:Load()
 			loaderOptions:FadeOut()
-			task.wait(0.2)
-			loaderOptions.Completed:Fire()
-			Loader:Destroy()
+			TaskDelay(0.2, function()
+				loaderOptions.Completed:Fire()
+				Loader:Destroy()
 
-			loaderOptions.Exit = true
+				loaderOptions.Exit = true
+			end)
 		end
 
 		local function exit()
 			loaderOptions:FadeOut()
-			task.wait(0.2)
-			Loader:Destroy()
+			TaskDelay(0.2, function()
+				Loader:Destroy()
 
-			loaderOptions.Exit = true
+				loaderOptions.Exit = true
+			end)
 		end
 
 		local function init()
