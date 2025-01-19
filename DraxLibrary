@@ -53,10 +53,95 @@ local ModuleHandler = (function() -- src/Lua/Modules/ModuleHandler.lua
 	return ModuleHandler
 end)()
 
-do -- src/Lua/Modules/Base/UI -GetTextBoundary.lua
-	function SYC.Modules.UI:GetTextBoundary(Text, Font, Size, Resolution)
-		local Bounds = textService:GetTextSize(Text, Size, Font, Resolution or Vector2New(1920, 1080))
-		return Bounds.X, Bounds.Y
+do -- src/Lua/Modules/Base/
+	do -- src/Lua/Modules/Base/Connection.lua
+		function SYC.Modules.Connect(onething, secondthing)
+			local connection = onething:Connect(secondthing)
+			return connection
+		end
+	end
+	do -- src/Lua/Modules/Base/Draw.lua
+		local DrawingClass = {}
+		DrawingClass.__index = DrawingClass
+		DrawingClass.Objects = {}
+
+		local DrawingMeta = {}
+
+		DrawingMeta.__call = function (self, Arguments)
+			if Arguments then
+				local newObject = Drawing.new(Arguments[1])
+
+				for property, value in Arguments[2] do
+					newObject[property] = value
+				end
+
+				table.insert(self.Objects, newObject)
+				return newObject
+			end
+		end
+
+		setmetatable(DrawingClass, DrawingMeta)
+
+		SYC.Modules.DrawingClass = DrawingClass
+	end
+	do -- src/Lua/Modules/Base/Lerp.lua
+		function SYC.Modules.lerp(a, b, t)
+			return a + (b - a) * t
+		end
+	end
+	do -- src/Lua/Modules/Base/Loops.lua
+		local Loops = {Heartbeat = {}, RenderStepped = {}}
+		function Loops:AddToHeartbeat(Name, Function)
+			if Loops["Heartbeat"][Name] == nil then
+				Loops["Heartbeat"][Name] = rsService.Heartbeat:Connect(Function)
+			end
+		end
+		function Loops:RemoveFromHeartbeat(Name)
+			if Loops["Heartbeat"][Name] then
+				Loops["Heartbeat"][Name]:Disconnect()
+				Loops["Heartbeat"][Name] = nil
+			end
+		end
+		function Loops:AddToRenderStepped(Name, Function)
+			if Loops["RenderStepped"][Name] == nil then
+				Loops["RenderStepped"][Name] = rsService.RenderStepped:Connect(Function)
+			end
+		end
+		function Loops:RemoveFromRenderStepped(Name)
+			if Loops["RenderStepped"][Name] then
+				Loops["RenderStepped"][Name]:Disconnect()
+				Loops["RenderStepped"][Name] = nil
+			end
+		end
+
+		SYC.Modules.Loops = Loops
+	end
+	do -- src/Lua/Modules/Base/PerlinNoise.lua
+		-- useful shit for legit ig
+		function SYC.Modules.PerlinNoise(offset, speed, time)
+			local value = math.noise(time * speed + offset)
+			return math.clamp(value, -0.5, 0.5)
+		end
+	end
+	do -- src/Lua/Modules/Base/UI - Rich to Plain.lua
+		-- @https://devforum.roblox.com/t/how-to-ensure-a-plain-text-string-when-using-rich-text-field/1640202
+		function SYC.Modules.UI.RichTextToNormalText(str)
+			local output_string = str
+			TaskSpawn(function()
+				while TaskWait() do 
+					if not output_string:find("<") and not output_string:find(">") then break end -- If not found any <...>
+					if (output_string:find("<") and not output_string:find(">")) or (output_string:find(">") and not output_string:find("<")) then return error("Invalid RichText") end -- if found only "<..." or "...>"
+					output_string = output_string:gsub(output_string:sub(output_string:find("<"), output_string:find(">")), "", 1) -- Removing this "<...>"
+				end
+			end)
+			return output_string
+		end
+	end
+	do -- src/Lua/Modules/Base/UI -GetTextBoundary.lua
+		function SYC.Modules.UI:GetTextBoundary(Text, Font, Size, Resolution)
+			local Bounds = textService:GetTextSize(Text, Size, Font, Resolution or Vector2New(1920, 1080))
+			return Bounds.X, Bounds.Y
+		end
 	end
 end
 
@@ -79,7 +164,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 	getgenv().theme_event = InstanceNew("BindableEvent")
 
 	getgenv().UI = Azure.Instances
-	local UIModule = getgenv().include("UI")
+	local UIModule = include "UI"
 
 	local dragging, dragInput, dragStart, startPos, dragObject
 
