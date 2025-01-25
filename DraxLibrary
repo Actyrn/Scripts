@@ -451,7 +451,8 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								Callback = Configuration.callback or function() end, 
 								Default = Configuration.default or nil, 
 								Flag = Azure:GetNextFlag(), 
-								Multi = Configuration.multi or false
+								Multi = Configuration.multi or false, 
+								Ignored = Configuration.ignored or false
 							}
 
 							local BoneSelector = {
@@ -976,7 +977,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								BoneSelector.FValue = bool and {} or ""
 							end
 
-							Azure.ConfigFlags[BoneSelectorOptions.Flag] = function(state) BoneSelectorOptions:Set(state) end
+							Azure.ConfigFlags[BoneSelectorOptions.Flag] = function(state) if Configuration.ignored then return end BoneSelectorOptions:Set(state) end
 							increaseYSize(308)
 							return BoneSelectorOptions
 						end
@@ -1058,7 +1059,8 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								Default = Configuration.default or Color3FromRGB(255, 255, 255), 
 								Transparency = Configuration.transparency or 0, 
 								Callback = Configuration.callback or function() end, 
-								Flag = Azure:GetNextFlag()
+								Flag = Azure:GetNextFlag(), 
+								Ignored = Configuration.ignored or false
 							}
 
 							local Colorpicker = {
@@ -1443,7 +1445,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 
 							increaseYSize(13)
 
-							Azure.ConfigFlags[ColorpickerOptions.Flag] = function(value) ColorpickerOptions:Set(value) end
+							Azure.ConfigFlags[ColorpickerOptions.Flag] = function(value) if Configuration.ignored then return end ColorpickerOptions:Set(value) end
 
 							return ColorpickerOptions
 						end
@@ -1456,7 +1458,8 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								Default = Configuration.default or "-", 
 								Multi = Configuration.multi or false, 
 								Callback = Configuration.callback or function () end, 
-								Flag = Azure:GetNextFlag()
+								Flag = Azure:GetNextFlag(), 
+								Ignored = Configuration.ignored or false
 							}
 
 							local Dropdown = {
@@ -1880,7 +1883,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								end
 							end)
 
-							Azure.ConfigFlags[DropdownOptions.Flag] = function(state) Dropdown:Set(state) end
+							Azure.ConfigFlags[DropdownOptions.Flag] = function(state) if Configuration.ignored then return end Dropdown:Set(state) end
 
 							increaseYSize(40)
 							return DropdownOptions, Dropdown
@@ -1896,7 +1899,8 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								Callback = Configuration.callback or function() end, 
 								KeybindsList = Configuration.keybindlist or false, 
 								KeybindListName = Configuration.keybindname or self.Title, 
-								Flag = Azure:GetNextFlag()
+								Flag = Azure:GetNextFlag(), 
+								Ignored = Configuration.ignored or false
 							}
 
 							local Keybind = {
@@ -2195,7 +2199,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							Azure.Flags[KeybindOptions.Flag] = KeybindOptions:GetState()
 							Azure.Flags[KeybindOptions.Flag .. "_info"] = {Keybind.FKey, Keybind.FMode}
 
-							Azure.ConfigFlags[KeybindOptions.Flag .. "_info"] = function(info) Keybind:Value(info) end
+							Azure.ConfigFlags[KeybindOptions.Flag .. "_info"] = function(info) if Configuration.ignored then return end Keybind:Value(info) end
 
 							return KeybindOptions
 						end
@@ -2453,6 +2457,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								Sliding = false, 
 								Suffix = Configuration.suffix or "", 
 								Flag = Azure:GetNextFlag(), 
+								Ignored = Configuration.ignored or false
 							}
 							SliderOptions.MinText = Configuration.mintext or tostring(SliderOptions.Min)
 							SliderOptions.MaxText = Configuration.maxtext or tostring(SliderOptions.Max)
@@ -2632,7 +2637,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								end
 							end)
 
-							Azure.ConfigFlags[SliderOptions.Flag] = function(value) SliderOptions:Set(value) end
+							Azure.ConfigFlags[SliderOptions.Flag] = function(value) if Configuration.ignored then return end SliderOptions:Set(value) end
 
 							increaseYSize(30)
 							return SliderOptions
@@ -2647,7 +2652,8 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								ClearTextOnFocus = Configuration.cleartextonfocus or Configuration.ctf or true, 
 								Callback = Configuration.callback or function() end, 
 								Text = "", 
-								Flag = Azure:GetNextFlag()
+								Flag = Azure:GetNextFlag(), 
+								Ignored = Configuration.ignored or false
 							}
 
 							if TextBoxOptions.Title ~= "NO TITLE" then
@@ -2699,7 +2705,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							TextBox.FocusLost:Connect(OnFocusLost)
 
 							increaseYSize(14)
-							Azure.ConfigFlags[TextBoxOptions.Flag] = function(text) TextBoxOptions:Set(text) end
+							Azure.ConfigFlags[TextBoxOptions.Flag] = function(text) if Configuration.ignored then return end TextBoxOptions:Set(text) end
 
 							return TextBoxOptions
 						end
@@ -2711,7 +2717,8 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								default = Configuration.default or false, 
 								state = false, 
 								callback = Configuration.callback or function() end, 
-								Flag = Azure:GetNextFlag()
+								Flag = Azure:GetNextFlag(), 
+								Ignored = Configuration.ignored or false
 							}
 
 							UI["19"] = InstanceNew("TextButton", SectionColumnComponents)
@@ -2823,7 +2830,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 							ToggleOptions:Set(ToggleOptions.default)
 							increaseYSize(15)
 
-							Azure.ConfigFlags[ToggleOptions.Flag] = function(state) ToggleOptions:Set(state) end
+							Azure.ConfigFlags[ToggleOptions.Flag] = function(state) if Configuration.ignored then return end ToggleOptions:Set(state) end
 
 							return ToggleOptions
 						end
