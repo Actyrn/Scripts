@@ -1881,16 +1881,7 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 								end
 							end)
 
-							Azure.ConfigFlags[DropdownOptions.Flag] = function(state)
-								if Configuration.ignored then return end
-								Dropdown:Set({})
-
-								if DropdownOptions.Multi and type(state) ~= "table" then
-									Dropdown:Set({state})
-								else
-									Dropdown:Set(state)
-								end
-							end
+							Azure.ConfigFlags[DropdownOptions.Flag] = function(state) if DropdownOptions.Multi or Configuration.ignored then return end Dropdown:Set(state) end
 
 							increaseYSize(40)
 							return DropdownOptions, Dropdown
