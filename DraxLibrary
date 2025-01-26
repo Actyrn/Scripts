@@ -4,12 +4,12 @@ local SYC = {
 	}
 }
 
-if not isfolder("Actyrn") then
-	makefolder("Actyrn")
+if not isfolder("actyrnmodded") then
+	makefolder("actyrnmodded")
 end
 
-if not isfolder("Actyrn/Configs") then
-	makefolder("Actyrn/Configs")
+if not isfolder("actyrnmodded/configs") then
+	makefolder("actyrnmodded/configs")
 end
 
 local playerService = cloneref(game:GetService("Players"))
