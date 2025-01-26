@@ -4,10 +4,6 @@ local SYC = {
 	}
 }
 
-if isfolder("actyrn") then
-	delfile("actyrn")
-end
-
 if not isfolder("Actyrn") then
 	makefolder("Actyrn")
 end
