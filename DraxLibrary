@@ -1883,7 +1883,8 @@ local Azure = (function() -- src/Lua/Interface/Interface.Lua
 
 							Azure.ConfigFlags[DropdownOptions.Flag] = function(state)
 								if Configuration.ignored then return end
-								Dropdown:Set("None")
+								Dropdown:Set()
+
 								if DropdownOptions.Multi and type(state) ~= "table" then
 									Dropdown:Set({state})
 								else
