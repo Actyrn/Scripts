@@ -1,5 +1,5 @@
 local camera = cloneref(game:GetService("Workspace")):FindFirstChildOfClass("Camera")
-local drawingUI = Instance.new("ScreenGui", gethui())
+local drawingUI = Instance.new("ScreenGui", gethui and gethui() or cloneref(game:GetService("CoreGui")))
 drawingUI.Name = "Drawing"
 drawingUI.IgnoreGuiInset = true
 drawingUI.DisplayOrder = 0x7fffffff
