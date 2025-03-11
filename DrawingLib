@@ -215,7 +215,12 @@ function DrawingLib.new(drawingType)
 					textLabel.TextColor3 = value
 
 				elseif index == "Drag" then
-					textLabel.Draggable = value
+					if value and not textLabel:FindFirstChildOfClass("UIDragDetector") then
+						Instance.new("UIDragDetector", textLabel)
+
+					elseif textLabel:FindFirstChildOfClass("UIDragDetector") then
+						textLabel:FindFirstChildOfClass("UIDragDetector"):Destroy()
+					end
 				end
 
 				textObj[index] = value
