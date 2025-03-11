@@ -213,6 +213,9 @@ function DrawingLib.new(drawingType)
 
 				elseif index == "Color" then
 					textLabel.TextColor3 = value
+
+				elseif index == "Drag" then
+					textLabel.Draggable = value
 				end
 
 				textObj[index] = value
