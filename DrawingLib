@@ -214,8 +214,8 @@ function DrawingLib.new(drawingType)
 				elseif index == "Color" then
 					textLabel.TextColor3 = value
 
-				elseif index == "Drag" then
-					if value and not textLabel:FindFirstChildOfClass("UIDragDetector") then
+				elseif index == "Draggable" then
+					if value == true and not textLabel:FindFirstChildOfClass("UIDragDetector") then
 						Instance.new("UIDragDetector", textLabel)
 
 					elseif textLabel:FindFirstChildOfClass("UIDragDetector") then
