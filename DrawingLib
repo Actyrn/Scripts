@@ -8,14 +8,14 @@ local drawingIndex = 0
 local uiStrokes = table.create(0)
 
 local baseDrawingObj = setmetatable({
-	Visible = true,
-	ZIndex = 0,
-	Transparency = 1,
-	Color = Color3.new(),
+	Visible = true, 
+	ZIndex = 0, 
+	Transparency = 1, 
+	Color = Color3.new(), 
 
 	Remove = function(self)
 		setmetatable(self, nil)
-	end,
+	end, 
 
 	Destroy = function(self)
 		setmetatable(self, nil)
@@ -33,17 +33,17 @@ local baseDrawingObj = setmetatable({
 })
 
 local drawingFontsEnum = {
-	[0] = Font.fromEnum(Enum.Font.Roboto),
-	[1] = Font.fromEnum(Enum.Font.Legacy),
-	[2] = Font.fromEnum(Enum.Font.SourceSans),
-	[3] = Font.fromEnum(Enum.Font.RobotoMono),
+	[0] = Font.fromEnum(Enum.Font.Roboto), 
+	[1] = Font.fromEnum(Enum.Font.Legacy), 
+	[2] = Font.fromEnum(Enum.Font.SourceSans), 
+	[3] = Font.fromEnum(Enum.Font.RobotoMono), 
 }
 
 local DrawingLib = {}
 DrawingLib.Fonts = {
-	["UI"] = 0,
-	["System"] = 1,
-	["Plex"] = 2,
+	["UI"] = 0, 
+	["System"] = 1, 
+	["Plex"] = 2, 
 	["Monospace"] = 3
 }
 
@@ -52,8 +52,8 @@ function DrawingLib.new(drawingType)
 
 	if drawingType == "Line" then
 		local lineObj = ({
-			From = Vector2.zero,
-			To = Vector2.zero,
+			From = Vector2.zero, 
+			To = Vector2.zero, 
 			Thickness = 1
 		} + baseDrawingObj)
 
@@ -111,10 +111,13 @@ function DrawingLib.new(drawingType)
 
 				elseif index == "Color" then
 					lineFrame.BackgroundColor3 = value
+
+				elseif index == "Object" then
+					return lineFrame
 				end
 
 				lineObj[index] = value
-			end,
+			end, 
 
 			__index = function(self, index)
 				if index == "Remove" or index == "Destroy" then
@@ -127,19 +130,19 @@ function DrawingLib.new(drawingType)
 				end
 
 				return lineObj[index]
-			end,
+			end, 
 
 			__tostring = function() return "Drawing" end
 		})
 
 	elseif drawingType == "Text" then
 		local textObj = ({
-			Text = "",
-			Font = DrawingLib.Fonts.UI,
-			Size = 0,
-			Position = Vector2.zero,
-			Center = false,
-			Outline = false,
+			Text = "", 
+			Font = DrawingLib.Fonts.UI, 
+			Size = 0, 
+			Position = Vector2.zero, 
+			Center = false, 
+			Outline = false, 
 			OutlineColor = Color3.new()
 		} + baseDrawingObj)
 
@@ -214,17 +217,12 @@ function DrawingLib.new(drawingType)
 				elseif index == "Color" then
 					textLabel.TextColor3 = value
 
-				elseif index == "Draggable" then
-					if value == true and not textLabel:FindFirstChildOfClass("UIDragDetector") then
-						Instance.new("UIDragDetector", textLabel)
-
-					elseif textLabel:FindFirstChildOfClass("UIDragDetector") then
-						textLabel:FindFirstChildOfClass("UIDragDetector"):Destroy()
-					end
+				elseif index == "Object" then
+					return textLabel
 				end
 
 				textObj[index] = value
-			end,
+			end, 
 
 			__index = function(self, index)
 				if index == "Remove" or index == "Destroy" then
@@ -240,16 +238,16 @@ function DrawingLib.new(drawingType)
 				end
 
 				return textObj[index]
-			end,
+			end, 
 
 			__tostring = function() return "Drawing" end
 		})
 
 	elseif drawingType == "Circle" then
 		local circleObj = ({
-			Radius = 150,
-			Position = Vector2.zero,
-			Thickness = .7,
+			Radius = 150, 
+			Position = Vector2.zero, 
+			Thickness = .7, 
 			Filled = false
 		} + baseDrawingObj)
 
@@ -306,10 +304,13 @@ function DrawingLib.new(drawingType)
 				elseif index == "Color" then
 					circleFrame.BackgroundColor3 = value
 					uiStroke.Color = value
+
+				elseif index == "Object" then
+					return circleFrame
 				end
 
 				circleObj[index] = value
-			end,
+			end, 
 
 			__index = function(self, index)
 				if index == "Remove" or index == "Destroy" then
@@ -322,16 +323,16 @@ function DrawingLib.new(drawingType)
 				end
 
 				return circleObj[index]
-			end,
+			end, 
 
 			__tostring = function() return "Drawing" end
 		})
 
 	elseif drawingType == "Square" then
 		local squareObj = ({
-			Size = Vector2.zero,
-			Position = Vector2.zero,
-			Thickness = .7,
+			Size = Vector2.zero, 
+			Position = Vector2.zero, 
+			Thickness = .7, 
 			Filled = false
 		} + baseDrawingObj)
 
@@ -383,10 +384,13 @@ function DrawingLib.new(drawingType)
 				elseif index == "Color" then
 					uiStroke.Color = value
 					squareFrame.BackgroundColor3 = value
+
+				elseif index == "Object" then
+					return squareFrame
 				end
 
 				squareObj[index] = value
-			end,
+			end, 
 
 			__index = function(self, index)
 				if index == "Remove" or index == "Destroy" then
@@ -399,16 +403,16 @@ function DrawingLib.new(drawingType)
 				end
 
 				return squareObj[index]
-			end,
+			end, 
 
 			__tostring = function() return "Drawing" end
 		})
 
 	elseif drawingType == "Image" then
 		local imageObj = ({
-			Data = "",
-			DataURL = "rbxassetid://0",
-			Size = Vector2.zero,
+			Data = "", 
+			DataURL = "rbxassetid://0", 
+			Size = Vector2.zero, 
 			Position = Vector2.zero
 		} + baseDrawingObj)
 
@@ -449,10 +453,13 @@ function DrawingLib.new(drawingType)
 
 				elseif index == "Color" then
 					imageFrame.ImageColor3 = value
+
+				elseif index == "Object" then
+					return imageFrame
 				end
 
 				imageObj[index] = value
-			end,
+			end, 
 
 			__index = function(self, index)
 				if index == "Remove" or index == "Destroy" then
@@ -465,7 +472,7 @@ function DrawingLib.new(drawingType)
 				end
 
 				return imageObj[index]
-			end,
+			end, 
 
 			__tostring = function() return "Drawing" end
 		})
@@ -532,13 +539,17 @@ function DrawingLib.new(drawingType)
 					PointD.Color = Value
 				end
 
-				if (Property == "ZIndex") then
+				if Property == "ZIndex" then
 					PointA.ZIndex = Value
 					PointB.ZIndex = Value
 					PointC.ZIndex = Value
 					PointD.ZIndex = Value
 				end
-			end),
+
+				if Property == "Object" then
+					return PointA and PointB and PointC and PointD
+				end
+			end), 
 
 			__index = (function(self, Property)
 				if (string.lower(tostring(Property)) == "remove") then
@@ -556,10 +567,10 @@ function DrawingLib.new(drawingType)
 
 	elseif drawingType == "Triangle" then
 		local triangleObj = ({
-			PointA = Vector2.zero,
-			PointB = Vector2.zero,
-			PointC = Vector2.zero,
-			Thickness = 1,
+			PointA = Vector2.zero, 
+			PointB = Vector2.zero, 
+			PointC = Vector2.zero, 
+			Thickness = 1, 
 			Filled = false
 		} + baseDrawingObj)
 
@@ -569,7 +580,7 @@ function DrawingLib.new(drawingType)
 		_linePoints.C = DrawingLib.new("Line")
 
 		return setmetatable(table.create(0), {
-			__tostring = function() return "Drawing" end,
+			__tostring = function() return "Drawing" end, 
 			__newindex = function(_, index, value)
 				if typeof(triangleObj[index]) == "nil" then return end
 
@@ -592,10 +603,13 @@ function DrawingLib.new(drawingType)
 
 				elseif index == "Filled" then
 					-- Later
+
+				elseif index == "Object" then
+					return _linePoints.A and _linePoints.B and _linePoints.C
 				end
 
 				triangleObj[index] = value
-			end,
+			end, 
 
 			__index = function(self, index)
 				if index == "Remove" or index == "Destroy" then
@@ -610,7 +624,7 @@ function DrawingLib.new(drawingType)
 				end
 
 				return triangleObj[index]
-			end,
+			end, 
 		})
 	end
 end
