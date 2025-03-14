@@ -112,8 +112,8 @@ function DrawingLib.new(drawingType)
 				elseif index == "Color" then
 					lineFrame.BackgroundColor3 = value
 
-				elseif index == "Object" then
-					return lineFrame
+				elseif index == "Parent" then
+					return drawingUI
 				end
 
 				lineObj[index] = value
@@ -217,8 +217,8 @@ function DrawingLib.new(drawingType)
 				elseif index == "Color" then
 					textLabel.TextColor3 = value
 
-				elseif index == "Object" then
-					return textLabel
+				elseif index == "Parent" then
+					return drawingUI
 				end
 
 				textObj[index] = value
@@ -305,8 +305,8 @@ function DrawingLib.new(drawingType)
 					circleFrame.BackgroundColor3 = value
 					uiStroke.Color = value
 
-				elseif index == "Object" then
-					return circleFrame
+				elseif index == "Parent" then
+					return drawingUI
 				end
 
 				circleObj[index] = value
@@ -385,8 +385,8 @@ function DrawingLib.new(drawingType)
 					uiStroke.Color = value
 					squareFrame.BackgroundColor3 = value
 
-				elseif index == "Object" then
-					return squareFrame
+				elseif index == "Parent" then
+					return drawingUI
 				end
 
 				squareObj[index] = value
@@ -454,8 +454,8 @@ function DrawingLib.new(drawingType)
 				elseif index == "Color" then
 					imageFrame.ImageColor3 = value
 
-				elseif index == "Object" then
-					return imageFrame
+				elseif index == "Parent" then
+					return drawingUI
 				end
 
 				imageObj[index] = value
@@ -546,8 +546,8 @@ function DrawingLib.new(drawingType)
 					PointD.ZIndex = Value
 				end
 
-				if Property == "Object" then
-					return PointA and PointB and PointC and PointD
+				if Property == "Parent" then
+					return drawingUI
 				end
 			end), 
 
@@ -604,8 +604,8 @@ function DrawingLib.new(drawingType)
 				elseif index == "Filled" then
 					-- Later
 
-				elseif index == "Object" then
-					return _linePoints.A and _linePoints.B and _linePoints.C
+				elseif index == "Parent" then
+					return drawingUI
 				end
 
 				triangleObj[index] = value
